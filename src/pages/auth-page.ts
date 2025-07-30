@@ -1,10 +1,10 @@
 import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
-import { env } from "@utils";
 import { RegisterFormData, PreRegisterFormData } from "@typings/auth";
+import { LoginText } from "@typings/auth/auth-enums";
 
 export class AuthPage extends BasePage {
-  private readonly loginBUtton: Locator = this.page.getByRole("link", {
+  private readonly loginLink: Locator = this.page.getByRole("link", {
     name: "Signup / Login",
   });
   private readonly signupNameField: Locator =
@@ -37,17 +37,50 @@ export class AuthPage extends BasePage {
     this.page.getByTestId("create-account");
   public readonly createAccountText: Locator =
     this.page.getByTestId("account-created");
+  private readonly loginEmailField: Locator =
+    this.page.getByTestId("login-email");
+  private readonly loginPasswordField: Locator =
+    this.page.getByTestId("login-password");
+
+  private readonly loginButton: Locator = this.page.getByTestId("login-button");
+  public readonly loginError: Locator = this.page.locator('p', {hasText: LoginText.LOGIN_UNSUCCESSFULL })
+  public readonly logoutButton: Locator = this.page.getByRole("link", {name: "Logout"})
+  public readonly loginToYourAccountText: Locator = this.page.getByRole("heading", {name: LoginText.LOGING_TO_ACCOUNT })
+  public readonly newUserSignupText: Locator = this.page.getByRole('heading', {name: LoginText.NEW_USER_SIGNUP })
+
+  
 
   public async fillPreRegisterForm(data: PreRegisterFormData): Promise<void> {
-    await this.goToLink(env.AUTOMATION_BASEURL);
-    await this.secureClick(this.loginBUtton);
+    await this.secureClick(this.loginLink);
     await this.fillSignupName(data.signupName);
     await this.fillSignupEmail(data.signupEmail);
     await this.clickSignupButton();
   }
 
+  public async fillLoginEmail(value: string) {
+    await this.secureFill(this.loginEmailField, value);
+  }
+
+  public async fillLoginPassword(value: string) {
+    await this.secureFill(this.loginPasswordField, value);
+  }
+
+  public async login(email: string, password: string): Promise<void> {
+    await this.secureClick(this.loginLink);
+    await this.fillLoginEmail(email);
+    await this.fillLoginPassword(password);
+    await this.clickLoginButton();
+  }
   public async fillSignupName(value: string): Promise<void> {
     await this.secureFill(this.signupNameField, value);
+  }
+
+  public async clickLoginButton(): Promise<void> {
+    await this.secureClick(this.loginButton);
+  }
+
+  public async clickLogoutButton(): Promise<void> {
+    await this.secureClick(this.logoutButton);
   }
 
   public async fillSignupEmail(value: string): Promise<void> {
@@ -135,20 +168,36 @@ export class AuthPage extends BasePage {
   }
 
   public async fillRegistration(data: RegisterFormData): Promise<void> {
-    await this.clickMrGender();
+    if (data.menGender) {
+      await this.clickMrGender();
+    }
+    if (data.womanGender) {
+      await this.clickMrsGender();
+    }
     await this.fillPassword(data.password);
     await this.fillFirstName(data.firstName);
     await this.fillLastName(data.lastName);
-    await this.fillCompany(data.company);
+    if (data.company) {
+      await this.fillCompany(data.company);
+    }
     await this.fillAddress1(data.address1);
-    await this.fillAddress2(data.address2);
+    if (data.address2) {
+      await this.fillAddress2(data.address2);
+    }
     await this.fillCity(data.city);
     await this.fillState(data.state);
     await this.fillZip(data.zip);
     await this.fillMobileNumber(data.mobileNumber);
-    await this.selectDay(data.day);
-    await this.selectMonth(data.month);
-    await this.selectYear(data.year);
+    if (data.day) {
+      await this.selectDay(data.day);
+    }
+    if (data.month) {
+      await this.selectMonth(data.month);
+    }
+    if (data.year) {
+      await this.selectYear(data.year);
+    }
+
     await this.selectCountry(data.country);
     if (data.subscribeToNewsletter) {
       await this.checkNewsletter();

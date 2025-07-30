@@ -1,30 +1,49 @@
 import { faker } from "@faker-js/faker";
 import { RegisterFormData } from "@typings/auth"; // dostosuj ścieżkę importu
+import { Countries } from "@typings/auth/auth-enums";
 
 export class DataGenerator {
-  public static generateRegisterFormData(): RegisterFormData {
-    return {
+  public static generateRegisterFormData(
+    requiredOnly = false,
+    overrides: Partial<RegisterFormData> = {},
+  ): RegisterFormData {
+    const isMale = requiredOnly ? false : faker.datatype.boolean();
+    const isFemale = requiredOnly ? false : !isMale;
+
+    const baseData: RegisterFormData = {
       signupName: faker.person.firstName(),
       signupEmail: faker.internet.email(),
 
       password: faker.internet.password({ length: 10 }),
       firstName: faker.person.firstName(),
       lastName: faker.person.lastName(),
-      company: faker.company.name(),
+
       address1: faker.location.streetAddress(),
-      address2: faker.location.secondaryAddress(),
       city: faker.location.city(),
       state: faker.location.state(),
       zip: faker.location.zipCode(),
       mobileNumber: faker.phone.number(),
+      country: faker.helpers.arrayElement(Object.values(Countries)),
 
-      day: faker.number.int({ min: 1, max: 28 }).toString(), // np. "15"
-      month: faker.number.int({ min: 1, max: 12 }).toString(), // np. "7"
-      year: faker.number.int({ min: 1960, max: 2005 }).toString(), // np. "1994"
-      country: "Canada", // możesz też dodać losowanie z listy państw
+      company: requiredOnly ? undefined : faker.company.name(),
+      address2: requiredOnly ? undefined : faker.location.secondaryAddress(),
+      day: requiredOnly
+        ? undefined
+        : faker.number.int({ min: 1, max: 28 }).toString(),
+      month: requiredOnly
+        ? undefined
+        : faker.number.int({ min: 1, max: 12 }).toString(),
+      year: requiredOnly
+        ? undefined
+        : faker.number.int({ min: 1960, max: 2005 }).toString(),
 
-      subscribeToNewsletter: faker.datatype.boolean(),
-      receiveSpecialOffer: faker.datatype.boolean(),
+      subscribeToNewsletter: requiredOnly ? false : true,
+      receiveSpecialOffer: requiredOnly ? false : true,
+
+      menGender: isMale,
+      womanGender: isFemale,
     };
+
+    return { ...baseData, ...overrides };
   }
 }
