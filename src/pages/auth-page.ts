@@ -1,11 +1,11 @@
 import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
 import { RegisterFormData, PreRegisterFormData } from "@typings/auth";
-import { LoginText } from "@typings/auth/auth-enums";
+import { LoginText, RegistrationText } from "@typings/auth";
 
 export class AuthPage extends BasePage {
   private readonly loginLink: Locator = this.page.getByRole("link", {
-    name: "Signup / Login",
+    name: RegistrationText.SIGNUP_LOGIN,
   });
   private readonly signupNameField: Locator =
     this.page.getByTestId("signup-name");
@@ -26,8 +26,9 @@ export class AuthPage extends BasePage {
   private readonly cityField: Locator = this.page.getByLabel("City");
   private readonly stateField: Locator = this.page.getByLabel("State");
   private readonly zipField: Locator = this.page.getByTestId("zipcode");
-  private readonly mobileNumberField: Locator =
-    this.page.getByLabel("Mobile Number");
+  private readonly mobileNumberField: Locator = this.page.getByLabel(
+    RegistrationText.MOBILE_NUMBER,
+  );
   private readonly daysField: Locator = this.page.getByTestId("days");
   private readonly monthsField: Locator = this.page.getByTestId("months");
   private readonly yearsField: Locator = this.page.getByTestId("years");
@@ -37,18 +38,29 @@ export class AuthPage extends BasePage {
     this.page.getByTestId("create-account");
   public readonly createAccountText: Locator =
     this.page.getByTestId("account-created");
-  private readonly loginEmailField: Locator =
-    this.page.getByTestId("login-email");
-  private readonly loginPasswordField: Locator =
-    this.page.getByTestId("login-password");
+  private readonly loginEmailField: Locator = this.page.locator(
+    '[data-qa="login-email"]',
+  );
+  private readonly loginPasswordField: Locator = this.page.locator(
+    '[data-qa="login-password"]',
+  );
 
-  private readonly loginButton: Locator = this.page.getByTestId("login-button");
-  public readonly loginError: Locator = this.page.locator('p', {hasText: LoginText.LOGIN_UNSUCCESSFULL })
-  public readonly logoutButton: Locator = this.page.getByRole("link", {name: "Logout"})
-  public readonly loginToYourAccountText: Locator = this.page.getByRole("heading", {name: LoginText.LOGING_TO_ACCOUNT })
-  public readonly newUserSignupText: Locator = this.page.getByRole('heading', {name: LoginText.NEW_USER_SIGNUP })
-
-  
+  private readonly loginButton: Locator = this.page.locator(
+    '[data-qa="login-button"]',
+  );
+  public readonly loginError: Locator = this.page.locator("p", {
+    hasText: LoginText.LOGIN_UNSUCCESSFULL,
+  });
+  public readonly loginToYourAccountText: Locator = this.page.getByRole(
+    "heading",
+    { name: LoginText.LOGING_TO_ACCOUNT },
+  );
+  public readonly newUserSignupText: Locator = this.page.getByRole("heading", {
+    name: LoginText.NEW_USER_SIGNUP,
+  });
+  public readonly registerEmailExistError: Locator = this.page.locator("p", {
+    hasText: RegistrationText.EMAIL_ALREADY_EXIST,
+  });
 
   public async fillPreRegisterForm(data: PreRegisterFormData): Promise<void> {
     await this.secureClick(this.loginLink);
@@ -77,10 +89,6 @@ export class AuthPage extends BasePage {
 
   public async clickLoginButton(): Promise<void> {
     await this.secureClick(this.loginButton);
-  }
-
-  public async clickLogoutButton(): Promise<void> {
-    await this.secureClick(this.logoutButton);
   }
 
   public async fillSignupEmail(value: string): Promise<void> {

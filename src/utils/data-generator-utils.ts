@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { RegisterFormData } from "@typings/auth"; // dostosuj ścieżkę importu
-import { Countries } from "@typings/auth/auth-enums";
+import { RegisterFormData } from "@typings/auth";
+import { Countries } from "@typings/auth";
+import { ContactFormData } from "@typings/contact";
 
 export class DataGenerator {
   public static generateRegisterFormData(
@@ -42,6 +43,19 @@ export class DataGenerator {
 
       menGender: isMale,
       womanGender: isFemale,
+    };
+
+    return { ...baseData, ...overrides };
+  }
+
+  public static generateContactFormData(
+    overrides: Partial<ContactFormData> = {},
+  ): ContactFormData {
+    const baseData: ContactFormData = {
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+      subject: faker.lorem.sentence(3),
+      message: faker.lorem.paragraph(),
     };
 
     return { ...baseData, ...overrides };

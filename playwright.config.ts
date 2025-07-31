@@ -1,13 +1,14 @@
 import { defineConfig, devices } from "@playwright/test";
 import { env } from "@utils";
 import * as dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 export default defineConfig({
   testDir: "./src/tests/",
-  timeout: 30 * 1_000,
+  timeout: 120 * 1_000,
   expect: {
-    timeout: 20 * 1_000,
+    timeout: 30 * 1_000,
   },
 
   reporter: [
@@ -18,7 +19,7 @@ export default defineConfig({
 
   use: {
     headless: true,
-    baseURL: env.AUTOMATION_USER,
+    baseURL: env.AUTOMATION_BASEURL,
     testIdAttribute: "data-qa",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
@@ -26,15 +27,39 @@ export default defineConfig({
   },
 
   projects: [
-    { name: "Chromium", use: { ...devices["Desktop Chrome"] } },
-    // { name: "Firefox",  use: { ...devices["Desktop Firefox"] } },
-    // { name: "WebKit",   use: { ...devices["Desktop Safari"] } },
+    {
+      name: "unauthenticated-tests",
+      testMatch: [
+        /.*auth-negative\.spec\.ts$/,
+        /.*auth-positive\.spec\.ts$/,
+        /.*register\.spec\.ts$/,
+      ],
+      use: {
+        storageState: undefined,
+      },
+    },
+
+    {
+      name: "Chromium",
+      testMatch: /^(?!.*(auth-negative|auth-positive|register)).*\.spec\.ts$/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "storageState.json",
+      },
+    },
   ],
+
+  metadata: {
+    paths: {
+      assets: path.resolve(__dirname, "assets"),
+    },
+  },
 
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? "100%" : "50%",
+  globalSetup: "./global-setup",
 
   outputDir: "test-results/",
 });

@@ -14,6 +14,7 @@ export abstract class BasePage {
     url: string = "/",
     options: GotoOptions = { waitUntil: "load" },
   ): Promise<void> {
+    console.log("🌐 [goToLink] Going to:", url);
     await this.page.goto(url, options);
   }
 
