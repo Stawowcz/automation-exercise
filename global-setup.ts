@@ -4,7 +4,7 @@ import { AuthPage } from "./src/pages/auth-page";
 import { HomePage } from "./src/pages/home-page";
 
 export default async function globalSetup(config: FullConfig) {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch();
   const page = await browser.newPage();
 
   const authPage = new AuthPage(page);
@@ -17,8 +17,8 @@ export default async function globalSetup(config: FullConfig) {
     env.AUTOMATION_PASSWORD_CORRECT,
   );
 
-  await homePage.title.waitFor({ state: "visible" });
-  await homePage.subtitle.waitFor({ state: "visible" });
+  await homePage.homeTitle.waitFor({ state: "visible" });
+  await homePage.homeSubtitle.waitFor({ state: "visible" });
 
   await page.context().storageState({ path: "storageState.json" });
 

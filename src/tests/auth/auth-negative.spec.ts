@@ -1,10 +1,15 @@
 import { test, expect } from "@fixtures";
 import { env } from "@utils/index";
 
-test.describe("Negative scenarion", () => {
-  test.beforeEach("should go to the link", async ({ authPage }) => {
-    await authPage.goToLink(env.AUTOMATION_BASEURL);
-  });
+test.describe("Negative scenarion login, logout", () => {
+  test.beforeEach(
+    "should navigate to main page",
+    async ({ authPage, homePage }) => {
+      await authPage.goToLink(env.AUTOMATION_BASEURL);
+      await expect.soft(homePage.homeTitle).toBeVisible();
+      await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
+    },
+  );
   test("should not login with incorrect password", async ({ authPage }) => {
     await authPage.login(
       env.AUTOMATION_USER_CORRECT,

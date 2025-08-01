@@ -4,10 +4,15 @@ import { RegistrationText } from "@typings/auth";
 import { env } from "@utils/env-utils";
 import { DataGenerator } from "@utils/data-generator-utils";
 
-test.describe("Register Page", () => {
-  test.beforeEach("Go to auth page", async ({ authPage }) => {
-    await authPage.goToLink(env.AUTOMATION_BASEURL);
-  });
+test.describe("Register", () => {
+  test.beforeEach(
+    "should navigate to main page",
+    async ({ authPage, homePage }) => {
+      await authPage.goToLink(env.AUTOMATION_BASEURL);
+      await expect.soft(homePage.homeTitle).toBeVisible();
+      await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
+    },
+  );
   test("should register user", async ({ authPage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
     await authPage.fillPreRegisterForm(formData);
