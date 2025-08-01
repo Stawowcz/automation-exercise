@@ -19,7 +19,7 @@ test.describe("Products", () => {
     await expect.soft(productPage.productItem).toHaveCount(35);
   });
 
-  test.only("should verify products detail", async ({
+  test("should verify products detail", async ({
     homePage,
     productPage,
     productDetailsPage,
