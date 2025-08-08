@@ -48,4 +48,68 @@ test.describe("Home", () => {
       .toHaveText(CommonText.PRICE_500);
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
   });
+
+  test.only("should add product to cart and continue shopping", async ({
+    homePage,
+    productPage,
+    addedToCart,
+    cartPage,
+  }) => {
+    await homePage.clickProductsLink();
+    await productPage.clickAddToCartByProductName(CommonText.BLUE_TOP_NAME);
+    await expect
+      .soft(addedToCart.modalHeader)
+      .toContainText(ProductsText.ADDED);
+    await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await expect.soft(addedToCart.viewCartText).toBeVisible();
+    await expect
+      .soft(addedToCart.continueShopingButton)
+      .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.clickContinueShopping()
+    await productPage.clickAddToCartByProductName(CommonText.MEN_TSHIRT_NAME);
+    await addedToCart.clickContinueShopping()
+    await productPage.clickAddToCartByProductName(CommonText.SLEEVE_LESS_DRESS_NAME);
+    await addedToCart.clickViewCart();
+    await expect
+      .soft(cartPage.getProductNameById(1))
+      .toHaveText(CommonText.BLUE_TOP_NAME);
+    await expect
+      .soft(cartPage.getProductCategoryById(1))
+      .toHaveText(CommonText.CATEGORY_WOMEN);
+    await expect
+      .soft(cartPage.getProductPriceById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect
+      .soft(cartPage.getProductTotalById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
+
+    await expect
+      .soft(cartPage.getProductNameById(2))
+      .toHaveText(CommonText.MEN_TSHIRT_NAME);
+    await expect
+      .soft(cartPage.getProductCategoryById(2))
+      .toHaveText(CommonText.CATEGORY_MEN);
+    await expect
+      .soft(cartPage.getProductPriceById(2))
+      .toHaveText(CommonText.PRICE_400);
+    await expect
+      .soft(cartPage.getProductTotalById(2))
+      .toHaveText(CommonText.PRICE_400);
+    await expect.soft(cartPage.getProductQuantityById(2)).toHaveText("1");
+
+        await expect
+      .soft(cartPage.getProductNameById(3))
+      .toHaveText(CommonText.SLEEVE_LESS_DRESS_NAME);
+    await expect
+      .soft(cartPage.getProductCategoryById(3))
+      .toHaveText(CommonText.CATEGORY_WOMEN);
+    await expect
+      .soft(cartPage.getProductPriceById(3))
+      .toHaveText(CommonText.PRICE_1000);
+    await expect
+      .soft(cartPage.getProductTotalById(3))
+      .toHaveText(CommonText.PRICE_1000);
+    await expect.soft(cartPage.getProductQuantityById(3)).toHaveText("1");
+  });
 });
