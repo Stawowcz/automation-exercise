@@ -1,13 +1,12 @@
 import { test, expect } from "@fixtures";
+import { CommonText } from "@typings/common";
 import { ProductDetailsText } from "@typings/pages/product-details/product-details.enum";
 import { ProductsText } from "@typings/pages/products/product-enum";
 import { env } from "@utils";
 
 test.describe("Products", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
-    await homePage.goToLink(env.AUTOMATION_BASEURL, {
-      waitUntil: "domcontentloaded",
-    });
+    await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
@@ -77,10 +76,10 @@ test.describe("Products", () => {
     await expect.soft(productPage.productItem).toHaveCount(1);
     await expect
       .soft(productPage.producPrice)
-      .toHaveText(ProductsText.PRICE_500);
+      .toHaveText(CommonText.PRICE_500);
     await expect
       .soft(productPage.producName)
-      .toHaveText(ProductsText.BLUE_TOP_NAME);
+      .toHaveText(CommonText.BLUE_TOP_NAME);
     await expect
       .soft(productPage.addToCartButton)
       .toHaveText(ProductsText.ADD_TO_CART);

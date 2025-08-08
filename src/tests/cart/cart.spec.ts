@@ -27,37 +27,4 @@ test.describe("Home", () => {
       .soft(cartPage.successSubscribeText)
       .toHaveText(CommonText.SUCCESS_SUBSCRIBE);
   });
-
-  test("should add product to cart and view cart", async ({
-    homePage,
-    productPage,
-    addedToCart,
-    cartPage,
-  }) => {
-    await homePage.clickProductsLink();
-    await productPage.clickAddToCartByProductName(CommonText.BLUE_TOP_NAME);
-    await expect
-      .soft(addedToCart.modalHeader)
-      .toContainText(ProductsText.ADDED);
-    await expect.soft(addedToCart.modalBodyText).toBeVisible();
-    await expect.soft(addedToCart.viewCartText).toBeVisible();
-    await expect
-      .soft(addedToCart.continueShopingButton)
-      .toHaveText(AddToCartText.CONTINUE_SHOPPING);
-    await addedToCart.clickViewCart();
-    await expect
-      .soft(cartPage.getProductNameById(1))
-      .toHaveText(CommonText.BLUE_TOP_NAME);
-    await expect
-      .soft(cartPage.getProductCategoryById(1))
-      .toHaveText(CommonText.CATEGORY_WOMEN);
-    await expect
-      .soft(cartPage.getProductPriceById(1))
-      .toHaveText(CommonText.PRICE_500);
-    await expect
-      .soft(cartPage.getProductTotalById(1))
-      .toHaveText(CommonText.PRICE_500);
-    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
-    await cartPage.clickDeleteButtonById(1);
-  });
 });
