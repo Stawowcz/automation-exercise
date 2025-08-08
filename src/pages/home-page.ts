@@ -7,9 +7,11 @@ export class HomePage extends BasePage {
   public readonly homeTitle: Locator = this.page.getByRole("heading", {
     name: HomeText.TITLE,
   });
+
   public readonly homeSubtitle: Locator = this.page.getByRole("heading", {
     name: HomeText.SUBTITLE,
   });
+
   public readonly logoutButton: Locator = this.page.getByRole("link", {
     name: LoginText.LOGOUT,
   });
@@ -31,22 +33,22 @@ export class HomePage extends BasePage {
   });
 
   public async clickCartLink(): Promise<void> {
-    await this.secureClick(this.cartLink);
+    await this.interaction.secureClick(this.cartLink);
   }
 
   public async clickProductsLink(): Promise<void> {
-    await this.secureClick(this.productsLink);
+    await this.interaction.secureClick(this.productsLink);
   }
 
   public async clickTestCasesLink(): Promise<void> {
-    await this.secureClick(this.testCasesLink);
+    await this.interaction.secureClick(this.testCasesLink);
   }
 
   public async clickLogoutButton(): Promise<void> {
-    await this.secureClick(this.logoutButton);
+    await this.interaction.secureClick(this.logoutButton);
   }
 
   public async clickContactLink(): Promise<void> {
-    await this.secureClick(this.contactLink);
+    await this.interaction.secureClick(this.contactLink);
   }
 }

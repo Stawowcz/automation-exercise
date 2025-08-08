@@ -36,6 +36,7 @@ export class AuthPage extends BasePage {
   private readonly companyField: Locator = this.page.getByTestId("company");
   private readonly createAccount: Locator =
     this.page.getByTestId("create-account");
+
   public readonly createAccountText: Locator =
     this.page.getByTestId("account-created");
   private readonly loginEmailField: Locator = this.page.locator(
@@ -44,16 +45,18 @@ export class AuthPage extends BasePage {
   private readonly loginPasswordField: Locator = this.page.locator(
     '[data-qa="login-password"]',
   );
-
   private readonly loginButton: Locator = this.page.locator(
     '[data-qa="login-button"]',
   );
+
   public readonly loginError: Locator = this.page.locator("p", {
     hasText: LoginText.LOGIN_UNSUCCESSFULL,
   });
   public readonly loginToYourAccountText: Locator = this.page.getByRole(
     "heading",
-    { name: LoginText.LOGING_TO_ACCOUNT },
+    {
+      name: LoginText.LOGING_TO_ACCOUNT,
+    },
   );
   public readonly newUserSignupText: Locator = this.page.getByRole("heading", {
     name: LoginText.NEW_USER_SIGNUP,
@@ -63,156 +66,138 @@ export class AuthPage extends BasePage {
   });
 
   public async fillPreRegisterForm(data: PreRegisterFormData): Promise<void> {
-    await this.secureClick(this.loginLink);
+    await this.interaction.secureClick(this.loginLink);
     await this.fillSignupName(data.signupName);
     await this.fillSignupEmail(data.signupEmail);
     await this.clickSignupButton();
   }
 
-  public async fillLoginEmail(value: string) {
-    await this.secureFill(this.loginEmailField, value);
+  public async fillLoginEmail(value: string): Promise<void> {
+    await this.interaction.secureFill(this.loginEmailField, value);
   }
 
-  public async fillLoginPassword(value: string) {
-    await this.secureFill(this.loginPasswordField, value);
+  public async fillLoginPassword(value: string): Promise<void> {
+    await this.interaction.secureFill(this.loginPasswordField, value);
   }
 
   public async login(email: string, password: string): Promise<void> {
-    await this.secureClick(this.loginLink);
+    await this.interaction.secureClick(this.loginLink);
     await this.fillLoginEmail(email);
     await this.fillLoginPassword(password);
     await this.clickLoginButton();
   }
-  public async fillSignupName(value: string): Promise<void> {
-    await this.secureFill(this.signupNameField, value);
-  }
 
-  public async clickLoginButton(): Promise<void> {
-    await this.secureClick(this.loginButton);
+  public async fillSignupName(value: string): Promise<void> {
+    await this.interaction.secureFill(this.signupNameField, value);
   }
 
   public async fillSignupEmail(value: string): Promise<void> {
-    await this.secureFill(this.signupEmailField, value);
-  }
-
-  public async clickSignupButton(): Promise<void> {
-    await this.secureClick(this.signupEmailBUtton);
-  }
-
-  public async clickCreateAccount(): Promise<void> {
-    await this.secureClick(this.createAccount);
+    await this.interaction.secureFill(this.signupEmailField, value);
   }
 
   public async fillPassword(value: string): Promise<void> {
-    await this.secureFill(this.password, value);
+    await this.interaction.secureFill(this.password, value);
   }
 
   public async fillCompany(value: string): Promise<void> {
-    await this.secureFill(this.companyField, value);
-  }
-
-  public async clickMrGender(): Promise<void> {
-    await this.secureClick(this.genderMrRadio);
-  }
-
-  public async checkNewsletter(): Promise<void> {
-    await this.secureClick(this.newsletterCheckbox);
-  }
-
-  public async clickMrsGender(): Promise<void> {
-    await this.secureClick(this.genderMrsRadio);
-  }
-
-  public async checkSpecialOffer(): Promise<void> {
-    await this.secureClick(this.specialOfferCheckbox);
+    await this.interaction.secureFill(this.companyField, value);
   }
 
   public async fillFirstName(value: string): Promise<void> {
-    await this.secureFill(this.firstNameField, value);
+    await this.interaction.secureFill(this.firstNameField, value);
   }
 
   public async fillLastName(value: string): Promise<void> {
-    await this.secureFill(this.lastNameField, value);
+    await this.interaction.secureFill(this.lastNameField, value);
   }
 
   public async fillAddress1(value: string): Promise<void> {
-    await this.secureFill(this.address1Field, value);
+    await this.interaction.secureFill(this.address1Field, value);
   }
 
   public async fillAddress2(value: string): Promise<void> {
-    await this.secureFill(this.address2Field, value);
+    await this.interaction.secureFill(this.address2Field, value);
   }
 
   public async fillCity(value: string): Promise<void> {
-    await this.secureFill(this.cityField, value);
+    await this.interaction.secureFill(this.cityField, value);
   }
 
   public async fillState(value: string): Promise<void> {
-    await this.secureFill(this.stateField, value);
+    await this.interaction.secureFill(this.stateField, value);
   }
 
   public async fillZip(value: string): Promise<void> {
-    await this.secureFill(this.zipField, value);
+    await this.interaction.secureFill(this.zipField, value);
   }
 
   public async fillMobileNumber(value: string): Promise<void> {
-    await this.secureFill(this.mobileNumberField, value);
+    await this.interaction.secureFill(this.mobileNumberField, value);
   }
 
   public async selectDay(value: string): Promise<void> {
-    await this.secureSelect(this.daysField, value);
+    await this.interaction.secureSelect(this.daysField, value);
   }
 
   public async selectMonth(value: string): Promise<void> {
-    await this.secureSelect(this.monthsField, value);
+    await this.interaction.secureSelect(this.monthsField, value);
   }
 
   public async selectYear(value: string): Promise<void> {
-    await this.secureSelect(this.yearsField, value);
+    await this.interaction.secureSelect(this.yearsField, value);
   }
 
   public async selectCountry(value: string): Promise<void> {
-    await this.secureSelect(this.countryField, value);
+    await this.interaction.secureSelect(this.countryField, value);
+  }
+
+  public async clickLoginButton(): Promise<void> {
+    await this.interaction.secureClick(this.loginButton);
+  }
+
+  public async clickSignupButton(): Promise<void> {
+    await this.interaction.secureClick(this.signupEmailBUtton);
+  }
+
+  public async clickCreateAccount(): Promise<void> {
+    await this.interaction.secureClick(this.createAccount);
+  }
+
+  public async clickMrGender(): Promise<void> {
+    await this.interaction.secureClick(this.genderMrRadio);
+  }
+
+  public async clickMrsGender(): Promise<void> {
+    await this.interaction.secureClick(this.genderMrsRadio);
+  }
+
+  public async checkNewsletter(): Promise<void> {
+    await this.interaction.secureClick(this.newsletterCheckbox);
+  }
+
+  public async checkSpecialOffer(): Promise<void> {
+    await this.interaction.secureClick(this.specialOfferCheckbox);
   }
 
   public async fillRegistration(data: RegisterFormData): Promise<void> {
-    if (data.menGender) {
-      await this.clickMrGender();
-    }
-    if (data.womanGender) {
-      await this.clickMrsGender();
-    }
+    if (data.menGender) await this.clickMrGender();
+    if (data.womanGender) await this.clickMrsGender();
     await this.fillPassword(data.password);
     await this.fillFirstName(data.firstName);
     await this.fillLastName(data.lastName);
-    if (data.company) {
-      await this.fillCompany(data.company);
-    }
+    if (data.company) await this.fillCompany(data.company);
     await this.fillAddress1(data.address1);
-    if (data.address2) {
-      await this.fillAddress2(data.address2);
-    }
+    if (data.address2) await this.fillAddress2(data.address2);
     await this.fillCity(data.city);
     await this.fillState(data.state);
     await this.fillZip(data.zip);
     await this.fillMobileNumber(data.mobileNumber);
-    if (data.day) {
-      await this.selectDay(data.day);
-    }
-    if (data.month) {
-      await this.selectMonth(data.month);
-    }
-    if (data.year) {
-      await this.selectYear(data.year);
-    }
-
+    if (data.day) await this.selectDay(data.day);
+    if (data.month) await this.selectMonth(data.month);
+    if (data.year) await this.selectYear(data.year);
     await this.selectCountry(data.country);
-    if (data.subscribeToNewsletter) {
-      await this.checkNewsletter();
-    }
-    if (data.receiveSpecialOffer) {
-      await this.checkSpecialOffer();
-    }
+    if (data.subscribeToNewsletter) await this.checkNewsletter();
+    if (data.receiveSpecialOffer) await this.checkSpecialOffer();
     await this.clickCreateAccount();
   }
 }

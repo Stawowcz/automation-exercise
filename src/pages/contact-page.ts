@@ -14,6 +14,7 @@ export class ContactPage extends BasePage {
   private readonly fileInput: Locator = this.page.locator('input[type="file"]');
   private readonly submitButton: Locator =
     this.page.getByTestId("submit-button");
+
   public readonly submitSuccessText: Locator = this.page.locator(
     ".status.alert.alert-success",
   );
@@ -25,36 +26,38 @@ export class ContactPage extends BasePage {
     hasText: ContactText.BELOW_CONTACT_IS,
   });
 
-  public async fillName(value: string) {
-    await this.secureFill(this.nameField, value);
+  public async fillName(value: string): Promise<void> {
+    await this.interaction.secureFill(this.nameField, value);
   }
 
-  public async fillEmail(value: string) {
-    await this.secureFill(this.emailField, value);
+  public async fillEmail(value: string): Promise<void> {
+    await this.interaction.secureFill(this.emailField, value);
   }
 
-  public async fillMessage(value: string) {
-    await this.secureFill(this.messageField, value);
+  public async fillMessage(value: string): Promise<void> {
+    await this.interaction.secureFill(this.messageField, value);
   }
 
-  public async fillSubject(value: string) {
-    await this.secureFill(this.subjectField, value);
+  public async fillSubject(value: string): Promise<void> {
+    await this.interaction.secureFill(this.subjectField, value);
   }
 
-  public async setFile(fileName: string) {
+  public async setFile(fileName: string): Promise<void> {
     const filePath = path.resolve(TestPaths.assets, fileName);
     if (!fs.existsSync(filePath)) {
       throw new Error(`Plik do uploadu nie istnieje: ${filePath}`);
     }
-
     await this.fileInput.setInputFiles(filePath);
   }
 
-  public async clickSubmitButton() {
-    await this.secureClick(this.submitButton);
+  public async clickSubmitButton(): Promise<void> {
+    await this.interaction.secureClick(this.submitButton);
   }
 
-  public async submitContactForm(data: ContactFormData, fileName?: string) {
+  public async submitContactForm(
+    data: ContactFormData,
+    fileName?: string,
+  ): Promise<void> {
     await this.fillName(data.name);
     await this.fillEmail(data.email);
     await this.fillSubject(data.subject);

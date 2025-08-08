@@ -6,17 +6,16 @@ export class ProductPage extends BasePage {
   public readonly productTitle: Locator = this.page.getByRole("heading", {
     name: ProductsText.TITLE as string,
   });
+
   public readonly brandText: Locator = this.page.getByRole("heading", {
     name: ProductsText.BRAND as string,
   });
+
   public readonly categoryText: Locator = this.page.getByRole("heading", {
     name: ProductsText.CATEGOTY as string,
   });
-  public readonly productItem: Locator = this.page.locator(".single-products");
 
-  public async clickProductDetailsById(productId: number) {
-    await this.page.locator(`a[href="/product_details/${productId}"]`).click();
-  }
+  public readonly productItem: Locator = this.page.locator(".single-products");
 
   public readonly searchField: Locator = this.page.locator(
     'input[id="search_product"]',
@@ -28,23 +27,29 @@ export class ProductPage extends BasePage {
 
   public readonly searchTitle: Locator = this.page.locator(".title");
 
-  public readonly producPrice: Locator = this.page.locator(".productinfo >h2");
+  public readonly producPrice: Locator = this.page.locator(".productinfo > h2");
 
-  public readonly producName: Locator = this.page.locator(".productinfo >p");
+  public readonly producName: Locator = this.page.locator(".productinfo > p");
 
   public readonly addToCartButton: Locator =
-    this.page.locator(".productinfo >a");
+    this.page.locator(".productinfo > a");
 
   public readonly viewProductLink: Locator = this.page.locator(
     'a[href="/product_details/1"]',
   );
 
-  public async fillSearchField(value: string) {
-    await this.secureFill(this.searchField, value);
+  public async clickProductDetailsById(productId: number): Promise<void> {
+    await this.interaction.secureClick(
+      this.page.locator(`a[href="/product_details/${productId}"]`),
+    );
   }
 
-  public async clickSearchButton() {
-    await this.secureClick(this.searchButton);
+  public async fillSearchField(value: string): Promise<void> {
+    await this.interaction.secureFill(this.searchField, value);
+  }
+
+  public async clickSearchButton(): Promise<void> {
+    await this.interaction.secureClick(this.searchButton);
   }
 
   public getAddToCartButtonByProductName(name: string): Locator {
@@ -55,6 +60,8 @@ export class ProductPage extends BasePage {
   }
 
   public async clickAddToCartByProductName(name: string): Promise<void> {
-    await this.secureClick(this.getAddToCartButtonByProductName(name));
+    await this.interaction.secureClick(
+      this.getAddToCartButtonByProductName(name),
+    );
   }
 }

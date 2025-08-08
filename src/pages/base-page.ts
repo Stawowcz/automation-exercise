@@ -1,8 +1,10 @@
-import { Locator, Page, expect } from "@playwright/test";
-import { GotoOptions, LocatorWaitOptions } from "@typings/pages/base";
+// pages/base-page.ts
+import { Locator, Page } from "@playwright/test";
+import { InteractionUtils } from "@utils/interaction-utils";
 
 export abstract class BasePage {
   protected readonly page: Page;
+  protected readonly interaction: InteractionUtils;
 
   // Lokatory – tylko deklaracja
   public readonly title: Locator;
@@ -13,82 +15,41 @@ export abstract class BasePage {
 
   public constructor(page: Page) {
     this.page = page;
+    this.interaction = new InteractionUtils(page);
 
     // Inicjalizacja locatorów
     this.title = page.getByTestId("title");
-
     this.subscriptionText = page.locator(".single-widget > h2");
     this.subscriptionInput = page.locator("#susbscribe_email");
     this.subscriptionButton = page.locator("#subscribe");
     this.successSubscribeText = page.locator("#success-subscribe");
   }
 
-  public async goToLink(
-    url: string = "/",
-    options: GotoOptions = { waitUntil: "load" },
-  ): Promise<void> {
-    await this.page.goto(url, options);
+  public async goToLink(url: string = "/"): Promise<void> {
+    await this.interaction.goToLink(url);
   }
 
-  protected async secureClick(
-    locator: Locator,
-    options: LocatorWaitOptions = { state: "visible" },
-  ): Promise<void> {
-    await locator.waitFor(options);
-    await locator.scrollIntoViewIfNeeded();
-    await locator.click();
+  public async goBack(): Promise<void> {
+    await this.interaction.goBack();
   }
 
-  protected async secureFill(
-    locator: Locator,
-    value: string,
-    options: LocatorWaitOptions = { state: "visible" },
-  ): Promise<void> {
-    await locator.waitFor(options);
-    await locator.scrollIntoViewIfNeeded();
-    await locator.fill(value);
+  public async goAhead(): Promise<void> {
+    await this.interaction.goAhead();
   }
 
-  protected async secureSelect(
-    locator: Locator,
-    value: string,
-    options: LocatorWaitOptions = { state: "visible" },
-  ): Promise<void> {
-    await locator.waitFor(options);
-    await locator.scrollIntoViewIfNeeded();
-    await locator.selectOption(value);
+  public async reloadPage(): Promise<void> {
+    await this.interaction.reloadPage();
   }
 
-  protected async secureClear(
-    locator: Locator,
-    options: LocatorWaitOptions = { state: "visible" },
-  ): Promise<void> {
-    await locator.waitFor(options);
-    await locator.scrollIntoViewIfNeeded();
-    await locator.clear();
-  }
-
-  async goBack() {
-    await this.page.goBack();
-  }
-
-  async goAhead() {
-    await this.page.goForward();
-  }
-
-  async reloadPage() {
-    await this.page.reload();
-  }
-
-  async expectUrlContains(path: string) {
-    await expect.soft(this.page).toHaveURL(new RegExp(`.*${path}`));
+  public async expectUrlContains(path: string): Promise<void> {
+    await this.interaction.expectUrlContains(path);
   }
 
   public async clickSubscriptionButton(): Promise<void> {
-    await this.secureClick(this.subscriptionButton);
+    await this.interaction.secureClick(this.subscriptionButton);
   }
 
-  public async fillSubscription(value: string) {
-    await this.secureFill(this.subscriptionInput, value);
+  public async fillSubscription(value: string): Promise<void> {
+    await this.interaction.secureFill(this.subscriptionInput, value);
   }
 }

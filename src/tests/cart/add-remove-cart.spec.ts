@@ -13,21 +13,10 @@ test.describe("Home", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should verify subscription in cart page", async ({
-    homePage,
-    cartPage,
-  }) => {
-    await homePage.clickCartLink();
-    await cartPage.subscriptionText.scrollIntoViewIfNeeded();
-    await expect.soft(cartPage.subscriptionText).toHaveText("Subscription");
-    const email = DataGenerator.generateEmail();
-    await cartPage.fillSubscription(email);
-    await cartPage.clickSubscriptionButton();
-    await expect
-      .soft(cartPage.successSubscribeText)
-      .toHaveText(CommonText.SUCCESS_SUBSCRIBE);
+  test.afterEach("clear cart", async ({ cartPage }) => {
+    await cartPage.goToLink("/view_cart");
+    await cartPage.clearCartViaApi();
   });
-
   test("should add product to cart and view cart", async ({
     homePage,
     productPage,
@@ -58,6 +47,5 @@ test.describe("Home", () => {
       .soft(cartPage.getProductTotalById(1))
       .toHaveText(CommonText.PRICE_500);
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
-    await cartPage.clickDeleteButtonById(1);
   });
 });

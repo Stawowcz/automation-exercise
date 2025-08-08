@@ -1,3 +1,4 @@
+// components/added-to-cart-component.ts
 import { Locator, Page } from "@playwright/test";
 import { BaseComponent } from "./base-component";
 import { AddToCartText } from "@typings/components/add-to-cart";
@@ -8,6 +9,7 @@ export class AddedToCartComponent extends BaseComponent {
   public readonly modalBody: Locator;
   public readonly modalBodyText: Locator;
   public readonly viewCartText: Locator;
+  public readonly continueShopingButton: Locator;
 
   public constructor(page: Page) {
     super(page);
@@ -21,5 +23,14 @@ export class AddedToCartComponent extends BaseComponent {
     this.viewCartText = this.addedToCartModal.locator(".modal-body p", {
       hasText: AddToCartText.VIEW_CART,
     });
+    this.continueShopingButton = this.addedToCartModal.locator(".close-modal");
+  }
+
+  public async clickViewCart(): Promise<void> {
+    await this.interaction.secureClick(this.viewCartText);
+  }
+
+  public async clickContinueShopping(): Promise<void> {
+    await this.interaction.secureClick(this.continueShopingButton);
   }
 }
