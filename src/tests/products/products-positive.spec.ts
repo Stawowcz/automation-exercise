@@ -1,6 +1,6 @@
 import { test, expect } from "@fixtures";
-import { ProductDetailsText } from "@typings/product-details/product-details.enum";
-import { ProductsText } from "@typings/products/product-enum";
+import { ProductDetailsText } from "@typings/pages/product-details/product-details.enum";
+import { ProductsText } from "@typings/pages/products/product-enum";
 import { env } from "@utils";
 
 test.describe("Products", () => {

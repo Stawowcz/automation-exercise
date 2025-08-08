@@ -1,4 +1,4 @@
-import { ProductsText } from "@typings/products/product-enum";
+import { ProductsText } from "@typings/pages/products/product-enum";
 import { BasePage } from "./base-page";
 import { Locator } from "@playwright/test";
 
@@ -45,5 +45,16 @@ export class ProductPage extends BasePage {
 
   public async clickSearchButton() {
     await this.secureClick(this.searchButton);
+  }
+
+  public getAddToCartButtonByProductName(name: string): Locator {
+    return this.page
+      .locator(".productinfo")
+      .filter({ hasText: name })
+      .locator("text=Add to cart");
+  }
+
+  public async clickAddToCartByProductName(name: string): Promise<void> {
+    await this.secureClick(this.getAddToCartButtonByProductName(name));
   }
 }

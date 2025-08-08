@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { RegisterFormData } from "@typings/auth";
 import { Countries } from "@typings/auth";
-import { ContactFormData } from "@typings/contact";
-import { EmailData } from "@typings/home";
+import { ContactFormData } from "@typings/pages/contact";
+import { EmailData } from "@typings/pages/home";
 
 export class DataGenerator {
   public static generateRegisterFormData(

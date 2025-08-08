@@ -7,4 +7,5 @@ export enum ProductsText {
   PRICE_500 = "Rs. 500",
   BLUE_TOP_NAME = "Blue Top",
   VIEW_PRODUCTS = "View Product",
+  ADDED = "Added!",
 }

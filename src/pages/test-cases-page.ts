@@ -1,4 +1,4 @@
-import { TestCasesText } from "@typings/test-cases/test-cases-enum";
+import { TestCasesText } from "@typings/pages/test-cases/test-cases-enum";
 import { BasePage } from "./base-page";
 import { Locator } from "@playwright/test";
 

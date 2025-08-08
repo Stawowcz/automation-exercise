@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from "@playwright/test";
-import { GotoOptions, LocatorWaitOptions } from "@typings/base";
+import { GotoOptions, LocatorWaitOptions } from "@typings/pages/base";
 
 export abstract class BasePage {
   protected readonly page: Page;

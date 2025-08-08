@@ -1,5 +1,5 @@
 import { expect, test } from "@fixtures";
-import { ContactText } from "@typings/contact";
+import { ContactText } from "@typings/pages/contact";
 import { DataGenerator, env } from "@utils";
 import { expectAndAcceptPopup } from "@utils/dialog-utils";
 

@@ -1,6 +1,6 @@
 import { expect, test } from "@fixtures";
 import { CommonText } from "@typings/common";
-import { HomeText } from "@typings/home";
+import { HomeText } from "@typings/pages/home";
 import { DataGenerator, env } from "@utils";
 
 test.describe("Home", () => {
@@ -10,9 +10,7 @@ test.describe("Home", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should verify subscription in home page", async ({
-    homePage,
-  }) => {
+  test("should verify subscription in home page", async ({ homePage }) => {
     await homePage.subscriptionText.scrollIntoViewIfNeeded();
     await expect.soft(homePage.subscriptionText).toHaveText("Subscription");
     const email = DataGenerator.generateEmail();

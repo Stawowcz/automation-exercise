@@ -1,10 +1,10 @@
 import { BasePage } from "./base-page";
 import { Locator } from "@playwright/test";
-import { ContactFormData } from "@typings/contact";
+import { ContactFormData } from "@typings/pages/contact";
 import { TestPaths } from "@utils/test-config";
 import fs from "fs";
 import path from "path";
-import { ContactText } from "@typings/contact";
+import { ContactText } from "@typings/pages/contact";
 
 export class ContactPage extends BasePage {
   private readonly nameField: Locator = this.page.getByTestId("name");

@@ -1,6 +1,6 @@
 import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
-import { ProductDetailsText } from "@typings/product-details/product-details.enum";
+import { ProductDetailsText } from "@typings/pages/product-details/product-details.enum";
 
 export class ProductDetailsPage extends BasePage {
   private readonly productInfo: Locator = this.page.locator(
