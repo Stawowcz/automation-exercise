@@ -4,17 +4,46 @@ import { Locator } from "@playwright/test";
 
 export class ProductPage extends BasePage {
   public readonly productTitle: Locator = this.page.getByRole("heading", {
-    name: ProductsText.TITLE,
+    name: ProductsText.TITLE as string,
   });
   public readonly brandText: Locator = this.page.getByRole("heading", {
-    name: ProductsText.BRAND,
+    name: ProductsText.BRAND as string,
   });
   public readonly categoryText: Locator = this.page.getByRole("heading", {
-    name: ProductsText.CATEGOTY,
+    name: ProductsText.CATEGOTY as string,
   });
-  public readonly productItem: Locator = this.page.locator(".col-sm-4");
+  public readonly productItem: Locator = this.page.locator(".single-products");
 
   public async clickProductDetailsById(productId: number) {
     await this.page.locator(`a[href="/product_details/${productId}"]`).click();
+  }
+
+  public readonly searchField: Locator = this.page.locator(
+    'input[id="search_product"]',
+  );
+
+  public readonly searchButton: Locator = this.page.locator(
+    'button[id="submit_search"]',
+  );
+
+  public readonly searchTitle: Locator = this.page.locator(".title");
+
+  public readonly producPrice: Locator = this.page.locator(".productinfo >h2");
+
+  public readonly producName: Locator = this.page.locator(".productinfo >p");
+
+  public readonly addToCartButton: Locator =
+    this.page.locator(".productinfo >a");
+
+  public readonly viewProductLink: Locator = this.page.locator(
+    'a[href="/product_details/1"]',
+  );
+
+  public async fillSearchField(value: string) {
+    await this.secureFill(this.searchField, value);
+  }
+
+  public async clickSearchButton() {
+    await this.secureClick(this.searchButton);
   }
 }

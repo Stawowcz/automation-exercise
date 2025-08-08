@@ -26,6 +26,26 @@ export class HomePage extends BasePage {
     name: HomeText.PRODUCT_LINK,
   });
 
+  private readonly cartLink: Locator = this.page.getByRole("link", {
+    name: HomeText.CART_LINK,
+  });
+
+  // public readonly subscriptionText: Locator = this.page.locator(
+  //   ".single-widget > h2",
+  // );
+
+  // public readonly subscriptionInput: Locator =
+  //   this.page.locator("#susbscribe_email");
+
+  // public readonly subscriptionButton: Locator = this.page.locator("#subscribe");
+
+  // public readonly successSubscribeText: Locator =
+  //   this.page.locator("#success-subscribe");
+
+  public async clickCartLink(): Promise<void> {
+    await this.secureClick(this.cartLink);
+  }
+
   public async clickProductsLink(): Promise<void> {
     await this.secureClick(this.productsLink);
   }
@@ -41,4 +61,6 @@ export class HomePage extends BasePage {
   public async clickContactLink(): Promise<void> {
     await this.secureClick(this.contactLink);
   }
+
+
 }

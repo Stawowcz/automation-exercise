@@ -11,6 +11,8 @@ import { productFixtures } from "./products-fixture";
 import { ProductPage } from "@pages/products-page";
 import { productDetailsFixtures } from "./product-details-fixture";
 import { ProductDetailsPage } from "@pages/product-details-page";
+import { CartPage } from "@pages/cart-page";
+import { cartFixtures } from "./cart-fixture";
 
 type MyFixtures = {
   authPage: AuthPage;
@@ -19,6 +21,7 @@ type MyFixtures = {
   testCasesPage: TestCasesPage;
   productPage: ProductPage;
   productDetailsPage: ProductDetailsPage;
+  cartPage: CartPage
 };
 
 export const test = base.extend<MyFixtures>({
@@ -28,6 +31,7 @@ export const test = base.extend<MyFixtures>({
   ...testCasesFixtures,
   ...productFixtures,
   ...productDetailsFixtures,
+  ...cartFixtures
 });
 
 export { expect };

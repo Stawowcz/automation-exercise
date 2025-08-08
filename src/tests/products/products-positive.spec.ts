@@ -5,7 +5,9 @@ import { env } from "@utils";
 
 test.describe("Products", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
-    await homePage.goToLink(env.AUTOMATION_BASEURL);
+    await homePage.goToLink(env.AUTOMATION_BASEURL, {
+      waitUntil: "domcontentloaded",
+    });
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
@@ -16,7 +18,7 @@ test.describe("Products", () => {
     await expect.soft(productPage.productTitle).toBeVisible();
     await expect.soft(productPage.categoryText).toBeVisible();
     await expect.soft(productPage.brandText).toBeVisible();
-    await expect.soft(productPage.productItem).toHaveCount(35);
+    await expect.soft(productPage.productItem).toHaveCount(34);
   });
 
   test("should verify products detail", async ({
@@ -62,5 +64,28 @@ test.describe("Products", () => {
     await expect(
       productDetailsPage.getProductMetaByLabel(ProductDetailsText.CONDITION),
     ).toContainText(ProductDetailsText.NEW);
+  });
+
+  test("should search product", async ({ homePage, productPage }) => {
+    await homePage.clickProductsLink();
+    await homePage.expectUrlContains(ProductsText.LINK);
+    await expect.soft(productPage.productTitle).toBeVisible();
+    await productPage.fillSearchField(ProductDetailsText.PRODUCT_1_TITLE);
+    await productPage.clickSearchButton();
+
+    await expect.soft(productPage.searchTitle).toHaveText("Searched Products");
+    await expect.soft(productPage.productItem).toHaveCount(1);
+    await expect
+      .soft(productPage.producPrice)
+      .toHaveText(ProductsText.PRICE_500);
+    await expect
+      .soft(productPage.producName)
+      .toHaveText(ProductsText.BLUE_TOP_NAME);
+    await expect
+      .soft(productPage.addToCartButton)
+      .toHaveText(ProductsText.ADD_TO_CART);
+    await expect
+      .soft(productPage.viewProductLink)
+      .toHaveText(ProductsText.VIEW_PRODUCTS);
   });
 });

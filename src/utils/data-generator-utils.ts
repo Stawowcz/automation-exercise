@@ -2,6 +2,7 @@ import { faker } from "@faker-js/faker";
 import { RegisterFormData } from "@typings/auth";
 import { Countries } from "@typings/auth";
 import { ContactFormData } from "@typings/contact";
+import { EmailData } from "@typings/home";
 
 export class DataGenerator {
   public static generateRegisterFormData(
@@ -59,5 +60,9 @@ export class DataGenerator {
     };
 
     return { ...baseData, ...overrides };
+  }
+
+  public static generateEmail(overrides: Partial<EmailData> = {}): string {
+    return overrides.signupEmail || faker.internet.email();
   }
 }

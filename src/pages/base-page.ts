@@ -3,11 +3,24 @@ import { GotoOptions, LocatorWaitOptions } from "@typings/base";
 
 export abstract class BasePage {
   protected readonly page: Page;
+
+  // Lokatory – tylko deklaracja
   public readonly title: Locator;
+  public readonly subscriptionText: Locator;
+  public readonly subscriptionInput: Locator;
+  public readonly subscriptionButton: Locator;
+  public readonly successSubscribeText: Locator;
 
   public constructor(page: Page) {
     this.page = page;
-    this.title = this.page.getByTestId("title");
+
+    // Inicjalizacja locatorów
+    this.title = page.getByTestId("title");
+
+    this.subscriptionText = page.locator(".single-widget > h2");
+    this.subscriptionInput = page.locator("#susbscribe_email");
+    this.subscriptionButton = page.locator("#subscribe");
+    this.successSubscribeText = page.locator("#success-subscribe");
   }
 
   public async goToLink(
@@ -69,5 +82,13 @@ export abstract class BasePage {
 
   async expectUrlContains(path: string) {
     await expect.soft(this.page).toHaveURL(new RegExp(`.*${path}`));
+  }
+
+  public async clickSubscriptionButton(): Promise<void> {
+    await this.secureClick(this.subscriptionButton);
+  }
+
+  public async fillSubscription(value: string) {
+    await this.secureFill(this.subscriptionInput, value);
   }
 }
