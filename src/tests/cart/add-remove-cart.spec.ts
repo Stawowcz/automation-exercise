@@ -17,14 +17,14 @@ test.describe("Home", () => {
     await cartPage.goToLink("/view_cart");
     await cartPage.clearCartViaApi();
   });
-  test("should add product to cart and view cart", async ({
+  test("should add product to cart then validate cart", async ({
     homePage,
     productPage,
     addedToCart,
     cartPage,
   }) => {
     await homePage.clickProductsLink();
-    await productPage.clickAddToCartByProductName(CommonText.BLUE_TOP_NAME);
+    await productPage.clickAddToCartByProduct(CommonText.BLUE_TOP_NAME, CommonText.PRICE_500);
     await expect
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
@@ -39,7 +39,7 @@ test.describe("Home", () => {
       .toHaveText(CommonText.BLUE_TOP_NAME);
     await expect
       .soft(cartPage.getProductCategoryById(1))
-      .toHaveText(CommonText.CATEGORY_WOMEN);
+      .toHaveText(CommonText.CATEGORY_WOMEN_TOPS);
     await expect
       .soft(cartPage.getProductPriceById(1))
       .toHaveText(CommonText.PRICE_500);
@@ -49,14 +49,15 @@ test.describe("Home", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
   });
 
-  test.only("should add product to cart and continue shopping", async ({
+  test("should add 3 different products to cart then validate cart", async ({
+
     homePage,
     productPage,
     addedToCart,
     cartPage,
   }) => {
     await homePage.clickProductsLink();
-    await productPage.clickAddToCartByProductName(CommonText.BLUE_TOP_NAME);
+    await productPage.clickAddToCartByProduct(CommonText.BLUE_TOP_NAME, CommonText.PRICE_500);
     await expect
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
@@ -66,16 +67,16 @@ test.describe("Home", () => {
       .soft(addedToCart.continueShopingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
     await addedToCart.clickContinueShopping()
-    await productPage.clickAddToCartByProductName(CommonText.MEN_TSHIRT_NAME);
+    await productPage.clickAddToCartByProduct(CommonText.MEN_TSHIRT_NAME, CommonText.PRICE_400 );
     await addedToCart.clickContinueShopping()
-    await productPage.clickAddToCartByProductName(CommonText.SLEEVE_LESS_DRESS_NAME);
+    await productPage.clickAddToCartByProduct(CommonText.SLEEVE_LESS_DRESS_NAME, CommonText.PRICE_1000);
     await addedToCart.clickViewCart();
     await expect
       .soft(cartPage.getProductNameById(1))
       .toHaveText(CommonText.BLUE_TOP_NAME);
     await expect
       .soft(cartPage.getProductCategoryById(1))
-      .toHaveText(CommonText.CATEGORY_WOMEN);
+      .toHaveText(CommonText.CATEGORY_WOMEN_TOPS);
     await expect
       .soft(cartPage.getProductPriceById(1))
       .toHaveText(CommonText.PRICE_500);
@@ -103,7 +104,7 @@ test.describe("Home", () => {
       .toHaveText(CommonText.SLEEVE_LESS_DRESS_NAME);
     await expect
       .soft(cartPage.getProductCategoryById(3))
-      .toHaveText(CommonText.CATEGORY_WOMEN);
+      .toHaveText(CommonText.CATEGORY_WOMEN_DRESS);
     await expect
       .soft(cartPage.getProductPriceById(3))
       .toHaveText(CommonText.PRICE_1000);
@@ -111,5 +112,40 @@ test.describe("Home", () => {
       .soft(cartPage.getProductTotalById(3))
       .toHaveText(CommonText.PRICE_1000);
     await expect.soft(cartPage.getProductQuantityById(3)).toHaveText("1");
+  });
+
+
+  test("should add 2 the same products to cart then validate cart", async ({
+    homePage,
+    productPage,
+    addedToCart,
+    cartPage,
+  }) => {
+    await homePage.clickProductsLink();
+    await productPage.clickAddToCartByProduct(CommonText.BLUE_TOP_NAME, CommonText.PRICE_500);
+    await expect
+      .soft(addedToCart.modalHeader)
+      .toContainText(ProductsText.ADDED);
+    await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await expect.soft(addedToCart.viewCartText).toBeVisible();
+    await expect
+      .soft(addedToCart.continueShopingButton)
+      .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.clickContinueShopping()
+    await productPage.clickAddToCartByProduct(CommonText.BLUE_TOP_NAME, CommonText.PRICE_500);
+    await addedToCart.clickViewCart();
+    await expect
+      .soft(cartPage.getProductNameById(1))
+      .toHaveText(CommonText.BLUE_TOP_NAME);
+    await expect
+      .soft(cartPage.getProductCategoryById(1))
+      .toHaveText(CommonText.CATEGORY_WOMEN_TOPS);
+    await expect
+      .soft(cartPage.getProductPriceById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect
+      .soft(cartPage.getProductTotalById(1))
+      .toHaveText(CommonText.PRICE_1000);
+    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("2");
   });
 });

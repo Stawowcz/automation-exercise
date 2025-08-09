@@ -52,16 +52,34 @@ export class ProductPage extends BasePage {
     await this.interaction.secureClick(this.searchButton);
   }
 
-  public getAddToCartButtonByProductName(name: string): Locator {
-    return this.page
-      .locator(".productinfo")
-      .filter({ hasText: name })
-      .locator("text=Add to cart");
-  }
+  // public getAddToCartButtonByProductName(name: string): Locator {
+  //   return this.page
+  //     .locator(".productinfo")
+  //     .filter({ hasText: name })
+  //     .locator("text=Add to cart");
+  // }
 
-  public async clickAddToCartByProductName(name: string): Promise<void> {
-    await this.interaction.secureClick(
-      this.getAddToCartButtonByProductName(name),
-    );
-  }
+  // public async clickAddToCartByProductName(name: string): Promise<void> {
+  //   await this.interaction.secureClick(
+  //     this.getAddToCartButtonByProductName(name),
+  //   );
+  // }
+
+  public getAddToCartButtonByProduct(name: string, price: string): Locator {
+  return this.page
+    .locator(".productinfo")
+    .filter({ hasText: name })
+    .filter({ hasText: price })
+    .locator("text=Add to cart");
+}
+
+public async clickAddToCartByProduct(
+  name: string,
+  price: string,
+): Promise<void> {
+  await this.interaction.secureClick(
+    this.getAddToCartButtonByProduct(name, price),
+  );
+}
+
 }
