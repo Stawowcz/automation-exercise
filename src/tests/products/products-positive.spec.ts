@@ -74,9 +74,7 @@ test.describe("Products", () => {
 
     await expect.soft(productPage.searchTitle).toHaveText("Searched Products");
     await expect.soft(productPage.productItem).toHaveCount(1);
-    await expect
-      .soft(productPage.producPrice)
-      .toHaveText(CommonText.PRICE_500);
+    await expect.soft(productPage.producPrice).toHaveText(CommonText.PRICE_500);
     await expect
       .soft(productPage.producName)
       .toHaveText(CommonText.BLUE_TOP_NAME);

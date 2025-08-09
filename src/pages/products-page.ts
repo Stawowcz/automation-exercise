@@ -66,20 +66,19 @@ export class ProductPage extends BasePage {
   // }
 
   public getAddToCartButtonByProduct(name: string, price: string): Locator {
-  return this.page
-    .locator(".productinfo")
-    .filter({ hasText: name })
-    .filter({ hasText: price })
-    .locator("text=Add to cart");
-}
+    return this.page
+      .locator(".productinfo")
+      .filter({ hasText: name })
+      .filter({ hasText: price })
+      .locator("text=Add to cart");
+  }
 
-public async clickAddToCartByProduct(
-  name: string,
-  price: string,
-): Promise<void> {
-  await this.interaction.secureClick(
-    this.getAddToCartButtonByProduct(name, price),
-  );
-}
-
+  public async clickAddToCartByProduct(
+    name: string,
+    price: string,
+  ): Promise<void> {
+    await this.interaction.secureClick(
+      this.getAddToCartButtonByProduct(name, price),
+    );
+  }
 }
