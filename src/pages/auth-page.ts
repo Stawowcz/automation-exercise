@@ -1,7 +1,7 @@
 import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
-import { RegisterFormData, PreRegisterFormData } from "@typings/auth";
-import { LoginText, RegistrationText } from "@typings/auth";
+import { RegisterFormData, PreRegisterFormData } from "@typings/pages/auth";
+import { LoginText, RegistrationText } from "@typings/pages/auth";
 
 export class AuthPage extends BasePage {
   private readonly loginLink: Locator = this.page.getByRole("link", {

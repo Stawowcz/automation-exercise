@@ -6,7 +6,7 @@ import { ProductsText } from "@typings/pages/products/product-enum";
 import { DataGenerator, env } from "@utils";
 import { AddedToCartComponent } from "src/components/added-to-cart-component";
 
-test.describe("Home", () => {
+test.describe("Cart", () => {
   test.beforeEach("should verify subscription", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();

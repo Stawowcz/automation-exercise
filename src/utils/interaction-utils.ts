@@ -69,4 +69,8 @@ export class InteractionUtils {
   public async expectUrlContains(path: string): Promise<void> {
     await expect.soft(this.page).toHaveURL(new RegExp(`.*${path}`));
   }
+
+  public getCartItemByProductId(productId: number): Locator {
+    return this.page.locator(`#product-${productId}`);
+  }
 }

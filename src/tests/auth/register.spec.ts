@@ -1,6 +1,6 @@
 import { expect, test } from "@fixtures";
-import { RegisterFormData } from "@typings/auth";
-import { RegistrationText } from "@typings/auth";
+import { RegisterFormData } from "@typings/pages/auth";
+import { RegistrationText } from "@typings/pages/auth";
 import { env } from "@utils/env-utils";
 import { DataGenerator } from "@utils/data-generator-utils";
 

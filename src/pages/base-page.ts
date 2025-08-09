@@ -52,4 +52,34 @@ export abstract class BasePage {
   public async fillSubscription(value: string): Promise<void> {
     await this.interaction.secureFill(this.subscriptionInput, value);
   }
+
+  public getProductNameById(productId: number): Locator {
+    return this.interaction
+      .getCartItemByProductId(productId)
+      .locator(".cart_description h4 a");
+  }
+
+  public getProductCategoryById(productId: number): Locator {
+    return this.interaction
+      .getCartItemByProductId(productId)
+      .locator(".cart_description p");
+  }
+
+  public getProductPriceById(productId: number): Locator {
+    return this.interaction
+      .getCartItemByProductId(productId)
+      .locator(".cart_price p"); // Rs. 500
+  }
+
+  public getProductQuantityById(productId: number): Locator {
+    return this.interaction
+      .getCartItemByProductId(productId)
+      .locator(".cart_quantity button");
+  }
+
+  public getProductTotalById(productId: number): Locator {
+    return this.interaction
+      .getCartItemByProductId(productId)
+      .locator(".cart_total p"); // Rs. 1000
+  }
 }

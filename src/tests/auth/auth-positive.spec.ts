@@ -1,5 +1,5 @@
 import { test, expect } from "@fixtures";
-import { PreLoginFormData } from "@typings/auth";
+import { PreLoginFormData } from "@typings/pages/auth";
 import { env } from "@utils/env-utils";
 import { DataGenerator } from "@utils/data-generator-utils";
 

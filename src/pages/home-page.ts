@@ -1,7 +1,7 @@
 import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
 import { HomeText } from "@typings/pages/home";
-import { LoginText } from "@typings/auth";
+import { LoginText } from "@typings/pages/auth";
 
 export class HomePage extends BasePage {
   public readonly homeTitle: Locator = this.page.getByRole("heading", {

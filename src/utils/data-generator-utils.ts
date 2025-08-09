@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
-import { RegisterFormData } from "@typings/auth";
-import { Countries } from "@typings/auth";
+import { RegisterFormData } from "@typings/pages/auth";
+import { Countries } from "@typings/pages/auth";
 import { ContactFormData } from "@typings/pages/contact";
 import { EmailData } from "@typings/pages/home";
 
@@ -64,5 +64,9 @@ export class DataGenerator {
 
   public static generateEmail(overrides: Partial<EmailData> = {}): string {
     return overrides.signupEmail || faker.internet.email();
+  }
+
+  public static generateTextareaText(): string {
+    return faker.lorem.paragraphs(2, "\n\n"); // 2 akapity oddzielone pustą linią
   }
 }
