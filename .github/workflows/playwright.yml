@@ -12,6 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
+    env:
+      AUTOMATION_PASSWORD: ${{ secrets.AUTOMATION_PASSWORD }}
+      AUTOMATION_BASEURL: ${{ secrets.AUTOMATION_BASEURL }}
+      AUTOMATION_USER_CORRECT: ${{ secrets.AUTOMATION_USER_CORRECT }}
+      AUTOMATION_PASSWORD_CORRECT: ${{ secrets.AUTOMATION_PASSWORD_CORRECT }}
+      AUTOMATION_USER_INCORRECT: ${{ secrets.AUTOMATION_USER_INCORRECT }}
+      AUTOMATION_PASSWORD_INCORRECT: ${{ secrets.AUTOMATION_PASSWORD_INCORRECT }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
