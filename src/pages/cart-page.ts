@@ -4,7 +4,12 @@ import { HomeText } from "@typings/pages/home";
 import { LoginText } from "@typings/auth";
 
 export class CartPage extends BasePage {
-  private readonly cartItems: Locator = this.page.locator(".cart_items");
+  private readonly proceedCheckoutLink: Locator = this.page.locator(".check_out", {hasText: "Proceed To Checkout"});
+  
+   public async clickProceedCheckout(): Promise<void> {
+    await this.interaction.secureClick(this.proceedCheckoutLink);
+  }
+
 
   private getCartItemByProductId(productId: number): Locator {
     return this.page.locator(`#product-${productId}`);
@@ -13,13 +18,13 @@ export class CartPage extends BasePage {
   public getProductNameById(productId: number): Locator {
     return this.getCartItemByProductId(productId).locator(
       ".cart_description h4 a",
-    ); // Blue Top
+    );
   }
 
   public getProductCategoryById(productId: number): Locator {
     return this.getCartItemByProductId(productId).locator(
       ".cart_description p",
-    ); // Blue Top
+    );
   }
 
   public getProductPriceById(productId: number): Locator {
@@ -29,7 +34,7 @@ export class CartPage extends BasePage {
   public getProductQuantityById(productId: number): Locator {
     return this.getCartItemByProductId(productId).locator(
       ".cart_quantity button",
-    ); // 2
+    );
   }
 
   public getProductTotalById(productId: number): Locator {
