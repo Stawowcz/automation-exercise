@@ -20,7 +20,7 @@ test.describe("Home", () => {
     await cartPage.goToLink("/view_cart");
     await cartPage.clearCartViaApi();
   });
-  test.only("should checkout successfully", async ({
+  test("should checkout successfully", async ({
     homePage,
     productPage,
     addedToCart,
