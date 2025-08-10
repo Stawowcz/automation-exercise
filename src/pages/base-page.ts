@@ -12,6 +12,8 @@ export abstract class BasePage {
   public readonly subscriptionInput: Locator;
   public readonly subscriptionButton: Locator;
   public readonly successSubscribeText: Locator;
+  protected readonly container: Locator;
+  public readonly header: Locator;
 
   public constructor(page: Page) {
     this.page = page;
@@ -23,6 +25,8 @@ export abstract class BasePage {
     this.subscriptionInput = page.locator("#susbscribe_email");
     this.subscriptionButton = page.locator("#subscribe");
     this.successSubscribeText = page.locator("#success-subscribe");
+    this.container = this.page.locator(".container");
+    this.header = this.container.locator(".breadcrumbs");
   }
 
   public async goToLink(url: string = "/"): Promise<void> {

@@ -1,0 +1,33 @@
+// pages/payment-done-page.ts
+import { expect, Locator, Download, Page } from "@playwright/test";
+import { BasePage } from "./base-page";
+import { PaymentDoneText } from "@typings/pages/payment-done/payment-done.enums";
+
+export class PaymentDonePage extends BasePage {
+  // Lokatory względem this.container
+  public readonly orderPlacedTitle: Locator = this.container.locator(
+    '[data-qa="order-placed"]',
+  );
+  public readonly successMessage: Locator = this.container.locator("p", {
+    hasText: PaymentDoneText.PAYMENT_SUCCESS,
+  });
+  public readonly downloadInvoiceLink: Locator = this.container.locator(
+    'a[href^="/download_invoice/"]',
+  );
+  public readonly continueButton: Locator = this.container.locator(
+    '[data-qa="continue-button"]',
+  );
+
+  // Akcje
+  public async clickContinue(): Promise<void> {
+    await this.interaction.secureClick(this.continueButton);
+  }
+
+  public async downloadInvoice(): Promise<Download> {
+    const [download] = await Promise.all([
+      this.page.waitForEvent("download"),
+      this.interaction.secureClick(this.downloadInvoiceLink),
+    ]);
+    return download;
+  }
+}

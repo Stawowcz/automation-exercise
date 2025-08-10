@@ -3,6 +3,8 @@ import { CommonText } from "@typings/common";
 import { AddToCartText } from "@typings/components/add-to-cart";
 import { CheckoutText } from "@typings/pages/checkout/checkout-enum";
 import { HomeText } from "@typings/pages/home";
+import { PaymentText } from "@typings/pages/payment/payment-enums";
+import { PaymentFormData } from "@typings/pages/payment/payment-types";
 import { ProductsText } from "@typings/pages/products/product-enum";
 import { DataGenerator, env } from "@utils";
 import { AddedToCartComponent } from "src/components/added-to-cart-component";
@@ -18,12 +20,14 @@ test.describe("Home", () => {
     await cartPage.goToLink("/view_cart");
     await cartPage.clearCartViaApi();
   });
-  test("should checkout successfully", async ({
+  test.only("should checkout successfully", async ({
     homePage,
     productPage,
     addedToCart,
     cartPage,
     checkoutPage,
+    paymentPage,
+    paymentDonePage,
     page,
   }) => {
     await homePage.clickProductsLink();
@@ -115,7 +119,14 @@ test.describe("Home", () => {
     const textAreatext = DataGenerator.generateTextareaText();
     await checkoutPage.fillCheckoutTextArea(textAreatext);
 
-    await checkoutPage.clickCheckoutPlaceOrder()
+    await checkoutPage.clickCheckoutPlaceOrder();
+    await expect.soft(paymentPage.header).toHaveText(PaymentText.HEADER);
+    const paymentData: PaymentFormData =
+      DataGenerator.generatePaymentFormData();
+    await paymentPage.completePaymentForm(paymentData);
+    await expect.soft(paymentDonePage.successMessage).toBeVisible();
+    await expect.soft(paymentDonePage.continueButton).toBeVisible();
+    await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
     await page.waitForTimeout(2_000);
   });
 });

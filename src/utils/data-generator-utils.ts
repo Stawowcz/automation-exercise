@@ -3,6 +3,7 @@ import { RegisterFormData } from "@typings/pages/auth";
 import { Countries } from "@typings/pages/auth";
 import { ContactFormData } from "@typings/pages/contact";
 import { EmailData } from "@typings/pages/home";
+import { PaymentFormData } from "@typings/pages/payment/payment-types";
 
 export class DataGenerator {
   public static generateRegisterFormData(
@@ -68,5 +69,21 @@ export class DataGenerator {
 
   public static generateTextareaText(): string {
     return faker.lorem.paragraphs(2, "\n\n"); // 2 akapity oddzielone pustą linią
+  }
+
+  public static generatePaymentFormData(
+    overrides: Partial<PaymentFormData> = {},
+  ): PaymentFormData {
+    const baseData: PaymentFormData = {
+      name_on_card: faker.person.fullName(),
+      card_number: faker.finance.creditCardNumber().replace(/\D/g, ""),
+      cvc: faker.finance.creditCardCVV(),
+      expiry_month: String(
+        faker.date.future({ years: 5 }).getMonth() + 1,
+      ).padStart(2, "0"),
+      expiry_year: String(faker.date.future({ years: 5 }).getFullYear()),
+    };
+
+    return { ...baseData, ...overrides };
   }
 }

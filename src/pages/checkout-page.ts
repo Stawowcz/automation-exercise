@@ -3,10 +3,6 @@ import { BasePage } from "./base-page";
 import { CheckoutText } from "@typings/pages/checkout";
 
 export class CheckoutPage extends BasePage {
-  private readonly container: Locator = this.page.locator(".container");
-
-  public readonly header: Locator = this.container.locator(".breadcrumbs");
-
   public readonly checkoutTextArea: Locator =
     this.container.locator(".form-control");
 

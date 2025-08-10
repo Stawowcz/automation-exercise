@@ -18,5 +18,5 @@ export enum CheckoutText {
   BILLING_CITY_STATE_POSTCODE = "Wrocław, Śrutowa 6 (woj. dolnośląskie) Not Applicable 50-249",
   BILLING_COUNTRY = "India",
   BILLING_PHONE = "532198854",
-  PLACE_ORDER = "PLACE ORDER"
+  PLACE_ORDER = "PLACE ORDER",
 }
