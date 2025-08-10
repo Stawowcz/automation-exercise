@@ -34,6 +34,7 @@ export default defineConfig({
         /.*auth-negative\.spec\.ts$/,
         /.*auth-positive\.spec\.ts$/,
         /.*register\.spec\.ts$/,
+        /.*checkout-unauthenticated\.spec\.ts$/, // + tutaj
       ],
       use: {
         storageState: undefined,
@@ -42,7 +43,8 @@ export default defineConfig({
 
     {
       name: "Chromium",
-      testMatch: /^(?!.*(auth-negative|auth-positive|register)).*\.spec\.ts$/,
+      testMatch:
+        /^(?!.*(auth-negative|auth-positive|register|checkout-unauthenticated)).*\.spec\.ts$/, // + dodać checkout-unauthenticated do wykluczeń
       use: {
         ...devices["Desktop Chrome"],
         storageState: "storageState.json",

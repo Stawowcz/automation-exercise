@@ -28,7 +28,6 @@ test.describe("Home", () => {
     checkoutPage,
     paymentPage,
     paymentDonePage,
-    page,
   }) => {
     await homePage.clickProductsLink();
     await productPage.clickAddToCartByProduct(
@@ -127,6 +126,5 @@ test.describe("Home", () => {
     await expect.soft(paymentDonePage.successMessage).toBeVisible();
     await expect.soft(paymentDonePage.continueButton).toBeVisible();
     await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
-    await page.waitForTimeout(2_000);
   });
 });
