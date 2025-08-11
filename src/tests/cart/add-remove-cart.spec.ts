@@ -5,7 +5,7 @@ import { CartText } from "@typings/pages/cart/cart-enums";
 import { ProductsText } from "@typings/pages/products/product-enum";
 import { env } from "@utils";
 
-test.describe.only("Cart", () => {
+test.describe("Cart", () => {
   test.beforeEach("should verify subscription", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
