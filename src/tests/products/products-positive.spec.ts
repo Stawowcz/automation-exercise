@@ -105,7 +105,7 @@ test.describe("Products", () => {
   });
 });
 
-test.describe.only("Category", () => {
+test.describe("Category", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
