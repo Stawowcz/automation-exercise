@@ -4,6 +4,9 @@ import { HomeText } from "@typings/pages/home";
 import { LoginText } from "@typings/pages/auth";
 
 export class HomePage extends BasePage {
+  private readonly recommendedItemContainer: Locator =
+    this.page.locator(".recommended_items");
+
   public readonly homeTitle: Locator = this.page.getByRole("heading", {
     name: HomeText.TITLE,
   });

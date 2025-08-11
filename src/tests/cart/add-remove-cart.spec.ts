@@ -1,13 +1,11 @@
 import { expect, test } from "@fixtures";
-import { HomePage } from "@pages/home-page";
 import { CommonText } from "@typings/common";
 import { AddToCartText } from "@typings/components/add-to-cart";
 import { CartText } from "@typings/pages/cart/cart-enums";
 import { ProductsText } from "@typings/pages/products/product-enum";
 import { env } from "@utils";
-import { CartApi } from "src/services/cart";
 
-test.describe("Cart", () => {
+test.describe.only("Cart", () => {
   test.beforeEach("should verify subscription", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
@@ -195,11 +193,37 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("3");
   });
 
-  test("should remove item from cart page", async ({
-    homePage,
-    cartApi,
+  test("should add product to cart from recommended items then validate cart", async ({
+    addedToCart,
     cartPage,
+    recommendedItemsComponent,
   }) => {
+    await recommendedItemsComponent.addById(1);
+    await expect
+      .soft(addedToCart.modalHeader)
+      .toContainText(ProductsText.ADDED);
+    await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await expect.soft(addedToCart.viewCartText).toBeVisible();
+    await expect
+      .soft(addedToCart.continueShopingButton)
+      .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.clickViewCart();
+    await expect
+      .soft(cartPage.getProductNameById(1))
+      .toHaveText(CommonText.BLUE_TOP_NAME);
+    await expect
+      .soft(cartPage.getProductCategoryById(1))
+      .toHaveText(CommonText.CATEGORY_WOMEN_TOPS);
+    await expect
+      .soft(cartPage.getProductPriceById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect
+      .soft(cartPage.getProductTotalById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
+  });
+
+  test("should remove item from cart page", async ({ cartApi, cartPage }) => {
     await cartApi.addProduct(1);
     await cartPage.goToLink("/view_cart");
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
