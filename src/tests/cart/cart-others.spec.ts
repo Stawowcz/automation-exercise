@@ -1,10 +1,6 @@
 import { expect, test } from "@fixtures";
 import { CommonText } from "@typings/common";
-import { AddToCartText } from "@typings/components/add-to-cart";
-import { HomeText } from "@typings/pages/home";
-import { ProductsText } from "@typings/pages/products/product-enum";
 import { DataGenerator, env } from "@utils";
-import { AddedToCartComponent } from "src/components/added-to-cart-component";
 
 test.describe("Home", () => {
   test.beforeEach("should verify subscription", async ({ homePage }) => {

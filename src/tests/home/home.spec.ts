@@ -1,6 +1,5 @@
 import { expect, test } from "@fixtures";
 import { CommonText } from "@typings/common";
-import { HomeText } from "@typings/pages/home";
 import { DataGenerator, env } from "@utils";
 
 test.describe("Home", () => {
