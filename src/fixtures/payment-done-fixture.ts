@@ -1,4 +1,4 @@
-import { PaymentDonePage } from "@pages/payment-done-page";
+import { PaymentDonePage } from "@pages/payment-done-page"
 import type { Page } from "@playwright/test";
 
 export const paymentDoneFixtures = {

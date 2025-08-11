@@ -14,19 +14,21 @@ export abstract class BasePage {
   public readonly successSubscribeText: Locator;
   protected readonly container: Locator;
   public readonly header: Locator;
+  public readonly producName: Locator;
 
   public constructor(page: Page) {
     this.page = page;
     this.interaction = new InteractionUtils(page);
 
     // Inicjalizacja locatorów
-    this.title = page.getByTestId("title");
+    this.title = page.locator(".title");
     this.subscriptionText = page.locator(".single-widget > h2");
     this.subscriptionInput = page.locator("#susbscribe_email");
     this.subscriptionButton = page.locator("#subscribe");
     this.successSubscribeText = page.locator("#success-subscribe");
     this.container = this.page.locator(".container");
     this.header = this.container.locator(".breadcrumbs");
+    this.producName = this.page.locator(".productinfo > p");
   }
 
   public async goToLink(url: string = "/"): Promise<void> {

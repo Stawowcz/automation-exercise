@@ -7,6 +7,56 @@ export class HomePage extends BasePage {
   private readonly recommendedItemContainer: Locator =
     this.page.locator(".recommended_items");
 
+  private readonly leftSideBar: Locator = this.page.locator(".left-sidebar");
+
+  private readonly womenToggle = this.leftSideBar.locator('a[href="#Women"]');
+  private readonly menToggle = this.leftSideBar.locator('a[href="#Men"]');
+  private readonly kidsToggle = this.leftSideBar.locator('a[href="#Kids"]');
+
+  public async clickWomenToggle(): Promise<void> {
+    await this.interaction.secureClick(this.womenToggle);
+  }
+
+  public async clickMenToggle(): Promise<void> {
+    await this.interaction.secureClick(this.menToggle);
+  }
+
+  public async clickKidsToggle(): Promise<void> {
+    await this.interaction.secureClick(this.kidsToggle);
+  }
+
+  private getCategoryProductLink(id: number): Locator {
+    return this.leftSideBar.locator(`a[href="/category_products/${id}"]`);
+  }
+
+  public async clickWomenDress(): Promise<void> {
+    await this.interaction.secureClick(this.getCategoryProductLink(1));
+  }
+
+  public async clickWomenTops(): Promise<void> {
+    await this.interaction.secureClick(this.getCategoryProductLink(2));
+  }
+
+  public async clickWomenSaree(): Promise<void> {
+    await this.interaction.secureClick(this.getCategoryProductLink(7));
+  }
+
+  public async clickMenTshirts(): Promise<void> {
+    await this.interaction.secureClick(this.getCategoryProductLink(3));
+  }
+
+  public async clickMenJeans(): Promise<void> {
+    await this.interaction.secureClick(this.getCategoryProductLink(6));
+  }
+
+  public async clickKidsDress(): Promise<void> {
+    await this.interaction.secureClick(this.getCategoryProductLink(4));
+  }
+
+  public async clickKidsTopsShirts(): Promise<void> {
+    await this.interaction.secureClick(this.getCategoryProductLink(5));
+  }
+
   public readonly homeTitle: Locator = this.page.getByRole("heading", {
     name: HomeText.TITLE,
   });
