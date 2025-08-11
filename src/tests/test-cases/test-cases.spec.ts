@@ -13,5 +13,6 @@ test.describe("Test Cases", () => {
     await homePage.clickTestCasesLink();
     await homePage.expectUrlContains(TestCasesText.URL);
     await expect.soft(testCasesPage.testCasesTitle).toBeVisible();
+    await expect.soft(testCasesPage.testCaseItem).toHaveCount(27)
   });
 });
