@@ -1,8 +1,9 @@
 import { test, expect } from "@fixtures";
 import { CommonText } from "@typings/common";
 import { ProductDetailsText } from "@typings/pages/product-details/product-details.enum";
+import { ReviewData } from "@typings/pages/product-details/product-details.type";
 import { ProductsText } from "@typings/pages/products/product-enum";
-import { env } from "@utils";
+import { DataGenerator, env } from "@utils";
 
 test.describe("Products", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
@@ -84,5 +85,22 @@ test.describe("Products", () => {
     await expect
       .soft(productPage.viewProductLink)
       .toHaveText(ProductsText.VIEW_PRODUCTS);
+  });
+
+  test("should add review on product", async ({
+    homePage,
+    productPage,
+    productDetailsPage,
+  }) => {
+    await homePage.clickProductsLink();
+    await homePage.expectUrlContains(ProductsText.LINK);
+    await expect.soft(productPage.productTitle).toBeVisible();
+    await productPage.clickProductDetailsById(1);
+    await expect
+      .soft(productDetailsPage.productDetailTitle)
+      .toHaveText(CommonText.BLUE_TOP_NAME);
+    const reviewData: ReviewData = DataGenerator.generateReviewFormData();
+    await productDetailsPage.fillAndSubmitReview(reviewData);
+    await expect.soft(productDetailsPage.successMessage).toBeVisible();
   });
 });

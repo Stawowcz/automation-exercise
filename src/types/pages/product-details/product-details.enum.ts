@@ -14,4 +14,5 @@ export enum ProductDetailsText {
   CONDITION = "Condition",
   AVAILABILITY = "Availability",
   LINK = "product_details",
+  SUCCESS_MESSAGE = "Thank you for your review.",
 }

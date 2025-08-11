@@ -2,28 +2,28 @@ import { expect } from "@fixtures";
 import { BaseApi } from "../base-api";
 import { CartEndpoints } from "./endpoints-enum";
 
-
 export class CartApi extends BaseApi {
   /** GET /add_to_cart/:productId – backend zwraca tekst/HTML, nie JSON */
   public async addProduct(productId: number): Promise<void> {
-    const res = await this.page.context().request.get(
-      `${this.baseURL}${CartEndpoints.ADD_TO_CART}/${productId}`,
-      {
+    const res = await this.page
+      .context()
+      .request.get(`${this.baseURL}${CartEndpoints.ADD_TO_CART}/${productId}`, {
         headers: {
           "x-requested-with": "XMLHttpRequest",
-          "accept": "*/*",
-          "referer": `${this.baseURL}/products`,
+          accept: "*/*",
+          referer: `${this.baseURL}/products`,
         },
-      }
-    );
+      });
 
     if (!res.ok()) {
-      throw new Error(`add_to_cart failed: ${res.status()} ${res.statusText()}`);
+      throw new Error(
+        `add_to_cart failed: ${res.status()} ${res.statusText()}`,
+      );
     }
     await res.text(); // „zjedz” body; nie ma JSON-a
   }
 
-    public async deleteCartItemViaApi(productId: number): Promise<void> {
+  public async deleteCartItemViaApi(productId: number): Promise<void> {
     const response = await this.page.request.get(`/delete_cart/${productId}`, {
       headers: {
         "x-requested-with": "XMLHttpRequest",
@@ -51,4 +51,3 @@ export class CartApi extends BaseApi {
     await expect(this.page.locator("#empty_cart")).toBeVisible();
   }
 }
-

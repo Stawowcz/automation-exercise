@@ -125,4 +125,32 @@ test.describe("Home", () => {
     await expect.soft(paymentDonePage.continueButton).toBeVisible();
     await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
   });
+
+  test("should download invoice after purchase", async ({
+    checkoutPage,
+    cartApi,
+    cartPage,
+    paymentPage,
+    paymentDonePage,
+  }) => {
+    await cartApi.addProduct(1);
+    await cartPage.goToLink("/view_cart");
+    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
+    await cartPage.clickProceedCheckout();
+    await expect.soft(checkoutPage.header).toHaveText(CheckoutText.HEADER);
+
+    const textAreatext = DataGenerator.generateTextareaText();
+    await checkoutPage.fillCheckoutTextArea(textAreatext);
+    await checkoutPage.clickCheckoutPlaceOrder();
+    await expect.soft(paymentPage.header).toHaveText(PaymentText.HEADER);
+    const paymentData: PaymentFormData =
+      DataGenerator.generatePaymentFormData();
+    await paymentPage.completePaymentForm(paymentData);
+    await expect.soft(paymentDonePage.successMessage).toBeVisible();
+    await expect.soft(paymentDonePage.continueButton).toBeVisible();
+    await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
+    const download = await paymentDonePage.downloadInvoice();
+    expect.soft(await download.failure()).toBeNull();
+    expect.soft(download.suggestedFilename()).toMatch(/\.txt$/i);
+  });
 });

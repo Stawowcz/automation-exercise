@@ -4,6 +4,7 @@ import { Countries } from "@typings/pages/auth";
 import { ContactFormData } from "@typings/pages/contact";
 import { EmailData } from "@typings/pages/home";
 import { PaymentFormData } from "@typings/pages/payment/payment-types";
+import { ReviewData } from "@typings/pages/product-details/product-details.type";
 
 export class DataGenerator {
   public static generateRegisterFormData(
@@ -82,6 +83,18 @@ export class DataGenerator {
         faker.date.future({ years: 5 }).getMonth() + 1,
       ).padStart(2, "0"),
       expiry_year: String(faker.date.future({ years: 5 }).getFullYear()),
+    };
+
+    return { ...baseData, ...overrides };
+  }
+
+  public static generateReviewFormData(
+    overrides: Partial<ReviewData> = {},
+  ): ReviewData {
+    const baseData: ReviewData = {
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+      comment: faker.lorem.paragraph(),
     };
 
     return { ...baseData, ...overrides };

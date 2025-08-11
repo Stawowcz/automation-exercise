@@ -195,11 +195,15 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("3");
   });
 
-  test("should remove item from cart page", async ({homePage, cartApi, cartPage }) => {
+  test("should remove item from cart page", async ({
+    homePage,
+    cartApi,
+    cartPage,
+  }) => {
     await cartApi.addProduct(1);
     await cartPage.goToLink("/view_cart");
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
-    await cartPage.clickDeleteButtonById(1)
-    await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART)
+    await cartPage.clickDeleteButtonById(1);
+    await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART);
   });
 });

@@ -9,7 +9,8 @@ export class CartPage extends BasePage {
     { hasText: "Proceed To Checkout" },
   );
 
-  public readonly cartIsEmptyText:Locator = this.page.locator("#empty_cart p b")
+  public readonly cartIsEmptyText: Locator =
+    this.page.locator("#empty_cart p b");
 
   public async clickProceedCheckout(): Promise<void> {
     await this.interaction.secureClick(this.proceedCheckoutLink);

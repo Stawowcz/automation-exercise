@@ -7,6 +7,8 @@ export class BaseApi {
   constructor(page: Page, baseURL?: string) {
     this.page = page;
     this.baseURL =
-      baseURL ?? process.env.AUTOMATION_BASEURL ?? "https://www.automationexercise.com";
+      baseURL ??
+      process.env.AUTOMATION_BASEURL ??
+      "https://www.automationexercise.com";
   }
 }
