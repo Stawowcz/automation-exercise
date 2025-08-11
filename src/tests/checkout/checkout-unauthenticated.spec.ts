@@ -168,7 +168,6 @@ test.describe("Home", () => {
     await cartPage.clickProceedCheckout();
     await addedToCartUnAuth.clickRegisterLogin();
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
-    console.log(formData);
     await authPage.fillPreRegisterForm(formData);
     await authPage.fillRegistration(formData);
     await expect
