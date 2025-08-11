@@ -1,10 +1,10 @@
 import { expect, test } from "@fixtures";
 import { CommonText } from "@typings/common";
 import { AddToCartText } from "@typings/components/add-to-cart";
-import { CheckoutText } from "@typings/pages/checkout/checkout-enum";
-import { PaymentText } from "@typings/pages/payment/payment-enums";
-import { PaymentFormData } from "@typings/pages/payment/payment-types";
-import { ProductsText } from "@typings/pages/products/product-enum";
+import { CheckoutText } from "@typings/pages/checkout";
+import { PaymentText } from "@typings/pages/payment";
+import { PaymentFormData } from "@typings/pages/payment";
+import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
 test.describe("Home", () => {

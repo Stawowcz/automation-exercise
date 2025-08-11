@@ -2,7 +2,6 @@ import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
 import { HomeText } from "@typings/pages/home";
 import { LoginText } from "@typings/pages/auth";
-import { CommonText } from "@typings/common";
 import { BrandsText } from "@typings/pages/brands";
 
 export class HomePage extends BasePage {

@@ -1,10 +1,8 @@
-// pages/payment-done-page.ts
-import { expect, Locator, Download, Page } from "@playwright/test";
+import { Locator, Download } from "@playwright/test";
 import { BasePage } from "./base-page";
 import { PaymentDoneText } from "@typings/pages/payment-done/payment-done.enums";
 
 export class PaymentDonePage extends BasePage {
-  // Lokatory względem this.container
   public readonly orderPlacedTitle: Locator = this.container.locator(
     '[data-qa="order-placed"]',
   );
@@ -18,7 +16,6 @@ export class PaymentDonePage extends BasePage {
     '[data-qa="continue-button"]',
   );
 
-  // Akcje
   public async clickContinue(): Promise<void> {
     await this.interaction.secureClick(this.continueButton);
   }

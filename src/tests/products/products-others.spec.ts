@@ -1,8 +1,7 @@
 import { test, expect } from "@fixtures";
 import { CommonText } from "@typings/common";
-import { ProductDetailsText } from "@typings/pages/product-details/product-details.enum";
-import { ReviewData } from "@typings/pages/product-details/product-details.type";
-import { ProductsText } from "@typings/pages/products/product-enum";
+import { ProductDetailsText, ReviewData } from "@typings/pages/product-details";
+import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
 test.describe("Products", () => {

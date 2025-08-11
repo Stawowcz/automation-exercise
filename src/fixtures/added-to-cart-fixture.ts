@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { AddedToCartComponent } from "src/components/added-to-cart-component";
+import { AddedToCartComponent } from "@components/added-to-cart-component";
 
 export const addedToCartFixtures = {
   addedToCart: async (

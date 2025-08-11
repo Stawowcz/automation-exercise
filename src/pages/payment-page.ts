@@ -1,11 +1,8 @@
 import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
-import { HomeText } from "@typings/pages/home";
-import { LoginText } from "@typings/pages/auth";
 import { PaymentFormData } from "@typings/pages/payment/payment-types";
 
 export class PaymentPage extends BasePage {
-  // Lokatory
   private readonly cartNameField: Locator = this.container.locator(
     'input[data-qa="name-on-card"]',
   );
@@ -23,8 +20,7 @@ export class PaymentPage extends BasePage {
   );
 
   private readonly submitButton: Locator = this.container.locator("#submit");
-
-  // Metody safeFill
+  
   public async fillCartNameField(value: string): Promise<void> {
     await this.interaction.secureFill(this.cartNameField, value);
   }

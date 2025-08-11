@@ -1,5 +1,5 @@
 import { test, expect } from "@fixtures";
-import { TestCasesText } from "@typings/pages/test-cases/test-cases-enum";
+import { TestCasesText } from "@typings/pages/test-cases";
 import { env } from "@utils";
 
 test.describe("Test Cases", () => {

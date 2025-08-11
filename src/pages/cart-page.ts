@@ -1,7 +1,5 @@
-import { Locator, expect } from "@playwright/test";
+import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
-import { HomeText } from "@typings/pages/home";
-import { LoginText } from "@typings/pages/auth";
 
 export class CartPage extends BasePage {
   private readonly proceedCheckoutLink: Locator = this.page.locator(

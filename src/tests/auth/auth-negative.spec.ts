@@ -1,5 +1,5 @@
 import { test, expect } from "@fixtures";
-import { env } from "@utils/index";
+import { env } from "@utils/env-utils";
 
 test.describe("Negative scenarion login, logout", () => {
   test.beforeEach(

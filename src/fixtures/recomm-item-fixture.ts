@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { RecommendedItemsComponent } from "src/components/recommended-items-component";
+import { RecommendedItemsComponent } from "@components/recommended-items-component";
 
 export const recomItemFixtures = {
   recommendedItemsComponent: async (

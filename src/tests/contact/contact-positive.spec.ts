@@ -1,7 +1,6 @@
 import { expect, test } from "@fixtures";
 import { ContactText } from "@typings/pages/contact";
-import { DataGenerator, env } from "@utils";
-import { expectAndAcceptPopup } from "@utils/dialog-utils";
+import { DataGenerator, env, expectAndAcceptPopup } from "@utils";
 
 test.describe("Contact us", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {

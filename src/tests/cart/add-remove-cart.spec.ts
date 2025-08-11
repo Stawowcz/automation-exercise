@@ -1,9 +1,9 @@
 import { expect, test } from "@fixtures";
 import { CommonText } from "@typings/common";
 import { AddToCartText } from "@typings/components/add-to-cart";
-import { CartText } from "@typings/pages/cart/cart-enums";
+import { CartText } from "@typings/pages/cart";
 import { CategoriesText } from "@typings/pages/categories";
-import { ProductsText } from "@typings/pages/products/product-enum";
+import { ProductsText } from "@typings/pages/products";
 import { env } from "@utils";
 
 test.describe("Cart", () => {

@@ -1,4 +1,3 @@
-// pages/base-page.ts
 import { Locator, Page } from "@playwright/test";
 import { InteractionUtils } from "@utils/interaction-utils";
 
@@ -6,7 +5,6 @@ export abstract class BasePage {
   protected readonly page: Page;
   protected readonly interaction: InteractionUtils;
 
-  // Lokatory – tylko deklaracja
   public readonly title: Locator;
   public readonly subscriptionText: Locator;
   public readonly subscriptionInput: Locator;
@@ -20,7 +18,6 @@ export abstract class BasePage {
     this.page = page;
     this.interaction = new InteractionUtils(page);
 
-    // Inicjalizacja locatorów
     this.title = page.locator(".title");
     this.subscriptionText = page.locator(".single-widget > h2");
     this.subscriptionInput = page.locator("#susbscribe_email");
@@ -74,7 +71,7 @@ export abstract class BasePage {
   public getProductPriceById(productId: number): Locator {
     return this.interaction
       .getCartItemByProductId(productId)
-      .locator(".cart_price p"); // Rs. 500
+      .locator(".cart_price p");
   }
 
   public getProductQuantityById(productId: number): Locator {
@@ -86,6 +83,6 @@ export abstract class BasePage {
   public getProductTotalById(productId: number): Locator {
     return this.interaction
       .getCartItemByProductId(productId)
-      .locator(".cart_total p"); // Rs. 1000
+      .locator(".cart_total p");
   }
 }
