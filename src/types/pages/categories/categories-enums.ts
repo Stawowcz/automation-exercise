@@ -1,0 +1,16 @@
+export enum CategoriesText {
+  MEN = "Men > Tshirts",
+  WOMEN_DRESS = "Women > Dress",
+  TITLE_WOMEN_DRESS = "Women - Dress Products",
+  TITLE_WOMEN_TOPS = "Women - Tops Products",
+  TITLE_WOMEN_SAREE = "Women - Saree Products",
+  TITLE_MEN_TSHIRTS = "Men - Tshirts Products",
+  TITLE_MEN_JEANS = "Men - Jeans Products",
+  TITLE_KIDS_DRESS = "Kids - Dress Products",
+  TITLE_KIDS_TOPS_SHIRTS = "Kids - Tops & Shirts Products",
+  KEYWORD_DRESS = "Dress",
+  KEYWORD_TOP = "Top",
+  KEYWORD_SAREE = "Saree",
+  KEYWORD_JEANS = "Jeans",
+  KEYWORD_SHIRT = "shirt",
+}

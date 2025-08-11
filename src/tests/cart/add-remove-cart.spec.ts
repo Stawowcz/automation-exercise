@@ -2,6 +2,7 @@ import { expect, test } from "@fixtures";
 import { CommonText } from "@typings/common";
 import { AddToCartText } from "@typings/components/add-to-cart";
 import { CartText } from "@typings/pages/cart/cart-enums";
+import { CategoriesText } from "@typings/pages/categories";
 import { ProductsText } from "@typings/pages/products/product-enum";
 import { env } from "@utils";
 
@@ -101,7 +102,7 @@ test.describe("Cart", () => {
       .toHaveText(CommonText.MEN_TSHIRT_NAME);
     await expect
       .soft(cartPage.getProductCategoryById(2))
-      .toHaveText(CommonText.CATEGORY_MEN);
+      .toHaveText(CategoriesText.MEN);
     await expect
       .soft(cartPage.getProductPriceById(2))
       .toHaveText(CommonText.PRICE_400);
@@ -115,7 +116,7 @@ test.describe("Cart", () => {
       .toHaveText(CommonText.SLEEVE_LESS_DRESS_NAME);
     await expect
       .soft(cartPage.getProductCategoryById(3))
-      .toHaveText(CommonText.CATEGORY_WOMEN_DRESS);
+      .toHaveText(CategoriesText.WOMEN_DRESS);
     await expect
       .soft(cartPage.getProductPriceById(3))
       .toHaveText(CommonText.PRICE_1000);

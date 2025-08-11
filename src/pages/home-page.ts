@@ -2,16 +2,57 @@ import { Locator } from "@playwright/test";
 import { BasePage } from "./base-page";
 import { HomeText } from "@typings/pages/home";
 import { LoginText } from "@typings/pages/auth";
+import { CommonText } from "@typings/common";
+import { BrandsText } from "@typings/pages/brands";
 
 export class HomePage extends BasePage {
-  private readonly recommendedItemContainer: Locator =
-    this.page.locator(".recommended_items");
-
   private readonly leftSideBar: Locator = this.page.locator(".left-sidebar");
-
   private readonly womenToggle = this.leftSideBar.locator('a[href="#Women"]');
   private readonly menToggle = this.leftSideBar.locator('a[href="#Men"]');
   private readonly kidsToggle = this.leftSideBar.locator('a[href="#Kids"]');
+  private readonly brandsSection: Locator = this.page.locator(".brands-name");
+
+  private getBrandLink(brandName: string): Locator {
+    return this.brandsSection.locator(`a[href="/brand_products/${brandName}"]`);
+  }
+
+  public async clickBrandPolo(): Promise<void> {
+    await this.interaction.secureClick(this.getBrandLink(BrandsText.POLO));
+  }
+
+  public async clickBrandHnM(): Promise<void> {
+    await this.interaction.secureClick(this.getBrandLink(BrandsText.HM));
+  }
+
+  public async clickBrandMadame(): Promise<void> {
+    await this.interaction.secureClick(this.getBrandLink(BrandsText.MADAME));
+  }
+
+  public async clickBrandMastHarbour(): Promise<void> {
+    await this.interaction.secureClick(
+      this.getBrandLink(BrandsText.MAST_AND_HARBOUR),
+    );
+  }
+
+  public async clickBrandBabyhug(): Promise<void> {
+    await this.interaction.secureClick(this.getBrandLink(BrandsText.BABYHUG));
+  }
+
+  public async clickBrandAllenSollyJunior(): Promise<void> {
+    await this.interaction.secureClick(
+      this.getBrandLink(BrandsText.ALLEN_SOLLY_JUNIOR),
+    );
+  }
+
+  public async clickBrandKookieKids(): Promise<void> {
+    await this.interaction.secureClick(
+      this.getBrandLink(BrandsText.KOOKIE_KIDS),
+    );
+  }
+
+  public async clickBrandBiba(): Promise<void> {
+    await this.interaction.secureClick(this.getBrandLink(BrandsText.BIBA));
+  }
 
   public async clickWomenToggle(): Promise<void> {
     await this.interaction.secureClick(this.womenToggle);

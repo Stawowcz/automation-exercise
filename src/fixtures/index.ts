@@ -29,6 +29,8 @@ import { RecommendedItemsComponent } from "src/components/recommended-items-comp
 import { recomItemFixtures } from "./recomm-item-fixture";
 import { CategoryProductsPage } from "@pages/category-product-page";
 import { categoryFixtures } from "./category-fixture";
+import { brandFixtures } from "./brand-fixture";
+import { BrandProductsPage } from "@pages/brand-product-page";
 
 type MyFixtures = {
   authPage: AuthPage;
@@ -46,6 +48,7 @@ type MyFixtures = {
   cartApi: CartApi;
   recommendedItemsComponent: RecommendedItemsComponent;
   categoryProductsPage: CategoryProductsPage;
+  brandProductsPage: BrandProductsPage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -64,6 +67,7 @@ export const test = base.extend<MyFixtures>({
   ...serviceFixtures,
   ...recomItemFixtures,
   ...categoryFixtures,
+  ...brandFixtures,
 });
 
 export { expect };
