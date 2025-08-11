@@ -23,6 +23,8 @@ import { paymentDoneFixtures } from "./payment-done-fixture";
 import { PaymentDonePage } from "@pages/payment-done-page";
 import { addedToCartUnauthenticatedFixtures } from "./added-to-cart-unauthenticated-fixture";
 import { AddedToCartUnauthenticatedComponent } from "src/components/added-to-cart-unauthenticated-component";
+import { serviceFixtures } from "./service-fixture";
+import type { CartApi } from "../services/cart/cart-api";
 
 type MyFixtures = {
   authPage: AuthPage;
@@ -37,6 +39,7 @@ type MyFixtures = {
   paymentPage: PaymentPage;
   paymentDonePage: PaymentDonePage;
   addedToCartUnAuth: AddedToCartUnauthenticatedComponent;
+  cartApi: CartApi;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -52,6 +55,7 @@ export const test = base.extend<MyFixtures>({
   ...checkoutFixtures,
   ...paymentFixtures,
   ...paymentDoneFixtures,
+  ...serviceFixtures,
 });
 
 export { expect };

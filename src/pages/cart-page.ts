@@ -9,36 +9,10 @@ export class CartPage extends BasePage {
     { hasText: "Proceed To Checkout" },
   );
 
+  public readonly cartIsEmptyText:Locator = this.page.locator("#empty_cart p b")
+
   public async clickProceedCheckout(): Promise<void> {
     await this.interaction.secureClick(this.proceedCheckoutLink);
-  }
-
-  public async deleteCartItemViaApi(productId: number): Promise<void> {
-    const response = await this.page.request.get(`/delete_cart/${productId}`, {
-      headers: {
-        "x-requested-with": "XMLHttpRequest",
-      },
-    });
-
-    if (response.status() !== 200) {
-      throw new Error(`❌ Failed to delete product ${productId} via API`);
-    }
-  }
-
-  public async clearCartViaApi(): Promise<void> {
-    const deleteButtons = await this.page
-      .locator(".cart_quantity_delete")
-      .all();
-
-    for (const btn of deleteButtons) {
-      const productId = await btn.getAttribute("data-product-id");
-      if (productId) {
-        await this.deleteCartItemViaApi(Number(productId));
-      }
-    }
-
-    await this.page.reload();
-    await expect(this.page.locator("#empty_cart")).toBeVisible();
   }
 
   public getDeleteButtonById(productId: number): Locator {

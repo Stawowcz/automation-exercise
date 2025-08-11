@@ -14,9 +14,9 @@ test.describe("Home", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test.afterEach("clear cart", async ({ cartPage }) => {
+  test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
     await cartPage.goToLink("/view_cart");
-    await cartPage.clearCartViaApi();
+    await cartApi.clearCartViaApi();
   });
   test("should checkout successfully", async ({
     homePage,

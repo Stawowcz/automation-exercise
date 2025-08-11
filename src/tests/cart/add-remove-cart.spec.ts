@@ -1,20 +1,24 @@
 import { expect, test } from "@fixtures";
+import { HomePage } from "@pages/home-page";
 import { CommonText } from "@typings/common";
 import { AddToCartText } from "@typings/components/add-to-cart";
+import { CartText } from "@typings/pages/cart/cart-enums";
 import { ProductsText } from "@typings/pages/products/product-enum";
 import { env } from "@utils";
+import { CartApi } from "src/services/cart";
 
-test.describe("Cart", () => {
+test.describe.only("Cart", () => {
   test.beforeEach("should verify subscription", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test.afterEach("clear cart", async ({ cartPage }) => {
+  test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
     await cartPage.goToLink("/view_cart");
-    await cartPage.clearCartViaApi();
+    await cartApi.clearCartViaApi();
   });
+
   test("should add product to cart then validate cart", async ({
     homePage,
     productPage,
@@ -189,5 +193,13 @@ test.describe("Cart", () => {
     );
     await addedToCart.clickViewCart();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("3");
+  });
+
+  test("should remove item from cart page", async ({homePage, cartApi, cartPage }) => {
+    await cartApi.addProduct(1);
+    await cartPage.goToLink("/view_cart");
+    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
+    await cartPage.clickDeleteButtonById(1)
+    await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART)
   });
 });
