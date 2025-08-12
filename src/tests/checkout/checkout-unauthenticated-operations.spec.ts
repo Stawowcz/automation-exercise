@@ -139,7 +139,7 @@ test.describe("Checkout", () => {
     await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
   });
 
-  test.only("should register in before checkout", async ({
+  test("should register in before checkout", async ({
     homePage,
     productPage,
     addedToCart,
