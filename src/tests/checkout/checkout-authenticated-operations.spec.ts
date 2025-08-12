@@ -7,17 +7,19 @@ import { PaymentFormData } from "@typings/pages/payment";
 import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
-test.describe("Checkout", () => {
-  test.beforeEach("should navigate to main page", async ({ homePage }) => {
+test.describe.only("Checkout", () => {
+  test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
+    await cartPage.goToLink("/view_cart");
+    await cartApi.clearCartViaApi();
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
-    await cartPage.goToLink("/view_cart");
-    await cartApi.clearCartViaApi();
-  });
+  // test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
+  //   await cartPage.goToLink("/view_cart");
+  //   await cartApi.clearCartViaApi();
+  // });
   test("should checkout successfully", async ({
     homePage,
     productPage,

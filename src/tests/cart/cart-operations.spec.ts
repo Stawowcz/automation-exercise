@@ -6,17 +6,19 @@ import { CategoriesText } from "@typings/pages/categories";
 import { ProductsText } from "@typings/pages/products";
 import { env } from "@utils";
 
-test.describe("Cart", () => {
-  test.beforeEach("should verify subscription", async ({ homePage }) => {
+test.describe.only("Cart", () => {
+  test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
+    await cartPage.goToLink("/view_cart");
+    await cartApi.clearCartViaApi();
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
-    await cartPage.goToLink("/view_cart");
-    await cartApi.clearCartViaApi();
-  });
+  // test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
+  //   await cartPage.goToLink("/view_cart");
+  //   await cartApi.clearCartViaApi();
+  // });
 
   test("should add product to cart then validate cart", async ({
     homePage,
