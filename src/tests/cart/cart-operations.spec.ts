@@ -56,7 +56,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
   });
 
-  test.only("should add 3 different products to cart then validate cart", async ({
+  test("should add 3 different products to cart then validate cart", async ({
     homePage,
     productPage,
     addedToCart,
