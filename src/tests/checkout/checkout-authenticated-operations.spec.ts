@@ -15,11 +15,7 @@ test.describe("Checkout", () => {
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
-
-  // test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
-  //   await cartPage.goToLink("/view_cart");
-  //   await cartApi.clearCartViaApi();
-  // });
+  
   test("should checkout successfully", async ({
     homePage,
     productPage,

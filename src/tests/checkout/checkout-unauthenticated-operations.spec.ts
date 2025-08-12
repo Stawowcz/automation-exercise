@@ -16,11 +16,6 @@ test.describe("Checkout", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  // test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
-  //   await cartPage.goToLink("/view_cart");
-  //   await cartApi.clearCartViaApi();
-  // });
-
   test("should log in before checkout", async ({
     homePage,
     productPage,

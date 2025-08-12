@@ -15,11 +15,6 @@ test.describe("Cart", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  // test.afterEach("clear cart", async ({ cartPage, cartApi }) => {
-  //   await cartPage.goToLink("/view_cart");
-  //   await cartApi.clearCartViaApi();
-  // });
-
   test("should add product to cart then validate cart", async ({
     homePage,
     productPage,
@@ -127,6 +122,7 @@ test.describe("Cart", () => {
       .toHaveText(CommonText.PRICE_1000);
     await expect.soft(cartPage.getProductQuantityById(3)).toHaveText("1");
   });
+
 
   test("should add 2 the same products to cart then validate cart", async ({
     homePage,
