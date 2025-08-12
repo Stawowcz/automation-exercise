@@ -170,7 +170,7 @@ test.describe("Checkout", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
 
     await cartPage.clickProceedCheckout();
-    
+
     await addedToCartUnAuth.clickRegisterLogin();
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
     await authPage.fillPreRegisterForm(formData);

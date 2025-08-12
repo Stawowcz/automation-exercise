@@ -34,6 +34,7 @@ export default defineConfig({
         "src/tests/auth/auth-login-logout-operations.spec.ts",
         "src/tests/auth/auth-login-negative-operations.spec.ts",
         "src/tests/auth/auth-register-operations.spec.ts",
+        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts"
       ],
       use: { storageState: undefined },
     },
@@ -44,6 +45,7 @@ export default defineConfig({
         "src/tests/auth/auth-login-logout-operations.spec.ts",
         "src/tests/auth/auth-login-negative-operations.spec.ts",
         "src/tests/auth/auth-register-operations.spec.ts",
+        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts"
       ],
       use: {
         ...devices["Desktop Chrome"],
@@ -60,7 +62,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? "100%" : "100%",
+  workers: process.env.CI ? "50%" : "100%",
   globalSetup: "./global-setup",
 
   outputDir: "test-results/",
