@@ -16,10 +16,10 @@ test.describe("Checkout", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test.afterEach("should clear cart", async ({ cartPage, cartApi }) => {
-    await cartPage.goToLink("/view_cart");
-    await cartApi.clearCartViaApi();
-  });
+  // test.afterEach("should clear cart", async ({ cartPage, cartApi }) => {
+  //   await cartPage.goToLink("/view_cart");
+  //   await cartApi.clearCartViaApi();
+  // });
 
   test("should log in before checkout", async ({
     homePage,
@@ -139,7 +139,7 @@ test.describe("Checkout", () => {
     await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
   });
 
-  test("should register in before checkout", async ({
+  test.only("should register in before checkout", async ({
     homePage,
     productPage,
     addedToCart,

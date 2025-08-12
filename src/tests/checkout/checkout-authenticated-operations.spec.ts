@@ -16,10 +16,10 @@ test.describe("Checkout", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test.afterEach("should clear cart", async ({ cartPage, cartApi }) => {
-    await cartPage.goToLink("/view_cart");
-    await cartApi.clearCartViaApi();
-  });
+  // test.afterEach("should clear cart", async ({ cartPage, cartApi }) => {
+  //   await cartPage.goToLink("/view_cart");
+  //   await cartApi.clearCartViaApi();
+  // });
 
   test("should checkout successfully", async ({
     homePage,
