@@ -26,5 +26,9 @@
       "@data/*": ["src/data/*"]
     }
   },
-  "include": ["src/**/*.ts", "playwright.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "playwright.config.ts",
+    "src/tests/auth/auth-register-operations.spec.ts"
+  ]
 }

@@ -7,8 +7,8 @@ import { PaymentFormData } from "@typings/pages/payment";
 import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
-test.describe("Home", () => {
-  test.beforeEach("should verify subscription", async ({ homePage }) => {
+test.describe("Checkout", () => {
+  test.beforeEach("should navigate to main page", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);

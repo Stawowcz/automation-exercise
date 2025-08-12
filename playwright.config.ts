@@ -31,27 +31,26 @@ export default defineConfig({
     {
       name: "unauthenticated-tests",
       testMatch: [
-        /.*auth-negative\.spec\.ts$/,
-        /.*auth-positive\.spec\.ts$/,
-        /.*register\.spec\.ts$/,
-        /.*checkout-unauthenticated\.spec\.ts$/, // + tutaj
+        "src/tests/auth/auth-login-logout-operations.spec.ts",
+        "src/tests/auth/auth-login-negative-operations.spec.ts",
+        "src/tests/auth/auth-register-operations.spec.ts",
       ],
-      use: {
-        storageState: undefined,
-      },
+      use: { storageState: undefined },
     },
-
     {
       name: "Chromium",
-      testMatch:
-        /^(?!.*(auth-negative|auth-positive|register|checkout-unauthenticated)).*\.spec\.ts$/, // + dodać checkout-unauthenticated do wykluczeń
+      testMatch: ["**/*.spec.ts"],
+      testIgnore: [
+        "src/tests/auth/auth-login-logout-operations.spec.ts",
+        "src/tests/auth/auth-login-negative-operations.spec.ts",
+        "src/tests/auth/auth-register-operations.spec.ts",
+      ],
       use: {
         ...devices["Desktop Chrome"],
         storageState: "storageState.json",
       },
     },
   ],
-
   metadata: {
     paths: {
       assets: path.resolve(__dirname, "assets"),

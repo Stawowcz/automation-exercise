@@ -19,4 +19,19 @@ test.describe("Home", () => {
       .soft(homePage.successSubscribeText)
       .toHaveText(CommonText.SUCCESS_SUBSCRIBE);
   });
+
+  test("should verify subscription in cart page", async ({
+    homePage,
+    cartPage,
+  }) => {
+    await homePage.clickCartLink();
+    await cartPage.subscriptionText.scrollIntoViewIfNeeded();
+    await expect.soft(cartPage.subscriptionText).toHaveText("Subscription");
+    const email = DataGenerator.generateEmail();
+    await cartPage.fillSubscription(email);
+    await cartPage.clickSubscriptionButton();
+    await expect
+      .soft(cartPage.successSubscribeText)
+      .toHaveText(CommonText.SUCCESS_SUBSCRIBE);
+  });
 });
