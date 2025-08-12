@@ -3,9 +3,6 @@ import { BasePage } from "./base-page";
 import { PaymentDoneText } from "@typings/pages/payment-done/payment-done.enums";
 
 export class PaymentDonePage extends BasePage {
-  // public readonly orderPlacedTitle: Locator = this.container.locator(
-  //   '[data-qa="order-placed"]',
-  // );
   public readonly successMessage: Locator = this.container.locator("p", {
     hasText: PaymentDoneText.PAYMENT_SUCCESS,
   });

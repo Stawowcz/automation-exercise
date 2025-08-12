@@ -26,15 +26,4 @@ export class RecommendedItemsComponent extends BaseComponent {
     await this.scrollUntilVisible(target);
     await this.interaction.secureClick(target);
   }
-
-  // public async addByName(name: string) {
-  //   const target = this.carousel
-  //     .locator(".productinfo")
-  //     .filter({
-  //       has: this.page.locator("p", { hasText: name }),
-  //     })
-  //     .locator("a.add-to-cart");
-  //   await this.scrollUntilVisible(target);
-  //   await this.interaction.secureClick(target);
-  // }
 }

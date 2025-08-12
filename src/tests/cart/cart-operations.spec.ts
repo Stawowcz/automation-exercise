@@ -39,6 +39,7 @@ test.describe("Cart", () => {
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect
       .soft(cartPage.getProductNameById(1))
@@ -66,11 +67,15 @@ test.describe("Cart", () => {
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
+    await addedToCart.modalHeader.waitFor({state: "visible"})
     await expect
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
+    await addedToCart.modalBodyText.waitFor({state: "visible"})
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await expect.soft(addedToCart.viewCartText).toBeVisible();
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
@@ -79,11 +84,32 @@ test.describe("Cart", () => {
       CommonText.MEN_TSHIRT_NAME,
       CommonText.PRICE_400,
     );
+        await addedToCart.modalHeader.waitFor({state: "visible"})
+    await expect
+      .soft(addedToCart.modalHeader)
+      .toContainText(ProductsText.ADDED);
+    await addedToCart.modalBodyText.waitFor({state: "visible"})
+    await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await expect.soft(addedToCart.viewCartText).toBeVisible();
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await expect
+      .soft(addedToCart.continueShoppingButton)
+      .toHaveText(AddToCartText.CONTINUE_SHOPPING);
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
       CommonText.SLEEVE_LESS_DRESS_NAME,
       CommonText.PRICE_1000,
     );
+    await addedToCart.modalBodyText.waitFor({state: "visible"})
+    await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await expect.soft(addedToCart.viewCartText).toBeVisible();
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await expect
+      .soft(addedToCart.continueShoppingButton)
+      .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect
       .soft(cartPage.getProductNameById(1))
@@ -148,11 +174,14 @@ test.describe("Cart", () => {
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect
       .soft(cartPage.getProductNameById(1))
@@ -183,16 +212,19 @@ test.describe("Cart", () => {
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("3");
   });
@@ -211,6 +243,8 @@ test.describe("Cart", () => {
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect
       .soft(cartPage.getProductNameById(1))

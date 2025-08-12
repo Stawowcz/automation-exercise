@@ -7,7 +7,6 @@ export class AddedToCartComponent extends BaseComponent {
     this.page.locator(".modal-content");
   public readonly modalHeader: Locator =
     this.addedToCartModal.locator(".modal-header");
-  // public readonly modalBody: Locator = this.addedToCartModal.locator(".modal-body p");
   public readonly modalBodyText: Locator = this.addedToCartModal.locator(
     ".modal-body > p",
     {

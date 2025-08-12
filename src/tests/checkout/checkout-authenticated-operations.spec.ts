@@ -41,10 +41,12 @@ test.describe("Checkout", () => {
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
+    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
-
+    
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
 

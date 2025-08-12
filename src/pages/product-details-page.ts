@@ -54,7 +54,6 @@ export class ProductDetailsPage extends BasePage {
     hasText: ProductDetailsText.PRODUCT1_PARAGRAPH as string,
   });
   public readonly description: Locator = this.productInfo.locator("span span");
-  // private readonly quantityLabel: Locator = this.productInfo.locator("label");
   public readonly quantityInput: Locator =
     this.productInfo.locator("#quantity");
   public readonly addToCartButton: Locator = this.productInfo.locator("button");

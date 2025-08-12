@@ -14,12 +14,6 @@ export class CartPage extends BasePage {
     await this.interaction.secureClick(this.proceedCheckoutLink);
   }
 
-  // private getDeleteButtonById(productId: number): Locator {
-  //   return this.interaction
-  //     .getCartItemByProductId(productId)
-  //     .locator(".cart_delete");
-  // }
-
   public async clickDeleteButtonById(productId: number): Promise<void> {
     const deleteButton = this.interaction
       .getCartItemByProductId(productId)
