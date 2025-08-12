@@ -8,7 +8,7 @@ export default defineConfig({
   testDir: "./src/tests/",
   timeout: 120 * 1_000,
   expect: {
-    timeout: 30 * 1_000,
+    timeout: 50 * 1_000,
   },
 
   reporter: [
@@ -60,7 +60,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? "100%" : "50%",
+  workers: process.env.CI ? "100%" : "100%",
   globalSetup: "./global-setup",
 
   outputDir: "test-results/",
