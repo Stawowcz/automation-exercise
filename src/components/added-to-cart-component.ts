@@ -1,36 +1,33 @@
-// components/added-to-cart-component.ts
-import { Locator, Page } from "@playwright/test";
+import { Locator } from "@playwright/test";
 import { BaseComponent } from "./base-component";
 import { AddToCartText } from "@typings/components/add-to-cart";
 
 export class AddedToCartComponent extends BaseComponent {
-  private readonly addedToCartModal: Locator;
-  public readonly modalHeader: Locator;
-  public readonly modalBody: Locator;
-  public readonly modalBodyText: Locator;
-  public readonly viewCartText: Locator;
-  public readonly continueShopingButton: Locator;
-
-  public constructor(page: Page) {
-    super(page);
-
-    this.addedToCartModal = this.page.locator(".modal-content");
-    this.modalHeader = this.addedToCartModal.locator(".modal-header");
-    this.modalBody = this.addedToCartModal.locator(".modal-body p");
-    this.modalBodyText = this.addedToCartModal.locator(".modal-body > p", {
+  private readonly addedToCartModal: Locator =
+    this.page.locator(".modal-content");
+  public readonly modalHeader: Locator =
+    this.addedToCartModal.locator(".modal-header");
+  // public readonly modalBody: Locator = this.addedToCartModal.locator(".modal-body p");
+  public readonly modalBodyText: Locator = this.addedToCartModal.locator(
+    ".modal-body > p",
+    {
       hasText: AddToCartText.PRODUCT_ADDED_TO_CART,
-    });
-    this.viewCartText = this.addedToCartModal.locator(".modal-body p", {
+    },
+  );
+  public readonly viewCartText: Locator = this.addedToCartModal.locator(
+    ".modal-body p",
+    {
       hasText: AddToCartText.VIEW_CART,
-    });
-    this.continueShopingButton = this.addedToCartModal.locator(".close-modal");
-  }
+    },
+  );
+  public readonly continueShoppingButton: Locator =
+    this.addedToCartModal.locator(".close-modal");
 
   public async clickViewCart(): Promise<void> {
     await this.interaction.secureClick(this.viewCartText);
   }
 
   public async clickContinueShopping(): Promise<void> {
-    await this.interaction.secureClick(this.continueShopingButton);
+    await this.interaction.secureClick(this.continueShoppingButton);
   }
 }

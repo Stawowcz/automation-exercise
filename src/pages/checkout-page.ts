@@ -3,20 +3,23 @@ import { BasePage } from "./base-page";
 import { CheckoutText } from "@typings/pages/checkout";
 
 export class CheckoutPage extends BasePage {
-  public readonly checkoutTextArea: Locator =
+  private readonly checkoutTextArea: Locator =
     this.container.locator(".form-control");
 
-  public readonly placeOrderButton: Locator = this.container.locator(
+  private readonly placeOrderButton: Locator = this.container.locator(
     ".check_out",
     { hasText: CheckoutText.PLACE_ORDER },
   );
 
-  public async clickCheckoutPlaceOrder(): Promise<void> {
-    await this.interaction.secureClick(this.placeOrderButton);
-  }
+  private readonly billingAddressContainer: Locator =
+    this.container.locator("#address_invoice");
 
   private readonly deliveryAddressContainer: Locator =
     this.container.locator("#address_delivery");
+
+  public async clickCheckoutPlaceOrder(): Promise<void> {
+    await this.interaction.secureClick(this.placeOrderButton);
+  }
 
   public readonly deliveryAddressTitleHeader: Locator =
     this.deliveryAddressContainer.locator(".address_title h3");
@@ -47,9 +50,6 @@ export class CheckoutPage extends BasePage {
 
   public readonly deliveryPhone: Locator =
     this.deliveryAddressContainer.locator(".address_phone");
-
-  private readonly billingAddressContainer: Locator =
-    this.container.locator("#address_invoice");
 
   public readonly billingAddressTitleHeader: Locator =
     this.billingAddressContainer.locator(".address_title h3");

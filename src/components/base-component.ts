@@ -1,4 +1,3 @@
-// components/base-component.ts
 import { Page } from "@playwright/test";
 import { InteractionUtils } from "@utils/interaction-utils";
 

@@ -7,10 +7,8 @@ export class ProductDetailsPage extends BasePage {
   private readonly productInfo: Locator = this.page.locator(
     ".product-information",
   );
-
   private readonly reviewContainer: Locator =
     this.page.locator(".category-tab");
-
   private readonly reviewName: Locator = this.reviewContainer.locator("#name");
   private readonly reviewEmail: Locator =
     this.reviewContainer.locator("#email");
@@ -18,6 +16,31 @@ export class ProductDetailsPage extends BasePage {
     this.reviewContainer.locator("#review");
   private readonly submitReviewButton: Locator =
     this.reviewContainer.locator("#button-review");
+
+  private async fillReviewName(value: string): Promise<void> {
+    await this.interaction.secureFill(this.reviewName, value);
+  }
+
+  private async fillReviewEmail(value: string): Promise<void> {
+    await this.interaction.secureFill(this.reviewEmail, value);
+  }
+
+  private async fillReviewComment(value: string): Promise<void> {
+    await this.interaction.secureFill(this.reviewComment, value);
+  }
+
+  private async clickSubmitReviewButton(): Promise<void> {
+    await this.interaction.secureClick(this.submitReviewButton);
+  }
+
+  private readonly reviewFormEmailInput = this.page.getByRole("textbox", {
+    name: ProductDetailsText.EMAIL_ADDRESS,
+    exact: true,
+  });
+  private readonly reviewFormTextArea = this.page.getByPlaceholder(
+    ProductDetailsText.ADD_REVIEW,
+  );
+
   public readonly successMessage: Locator = this.reviewContainer.locator(
     ".alert-success",
     { hasText: ProductDetailsText.SUCCESS_MESSAGE },
@@ -31,7 +54,7 @@ export class ProductDetailsPage extends BasePage {
     hasText: ProductDetailsText.PRODUCT1_PARAGRAPH as string,
   });
   public readonly description: Locator = this.productInfo.locator("span span");
-  public readonly quantityLabel: Locator = this.productInfo.locator("label");
+  // private readonly quantityLabel: Locator = this.productInfo.locator("label");
   public readonly quantityInput: Locator =
     this.productInfo.locator("#quantity");
   public readonly addToCartButton: Locator = this.productInfo.locator("button");
@@ -51,32 +74,9 @@ export class ProductDetailsPage extends BasePage {
   public readonly reviewFormNameInput = this.page.getByPlaceholder(
     ProductDetailsText.YOUR_NAME,
   );
-  public readonly reviewFormEmailInput = this.page.getByRole("textbox", {
-    name: ProductDetailsText.EMAIL_ADDRESS,
-    exact: true,
-  });
-  public readonly reviewFormTextArea = this.page.getByPlaceholder(
-    ProductDetailsText.ADD_REVIEW,
-  );
 
   public getProductMetaByLabel(label: string): Locator {
     return this.productInfo.locator(`p:has(b:text("${label}:"))`);
-  }
-
-  public async fillReviewName(value: string): Promise<void> {
-    await this.interaction.secureFill(this.reviewName, value);
-  }
-
-  public async fillReviewEmail(value: string): Promise<void> {
-    await this.interaction.secureFill(this.reviewEmail, value);
-  }
-
-  public async fillReviewComment(value: string): Promise<void> {
-    await this.interaction.secureFill(this.reviewComment, value);
-  }
-
-  public async clickSubmitReviewButton(): Promise<void> {
-    await this.interaction.secureClick(this.submitReviewButton);
   }
 
   public async fillAndSubmitReview(data: ReviewData): Promise<void> {

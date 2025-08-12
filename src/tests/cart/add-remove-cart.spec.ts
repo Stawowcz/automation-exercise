@@ -35,7 +35,7 @@ test.describe("Cart", () => {
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
     await addedToCart.clickViewCart();
     await expect
@@ -70,7 +70,7 @@ test.describe("Cart", () => {
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
@@ -143,7 +143,7 @@ test.describe("Cart", () => {
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
@@ -178,7 +178,7 @@ test.describe("Cart", () => {
       CommonText.PRICE_500,
     );
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
@@ -206,7 +206,7 @@ test.describe("Cart", () => {
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
     await addedToCart.clickViewCart();
     await expect

@@ -15,6 +15,34 @@ export class ContactPage extends BasePage {
   private readonly submitButton: Locator =
     this.page.getByTestId("submit-button");
 
+  private async fillName(value: string): Promise<void> {
+    await this.interaction.secureFill(this.nameField, value);
+  }
+
+  private async fillEmail(value: string): Promise<void> {
+    await this.interaction.secureFill(this.emailField, value);
+  }
+
+  private async fillMessage(value: string): Promise<void> {
+    await this.interaction.secureFill(this.messageField, value);
+  }
+
+  private async fillSubject(value: string): Promise<void> {
+    await this.interaction.secureFill(this.subjectField, value);
+  }
+
+  private async setFile(fileName: string): Promise<void> {
+    const filePath = path.resolve(TestPaths.assets, fileName);
+    if (!fs.existsSync(filePath)) {
+      throw new Error(`Plik do uploadu nie istnieje: ${filePath}`);
+    }
+    await this.fileInput.setInputFiles(filePath);
+  }
+
+  private async clickSubmitButton(): Promise<void> {
+    await this.interaction.secureClick(this.submitButton);
+  }
+
   public readonly submitSuccessText: Locator = this.page.locator(
     ".status.alert.alert-success",
   );
@@ -25,34 +53,6 @@ export class ContactPage extends BasePage {
   public readonly belowContactIsText = this.page.locator(".contact-form div", {
     hasText: ContactText.BELOW_CONTACT_IS,
   });
-
-  public async fillName(value: string): Promise<void> {
-    await this.interaction.secureFill(this.nameField, value);
-  }
-
-  public async fillEmail(value: string): Promise<void> {
-    await this.interaction.secureFill(this.emailField, value);
-  }
-
-  public async fillMessage(value: string): Promise<void> {
-    await this.interaction.secureFill(this.messageField, value);
-  }
-
-  public async fillSubject(value: string): Promise<void> {
-    await this.interaction.secureFill(this.subjectField, value);
-  }
-
-  public async setFile(fileName: string): Promise<void> {
-    const filePath = path.resolve(TestPaths.assets, fileName);
-    if (!fs.existsSync(filePath)) {
-      throw new Error(`Plik do uploadu nie istnieje: ${filePath}`);
-    }
-    await this.fileInput.setInputFiles(filePath);
-  }
-
-  public async clickSubmitButton(): Promise<void> {
-    await this.interaction.secureClick(this.submitButton);
-  }
 
   public async submitContactForm(
     data: ContactFormData,

@@ -21,6 +21,7 @@ test.describe("Contact us", () => {
       .toHaveText(ContactText.GET_IN_TOUCH);
     await expectAndAcceptPopup(page, ContactText.DIALOG_MSG);
     await contactPage.submitContactForm(contactData, "background.png");
+    await contactPage.submitSuccessText.waitFor({ state: "visible" });
     await expect
       .soft(contactPage.submitSuccessText)
       .toHaveText(ContactText.SUBMIT_SUCCESS);

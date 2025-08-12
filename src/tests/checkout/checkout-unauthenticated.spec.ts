@@ -3,7 +3,7 @@ import { CommonText } from "@typings/common";
 import { AddToCartText } from "@typings/components/add-to-cart";
 import { RegisterFormData, RegistrationText } from "@typings/pages/auth";
 import { CheckoutText } from "@typings/pages/checkout";
-import { PaymentText,PaymentFormData } from "@typings/pages/payment";
+import { PaymentText, PaymentFormData } from "@typings/pages/payment";
 import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
@@ -42,7 +42,7 @@ test.describe("Home", () => {
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
 
     await addedToCart.clickViewCart();
@@ -158,7 +158,7 @@ test.describe("Home", () => {
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
 
     await addedToCart.clickViewCart();

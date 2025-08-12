@@ -36,9 +36,6 @@ export class AuthPage extends BasePage {
   private readonly companyField: Locator = this.page.getByTestId("company");
   private readonly createAccount: Locator =
     this.page.getByTestId("create-account");
-
-  public readonly createAccountText: Locator =
-    this.page.getByTestId("account-created");
   private readonly loginEmailField: Locator = this.page.locator(
     '[data-qa="login-email"]',
   );
@@ -48,6 +45,108 @@ export class AuthPage extends BasePage {
   private readonly loginButton: Locator = this.page.locator(
     '[data-qa="login-button"]',
   );
+
+  private async fillLoginEmail(value: string): Promise<void> {
+    await this.interaction.secureFill(this.loginEmailField, value);
+  }
+
+  private async fillLoginPassword(value: string): Promise<void> {
+    await this.interaction.secureFill(this.loginPasswordField, value);
+  }
+  private async fillSignupName(value: string): Promise<void> {
+    await this.interaction.secureFill(this.signupNameField, value);
+  }
+
+  private async fillSignupEmail(value: string): Promise<void> {
+    await this.interaction.secureFill(this.signupEmailField, value);
+  }
+
+  private async fillPassword(value: string): Promise<void> {
+    await this.interaction.secureFill(this.password, value);
+  }
+
+  private async fillCompany(value: string): Promise<void> {
+    await this.interaction.secureFill(this.companyField, value);
+  }
+
+  private async fillFirstName(value: string): Promise<void> {
+    await this.interaction.secureFill(this.firstNameField, value);
+  }
+
+  private async fillLastName(value: string): Promise<void> {
+    await this.interaction.secureFill(this.lastNameField, value);
+  }
+
+  private async fillAddress1(value: string): Promise<void> {
+    await this.interaction.secureFill(this.address1Field, value);
+  }
+
+  private async fillAddress2(value: string): Promise<void> {
+    await this.interaction.secureFill(this.address2Field, value);
+  }
+
+  private async fillCity(value: string): Promise<void> {
+    await this.interaction.secureFill(this.cityField, value);
+  }
+
+  private async fillState(value: string): Promise<void> {
+    await this.interaction.secureFill(this.stateField, value);
+  }
+
+  private async fillZip(value: string): Promise<void> {
+    await this.interaction.secureFill(this.zipField, value);
+  }
+
+  private async fillMobileNumber(value: string): Promise<void> {
+    await this.interaction.secureFill(this.mobileNumberField, value);
+  }
+
+  private async selectDay(value: string): Promise<void> {
+    await this.interaction.secureSelect(this.daysField, value);
+  }
+
+  private async selectMonth(value: string): Promise<void> {
+    await this.interaction.secureSelect(this.monthsField, value);
+  }
+
+  private async selectYear(value: string): Promise<void> {
+    await this.interaction.secureSelect(this.yearsField, value);
+  }
+
+  private async selectCountry(value: string): Promise<void> {
+    await this.interaction.secureSelect(this.countryField, value);
+  }
+
+  private async clickLoginButton(): Promise<void> {
+    await this.interaction.secureClick(this.loginButton);
+  }
+
+  private async clickSignupButton(): Promise<void> {
+    await this.interaction.secureClick(this.signupEmailBUtton);
+  }
+
+  private async clickCreateAccount(): Promise<void> {
+    await this.interaction.secureClick(this.createAccount);
+  }
+
+  private async clickMrGender(): Promise<void> {
+    await this.interaction.secureClick(this.genderMrRadio);
+  }
+
+  private async clickMrsGender(): Promise<void> {
+    await this.interaction.secureClick(this.genderMrsRadio);
+  }
+
+  private async checkNewsletter(): Promise<void> {
+    await this.interaction.secureClick(this.newsletterCheckbox);
+  }
+
+  private async checkSpecialOffer(): Promise<void> {
+    await this.interaction.secureClick(this.specialOfferCheckbox);
+  }
+
+  public readonly createAccountText: Locator =
+    this.page.getByTestId("account-created");
 
   public readonly loginError: Locator = this.page.locator("p", {
     hasText: LoginText.LOGIN_UNSUCCESSFULL,
@@ -72,111 +171,11 @@ export class AuthPage extends BasePage {
     await this.clickSignupButton();
   }
 
-  public async fillLoginEmail(value: string): Promise<void> {
-    await this.interaction.secureFill(this.loginEmailField, value);
-  }
-
-  public async fillLoginPassword(value: string): Promise<void> {
-    await this.interaction.secureFill(this.loginPasswordField, value);
-  }
-
   public async login(email: string, password: string): Promise<void> {
     await this.interaction.secureClick(this.loginLink);
     await this.fillLoginEmail(email);
     await this.fillLoginPassword(password);
     await this.clickLoginButton();
-  }
-
-  public async fillSignupName(value: string): Promise<void> {
-    await this.interaction.secureFill(this.signupNameField, value);
-  }
-
-  public async fillSignupEmail(value: string): Promise<void> {
-    await this.interaction.secureFill(this.signupEmailField, value);
-  }
-
-  public async fillPassword(value: string): Promise<void> {
-    await this.interaction.secureFill(this.password, value);
-  }
-
-  public async fillCompany(value: string): Promise<void> {
-    await this.interaction.secureFill(this.companyField, value);
-  }
-
-  public async fillFirstName(value: string): Promise<void> {
-    await this.interaction.secureFill(this.firstNameField, value);
-  }
-
-  public async fillLastName(value: string): Promise<void> {
-    await this.interaction.secureFill(this.lastNameField, value);
-  }
-
-  public async fillAddress1(value: string): Promise<void> {
-    await this.interaction.secureFill(this.address1Field, value);
-  }
-
-  public async fillAddress2(value: string): Promise<void> {
-    await this.interaction.secureFill(this.address2Field, value);
-  }
-
-  public async fillCity(value: string): Promise<void> {
-    await this.interaction.secureFill(this.cityField, value);
-  }
-
-  public async fillState(value: string): Promise<void> {
-    await this.interaction.secureFill(this.stateField, value);
-  }
-
-  public async fillZip(value: string): Promise<void> {
-    await this.interaction.secureFill(this.zipField, value);
-  }
-
-  public async fillMobileNumber(value: string): Promise<void> {
-    await this.interaction.secureFill(this.mobileNumberField, value);
-  }
-
-  public async selectDay(value: string): Promise<void> {
-    await this.interaction.secureSelect(this.daysField, value);
-  }
-
-  public async selectMonth(value: string): Promise<void> {
-    await this.interaction.secureSelect(this.monthsField, value);
-  }
-
-  public async selectYear(value: string): Promise<void> {
-    await this.interaction.secureSelect(this.yearsField, value);
-  }
-
-  public async selectCountry(value: string): Promise<void> {
-    await this.interaction.secureSelect(this.countryField, value);
-  }
-
-  public async clickLoginButton(): Promise<void> {
-    await this.interaction.secureClick(this.loginButton);
-  }
-
-  public async clickSignupButton(): Promise<void> {
-    await this.interaction.secureClick(this.signupEmailBUtton);
-  }
-
-  public async clickCreateAccount(): Promise<void> {
-    await this.interaction.secureClick(this.createAccount);
-  }
-
-  public async clickMrGender(): Promise<void> {
-    await this.interaction.secureClick(this.genderMrRadio);
-  }
-
-  public async clickMrsGender(): Promise<void> {
-    await this.interaction.secureClick(this.genderMrsRadio);
-  }
-
-  public async checkNewsletter(): Promise<void> {
-    await this.interaction.secureClick(this.newsletterCheckbox);
-  }
-
-  public async checkSpecialOffer(): Promise<void> {
-    await this.interaction.secureClick(this.specialOfferCheckbox);
   }
 
   public async fillRegistration(data: RegisterFormData): Promise<void> {

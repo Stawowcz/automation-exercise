@@ -1,2 +1,2 @@
-export * from "./product-details.enum"
-export * from "./product-details.type"
+export * from "./product-details.enum";
+export * from "./product-details.type";

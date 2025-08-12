@@ -20,28 +20,28 @@ export class PaymentPage extends BasePage {
   );
 
   private readonly submitButton: Locator = this.container.locator("#submit");
-  
-  public async fillCartNameField(value: string): Promise<void> {
+
+  private async fillCartNameField(value: string): Promise<void> {
     await this.interaction.secureFill(this.cartNameField, value);
   }
 
-  public async fillCartNumberField(value: string): Promise<void> {
+  private async fillCartNumberField(value: string): Promise<void> {
     await this.interaction.secureFill(this.cartNumberField, value);
   }
 
-  public async fillCartCvcField(value: string): Promise<void> {
+  private async fillCartCvcField(value: string): Promise<void> {
     await this.interaction.secureFill(this.cartCvcField, value);
   }
 
-  public async fillCartExpiryMonthField(value: string): Promise<void> {
+  private async fillCartExpiryMonthField(value: string): Promise<void> {
     await this.interaction.secureFill(this.cartExpiryMonthField, value);
   }
 
-  public async fillCartExpiryYearField(value: string): Promise<void> {
+  private async fillCartExpiryYearField(value: string): Promise<void> {
     await this.interaction.secureFill(this.cartExpiryYearField, value);
   }
 
-  public async clickSubmitButton(): Promise<void> {
+  private async clickSubmitButton(): Promise<void> {
     await this.interaction.secureClick(this.submitButton);
   }
 

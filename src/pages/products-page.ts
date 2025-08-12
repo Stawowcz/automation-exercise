@@ -3,6 +3,16 @@ import { BasePage } from "./base-page";
 import { Locator } from "@playwright/test";
 
 export class ProductPage extends BasePage {
+  private readonly searchField: Locator = this.page.locator(
+    'input[id="search_product"]',
+  );
+
+  private readonly searchButton: Locator = this.page.locator(
+    'button[id="submit_search"]',
+  );
+
+  public readonly searchTitle: Locator = this.page.locator(".title");
+
   public readonly productTitle: Locator = this.page.getByRole("heading", {
     name: ProductsText.TITLE as string,
   });
@@ -16,16 +26,6 @@ export class ProductPage extends BasePage {
   });
 
   public readonly productItem: Locator = this.page.locator(".single-products");
-
-  public readonly searchField: Locator = this.page.locator(
-    'input[id="search_product"]',
-  );
-
-  public readonly searchButton: Locator = this.page.locator(
-    'button[id="submit_search"]',
-  );
-
-  public readonly searchTitle: Locator = this.page.locator(".title");
 
   public readonly producPrice: Locator = this.page.locator(".productinfo > h2");
 
@@ -51,19 +51,6 @@ export class ProductPage extends BasePage {
   public async clickSearchButton(): Promise<void> {
     await this.interaction.secureClick(this.searchButton);
   }
-
-  // public getAddToCartButtonByProductName(name: string): Locator {
-  //   return this.page
-  //     .locator(".productinfo")
-  //     .filter({ hasText: name })
-  //     .locator("text=Add to cart");
-  // }
-
-  // public async clickAddToCartByProductName(name: string): Promise<void> {
-  //   await this.interaction.secureClick(
-  //     this.getAddToCartButtonByProductName(name),
-  //   );
-  // }
 
   public getAddToCartButtonByProduct(name: string, price: string): Locator {
     return this.page

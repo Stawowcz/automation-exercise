@@ -1,5 +1,5 @@
 import type { Page } from "@playwright/test";
-import { AddedToCartUnauthenticatedComponent } from "@components/added-to-cart-unauthenticated-component"
+import { AddedToCartUnauthenticatedComponent } from "@components/added-to-cart-unauthenticated-component";
 
 export const addedToCartUnauthenticatedFixtures = {
   addedToCartUnAuth: async (

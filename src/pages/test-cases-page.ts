@@ -7,5 +7,5 @@ export class TestCasesPage extends BasePage {
     name: TestCasesText.TITLE as string,
     exact: true,
   });
-    public readonly testCaseItem: Locator = this.page.locator(".panel-title")
+  public readonly testCaseItem: Locator = this.page.locator(".panel-title");
 }

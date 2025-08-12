@@ -10,10 +10,39 @@ export class HomePage extends BasePage {
   private readonly menToggle = this.leftSideBar.locator('a[href="#Men"]');
   private readonly kidsToggle = this.leftSideBar.locator('a[href="#Kids"]');
   private readonly brandsSection: Locator = this.page.locator(".brands-name");
+  private getCategoryProductLink(id: number): Locator {
+    return this.leftSideBar.locator(`a[href="/category_products/${id}"]`);
+  }
+  private readonly contactLink: Locator = this.page.locator("a", {
+    hasText: "Contact us",
+  });
+
+  private readonly testCasesLink: Locator = this.page.getByRole("link", {
+    name: HomeText.TEST_CASES_LINK,
+  });
+
+  private readonly productsLink: Locator = this.page.getByRole("link", {
+    name: HomeText.PRODUCT_LINK,
+  });
+
+  private readonly cartLink: Locator = this.page.getByRole("link", {
+    name: HomeText.CART_LINK,
+  });
 
   private getBrandLink(brandName: string): Locator {
     return this.brandsSection.locator(`a[href="/brand_products/${brandName}"]`);
   }
+
+  public readonly homeTitle: Locator = this.page.getByRole("heading", {
+    name: HomeText.TITLE,
+  });
+  public readonly homeSubtitle: Locator = this.page.getByRole("heading", {
+    name: HomeText.SUBTITLE,
+  });
+
+  public readonly logoutButton: Locator = this.page.getByRole("link", {
+    name: LoginText.LOGOUT,
+  });
 
   public async clickBrandPolo(): Promise<void> {
     await this.interaction.secureClick(this.getBrandLink(BrandsText.POLO));
@@ -65,10 +94,6 @@ export class HomePage extends BasePage {
     await this.interaction.secureClick(this.kidsToggle);
   }
 
-  private getCategoryProductLink(id: number): Locator {
-    return this.leftSideBar.locator(`a[href="/category_products/${id}"]`);
-  }
-
   public async clickWomenDress(): Promise<void> {
     await this.interaction.secureClick(this.getCategoryProductLink(1));
   }
@@ -96,34 +121,6 @@ export class HomePage extends BasePage {
   public async clickKidsTopsShirts(): Promise<void> {
     await this.interaction.secureClick(this.getCategoryProductLink(5));
   }
-
-  public readonly homeTitle: Locator = this.page.getByRole("heading", {
-    name: HomeText.TITLE,
-  });
-
-  public readonly homeSubtitle: Locator = this.page.getByRole("heading", {
-    name: HomeText.SUBTITLE,
-  });
-
-  public readonly logoutButton: Locator = this.page.getByRole("link", {
-    name: LoginText.LOGOUT,
-  });
-
-  private readonly contactLink: Locator = this.page.locator("a", {
-    hasText: "Contact us",
-  });
-
-  private readonly testCasesLink: Locator = this.page.getByRole("link", {
-    name: HomeText.TEST_CASES_LINK,
-  });
-
-  private readonly productsLink: Locator = this.page.getByRole("link", {
-    name: HomeText.PRODUCT_LINK,
-  });
-
-  private readonly cartLink: Locator = this.page.getByRole("link", {
-    name: HomeText.CART_LINK,
-  });
 
   public async clickCartLink(): Promise<void> {
     await this.interaction.secureClick(this.cartLink);

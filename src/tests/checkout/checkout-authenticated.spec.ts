@@ -39,7 +39,7 @@ test.describe("Home", () => {
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
-      .soft(addedToCart.continueShopingButton)
+      .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
 
     await addedToCart.clickViewCart();

@@ -1,4 +1,3 @@
-// components/recommended-items.ts
 import { expect, Locator } from "@playwright/test";
 import { BaseComponent } from "./base-component";
 
@@ -11,25 +10,6 @@ export class RecommendedItemsComponent extends BaseComponent {
     ".right.recommended-item-control",
   );
 
-  public async addById(id: number) {
-    const target = this.container.locator(
-      `a.add-to-cart[data-product-id="${id}"]`,
-    );
-    await this.scrollUntilVisible(target);
-    await this.interaction.secureClick(target);
-  }
-
-  public async addByName(name: string) {
-    const target = this.carousel
-      .locator(".productinfo")
-      .filter({
-        has: this.page.locator("p", { hasText: name }),
-      })
-      .locator("a.add-to-cart");
-    await this.scrollUntilVisible(target);
-    await this.interaction.secureClick(target);
-  }
-
   private async scrollUntilVisible(loc: Locator, maxSteps = 10) {
     for (let i = 0; i < maxSteps; i++) {
       if (await loc.isVisible()) return;
@@ -38,4 +18,23 @@ export class RecommendedItemsComponent extends BaseComponent {
     }
     await expect(loc).toBeVisible();
   }
+
+  public async addById(id: number) {
+    const target = this.container.locator(
+      `a.add-to-cart[data-product-id="${id}"]`,
+    );
+    await this.scrollUntilVisible(target);
+    await this.interaction.secureClick(target);
+  }
+
+  // public async addByName(name: string) {
+  //   const target = this.carousel
+  //     .locator(".productinfo")
+  //     .filter({
+  //       has: this.page.locator("p", { hasText: name }),
+  //     })
+  //     .locator("a.add-to-cart");
+  //   await this.scrollUntilVisible(target);
+  //   await this.interaction.secureClick(target);
+  // }
 }
