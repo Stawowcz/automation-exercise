@@ -7,7 +7,7 @@ import { PaymentFormData } from "@typings/pages/payment";
 import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
-test.describe.only("Checkout", () => {
+test.describe("Checkout", () => {
   test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
     await cartPage.goToLink("/view_cart");
     await cartApi.clearCartViaApi();

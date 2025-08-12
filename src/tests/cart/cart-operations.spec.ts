@@ -6,7 +6,7 @@ import { CategoriesText } from "@typings/pages/categories";
 import { ProductsText } from "@typings/pages/products";
 import { env } from "@utils";
 
-test.describe.only("Cart", () => {
+test.describe("Cart", () => {
   test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
     await cartPage.goToLink("/view_cart");
     await cartApi.clearCartViaApi();
