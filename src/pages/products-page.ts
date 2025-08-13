@@ -13,6 +13,8 @@ export class ProductPage extends BasePage {
 
   public readonly searchTitle: Locator = this.page.locator(".title");
 
+  public readonly titleAltText: Locator = this.page.getByAltText("Website for automation practice");
+
   public readonly productTitle: Locator = this.page.getByRole("heading", {
     name: ProductsText.TITLE as string,
   });
@@ -67,5 +69,9 @@ export class ProductPage extends BasePage {
     await this.interaction.secureClick(
       this.getAddToCartButtonByProduct(name, price),
     );
+  }
+
+  public async goToLink(): Promise<void> {
+    await this.interaction.goToLink("/products");
   }
 }

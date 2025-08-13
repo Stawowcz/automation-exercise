@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+import { HomeText } from "@typings/pages/home";
 import { InteractionUtils } from "@utils/interaction-utils";
 
 export abstract class BasePage {
@@ -13,6 +14,7 @@ export abstract class BasePage {
   protected readonly container: Locator;
   public readonly header: Locator;
   public readonly producName: Locator;
+  public readonly homeTitle: Locator
 
   public constructor(page: Page) {
     this.page = page;
@@ -26,6 +28,9 @@ export abstract class BasePage {
     this.container = this.page.locator(".container");
     this.header = this.container.locator(".breadcrumbs");
     this.producName = this.page.locator(".productinfo > p");
+    this.homeTitle = this.page.getByRole("heading", {
+      name: HomeText.TITLE,
+    });
   }
 
   public async goToLink(url: string = "/"): Promise<void> {

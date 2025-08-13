@@ -9,7 +9,7 @@ import { DataGenerator, env } from "@utils";
 
 test.describe("Checkout using state storage", () => {
   test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
-    await cartPage.goToLink("/view_cart");
+    await cartPage.goToLink();
     await cartApi.clearCartViaApi();
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
@@ -133,7 +133,7 @@ test.describe("Checkout using state storage", () => {
     paymentDonePage,
   }) => {
     await cartApi.addProduct(1);
-    await cartPage.goToLink("/view_cart");
+    await cartPage.goToLink();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
     await cartPage.clickProceedCheckout();
     await expect.soft(checkoutPage.header).toHaveText(CheckoutText.HEADER);

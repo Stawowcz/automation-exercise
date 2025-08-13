@@ -33,9 +33,6 @@ export class HomePage extends BasePage {
     return this.brandsSection.locator(`a[href="/brand_products/${brandName}"]`);
   }
 
-  public readonly homeTitle: Locator = this.page.getByRole("heading", {
-    name: HomeText.TITLE,
-  });
   public readonly homeSubtitle: Locator = this.page.getByRole("heading", {
     name: HomeText.SUBTITLE,
   });
@@ -140,5 +137,9 @@ export class HomePage extends BasePage {
 
   public async clickContactLink(): Promise<void> {
     await this.interaction.secureClick(this.contactLink);
+  }
+
+  public async goToLink(url: string = "/"): Promise<void> {
+    await this.interaction.goToLink(url);
   }
 }

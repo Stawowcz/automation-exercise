@@ -8,9 +8,9 @@ import { env } from "@utils";
 
 test.describe("Cart", () => {
   test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
-    await cartPage.goToLink("/view_cart");
+    await cartPage.goToLink();
     await cartApi.clearCartViaApi();
-    await homePage.goToLink(env.AUTOMATION_BASEURL);
+    await homePage.goToLink();
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
@@ -249,9 +249,17 @@ test.describe("Cart", () => {
 
   test("should remove item from cart page", async ({ cartApi, cartPage }) => {
     await cartApi.addProduct(1);
-    await cartPage.goToLink("/view_cart");
+    await cartPage.goToLink();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
     await cartPage.clickDeleteButtonById(1);
     await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART);
+  });
+
+  test("should redirect to products from empty cart", async ({ cartPage, productPage, page }) => {
+    await cartPage.goToLink();
+    await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART);
+    await cartPage.clickHereLinkToProducts()
+    await cartPage.expectUrlContains('products');
+    await expect.soft(productPage.titleAltText).toBeVisible()
   });
 });

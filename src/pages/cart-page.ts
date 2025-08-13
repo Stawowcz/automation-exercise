@@ -9,7 +9,14 @@ export class CartPage extends BasePage {
 
   public readonly cartIsEmptyText: Locator =
     this.page.locator("#empty_cart p b");
+  
+  private readonly hereLinkToProduct: Locator =
+    this.page.locator("#empty_cart p > a");
 
+
+  public async clickHereLinkToProducts(): Promise<void> {
+    await this.interaction.secureClick(this.hereLinkToProduct);
+  }
   public async clickProceedCheckout(): Promise<void> {
     await this.interaction.secureClick(this.proceedCheckoutLink);
   }
@@ -20,5 +27,9 @@ export class CartPage extends BasePage {
       .locator(".cart_delete .cart_quantity_delete");
 
     await this.interaction.secureClick(deleteButton);
+  }
+
+  public async goToLink(): Promise<void> {
+    await this.interaction.goToLink("/view_cart");
   }
 }
