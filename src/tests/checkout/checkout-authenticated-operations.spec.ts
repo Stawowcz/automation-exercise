@@ -8,13 +8,16 @@ import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
 test.describe("Checkout using state storage", () => {
-  test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
-    await cartPage.goToLink();
-    await cartApi.clearCartViaApi();
-    await homePage.goToLink(env.AUTOMATION_BASEURL);
-    await expect.soft(homePage.homeTitle).toBeVisible();
-    await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
-  });
+  test.beforeEach(
+    "should navigate to main page",
+    async ({ homePage, cartPage, cartApi }) => {
+      await cartPage.goToLink();
+      await cartApi.clearCartViaApi();
+      await homePage.goToLink(env.AUTOMATION_BASEURL);
+      await expect.soft(homePage.homeTitle).toBeVisible();
+      await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
+    },
+  );
 
   test("should checkout successfully", async ({
     homePage,
@@ -35,12 +38,12 @@ test.describe("Checkout using state storage", () => {
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
-    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
-    
+
     await addedToCart.clickViewCart();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
 

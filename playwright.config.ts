@@ -34,7 +34,7 @@ export default defineConfig({
         "src/tests/auth/auth-login-logout-operations.spec.ts",
         "src/tests/auth/auth-login-negative-operations.spec.ts",
         "src/tests/auth/auth-register-operations.spec.ts",
-        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts"
+        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
       ],
       use: { storageState: undefined },
     },
@@ -45,7 +45,7 @@ export default defineConfig({
         "src/tests/auth/auth-login-logout-operations.spec.ts",
         "src/tests/auth/auth-login-negative-operations.spec.ts",
         "src/tests/auth/auth-register-operations.spec.ts",
-        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts"
+        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
       ],
       use: {
         ...devices["Desktop Chrome"],

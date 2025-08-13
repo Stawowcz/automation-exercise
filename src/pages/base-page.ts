@@ -14,7 +14,7 @@ export abstract class BasePage {
   protected readonly container: Locator;
   public readonly header: Locator;
   public readonly producName: Locator;
-  public readonly homeTitle: Locator
+  public readonly homeTitle: Locator;
 
   public constructor(page: Page) {
     this.page = page;

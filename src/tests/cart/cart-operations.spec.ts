@@ -7,13 +7,16 @@ import { ProductsText } from "@typings/pages/products";
 import { env } from "@utils";
 
 test.describe("Cart", () => {
-  test.beforeEach("should navigate to main page", async ({ homePage, cartPage, cartApi }) => {
-    await cartPage.goToLink();
-    await cartApi.clearCartViaApi();
-    await homePage.goToLink();
-    await expect.soft(homePage.homeTitle).toBeVisible();
-    await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
-  });
+  test.beforeEach(
+    "should navigate to main page",
+    async ({ homePage, cartPage, cartApi }) => {
+      await cartPage.goToLink();
+      await cartApi.clearCartViaApi();
+      await homePage.goToLink();
+      await expect.soft(homePage.homeTitle).toBeVisible();
+      await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
+    },
+  );
 
   test("should add product to cart then validate cart", async ({
     homePage,
@@ -30,7 +33,7 @@ test.describe("Cart", () => {
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
-    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
       .soft(addedToCart.continueShoppingButton)
@@ -67,7 +70,7 @@ test.describe("Cart", () => {
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
-    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.continueShoppingButton.waitFor({ state: "visible" });
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
@@ -76,13 +79,13 @@ test.describe("Cart", () => {
       CommonText.MEN_TSHIRT_NAME,
       CommonText.PRICE_400,
     );
-    await addedToCart.modalHeader.waitFor({state: "visible"})
+    await addedToCart.modalHeader.waitFor({ state: "visible" });
     await expect
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
-    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.continueShoppingButton.waitFor({ state: "visible" });
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
@@ -92,7 +95,7 @@ test.describe("Cart", () => {
       CommonText.PRICE_1000,
     );
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
-    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
     await expect.soft(addedToCart.viewCartText).toBeVisible();
     await expect
       .soft(addedToCart.continueShoppingButton)
@@ -141,7 +144,6 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(3)).toHaveText("1");
   });
 
-
   test("should add 2 the same products to cart then validate cart", async ({
     homePage,
     productPage,
@@ -158,7 +160,7 @@ test.describe("Cart", () => {
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
-    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.continueShoppingButton.waitFor({ state: "visible" });
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
@@ -167,7 +169,7 @@ test.describe("Cart", () => {
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
-    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
     await addedToCart.clickViewCart();
     await expect
       .soft(cartPage.getProductNameById(1))
@@ -195,7 +197,7 @@ test.describe("Cart", () => {
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
-    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.continueShoppingButton.waitFor({ state: "visible" });
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
@@ -204,13 +206,13 @@ test.describe("Cart", () => {
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
-    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.continueShoppingButton.waitFor({ state: "visible" });
     await addedToCart.clickContinueShopping();
     await productPage.clickAddToCartByProduct(
       CommonText.BLUE_TOP_NAME,
       CommonText.PRICE_500,
     );
-    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
     await addedToCart.clickViewCart();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("3");
   });
@@ -226,11 +228,11 @@ test.describe("Cart", () => {
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
     await expect.soft(addedToCart.viewCartText).toBeVisible();
-    await addedToCart.continueShoppingButton.waitFor({state: "visible"})
+    await addedToCart.continueShoppingButton.waitFor({ state: "visible" });
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
-    await addedToCart.viewCartText.waitFor({state: "visible"})
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
     await addedToCart.clickViewCart();
     await expect
       .soft(cartPage.getProductNameById(1))
@@ -255,11 +257,74 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART);
   });
 
-  test("should redirect to products from empty cart", async ({ cartPage, productPage, page }) => {
+  test("should redirect to products from empty cart", async ({
+    cartPage,
+    productPage,
+  }) => {
     await cartPage.goToLink();
     await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART);
-    await cartPage.clickHereLinkToProducts()
-    await cartPage.expectUrlContains('products');
-    await expect.soft(productPage.titleAltText).toBeVisible()
+    await cartPage.clickHereLinkToProducts();
+    await cartPage.expectUrlContains("products");
+    await expect.soft(productPage.titleAltText).toBeVisible();
+  });
+
+  test("should add to cart from product details", async ({
+    homePage,
+    productPage,
+    productDetailsPage,
+    addedToCart,
+    cartPage,
+  }) => {
+    await homePage.clickProductsLink();
+    await homePage.expectUrlContains(ProductsText.LINK);
+    await expect.soft(productPage.productTitle).toBeVisible();
+    await productPage.clickProductDetailsById(1);
+    await productDetailsPage.clickAddToCartButton();
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
+    await addedToCart.clickViewCart();
+    await expect
+      .soft(cartPage.getProductNameById(1))
+      .toHaveText(CommonText.BLUE_TOP_NAME);
+    await expect
+      .soft(cartPage.getProductCategoryById(1))
+      .toHaveText(CommonText.CATEGORY_WOMEN_TOPS);
+    await expect
+      .soft(cartPage.getProductPriceById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect
+      .soft(cartPage.getProductTotalById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
+  });
+
+  test("should increase quantity in product details", async ({
+    homePage,
+    productPage,
+    productDetailsPage,
+    addedToCart,
+    cartPage,
+  }) => {
+    await homePage.clickProductsLink();
+    await homePage.expectUrlContains(ProductsText.LINK);
+    await expect.soft(productPage.productTitle).toBeVisible();
+    await productPage.clickProductDetailsById(1);
+    await productDetailsPage.fillQuantityInput("3");
+    await productDetailsPage.clickAddToCartButton();
+
+    await addedToCart.viewCartText.waitFor({ state: "visible" });
+    await addedToCart.clickViewCart();
+    await expect
+      .soft(cartPage.getProductNameById(1))
+      .toHaveText(CommonText.BLUE_TOP_NAME);
+    await expect
+      .soft(cartPage.getProductCategoryById(1))
+      .toHaveText(CommonText.CATEGORY_WOMEN_TOPS);
+    await expect
+      .soft(cartPage.getProductPriceById(1))
+      .toHaveText(CommonText.PRICE_500);
+    await expect
+      .soft(cartPage.getProductTotalById(1))
+      .toHaveText(CommonText.PRICE_1500);
+    await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("3");
   });
 });

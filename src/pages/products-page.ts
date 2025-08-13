@@ -13,7 +13,9 @@ export class ProductPage extends BasePage {
 
   public readonly searchTitle: Locator = this.page.locator(".title");
 
-  public readonly titleAltText: Locator = this.page.getByAltText("Website for automation practice");
+  public readonly titleAltText: Locator = this.page.getByAltText(
+    "Website for automation practice",
+  );
 
   public readonly productTitle: Locator = this.page.getByRole("heading", {
     name: ProductsText.TITLE as string,

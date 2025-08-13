@@ -23,7 +23,7 @@ export class AddedToCartComponent extends BaseComponent {
     this.addedToCartModal.locator(".close-modal");
 
   public async clickViewCart(): Promise<void> {
-    await this.viewCartText.hover()
+    await this.viewCartText.hover();
     await this.interaction.secureClick(this.viewCartText);
   }
 

@@ -33,13 +33,13 @@ export class ProductDetailsPage extends BasePage {
     await this.interaction.secureClick(this.submitReviewButton);
   }
 
-  private readonly reviewFormEmailInput = this.page.getByRole("textbox", {
-    name: ProductDetailsText.EMAIL_ADDRESS,
-    exact: true,
-  });
-  private readonly reviewFormTextArea = this.page.getByPlaceholder(
-    ProductDetailsText.ADD_REVIEW,
-  );
+  public async clickAddToCartButton(): Promise<void> {
+    await this.interaction.secureClick(this.addToCartButton);
+  }
+
+  public async fillQuantityInput(value: string): Promise<void> {
+    await this.interaction.secureFill(this.quantityInput, value);
+  }
 
   public readonly successMessage: Locator = this.reviewContainer.locator(
     ".alert-success",

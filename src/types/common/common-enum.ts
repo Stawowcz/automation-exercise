@@ -3,6 +3,7 @@ export enum CommonText {
   BLUE_TOP_NAME = "Blue Top",
   CATEGORY_WOMEN_TOPS = "Women > Tops",
   PRICE_500 = "Rs. 500",
+  PRICE_1500 = "Rs. 1500",
   MEN_TSHIRT_NAME = "Men Tshirt",
   PRICE_400 = "Rs. 400",
   PRICE_1000 = "Rs. 1000",

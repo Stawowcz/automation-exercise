@@ -43,13 +43,15 @@ const AD_HOSTS = [
   "rubiconproject.com",
   "taboola.com",
   "outbrain.com",
-  "ads."
+  "ads.",
 ];
 
 function shouldBlock(url: string): boolean {
-  if (AD_HOSTS.some(h => url.includes(h))) return true;
+  if (AD_HOSTS.some((h) => url.includes(h))) return true;
   // common ad patterns (skrypty/iframes/ścieżki)
-  return /(^|[/.])ads?([/.-]|$)/i.test(url) || /adserver|advert|banner/i.test(url);
+  return (
+    /(^|[/.])ads?([/.-]|$)/i.test(url) || /adserver|advert|banner/i.test(url)
+  );
 }
 
 type MyFixtures = {
