@@ -54,7 +54,6 @@ AUTOMATION_PASSWORD_INCORRECT = pass-incorrect
   npm run test:unauth:webkit:debug
 ```
 
-
 ## Reporting
 
 To view the HTML report:
@@ -70,4 +69,3 @@ Configured in `.github/workflows/playwright.yml` to:
 - Run tests in parallel across Chromium, and WebKit
 - Cache `node_modules` and Playwright browsers for faster builds
 - Publish test reports and artifacts on each run
-

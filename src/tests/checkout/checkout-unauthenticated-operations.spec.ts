@@ -135,7 +135,7 @@ test.describe("Checkout without state storage", () => {
     await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
   });
 
-  test("should register in before checkout", async ({
+  test.only("should register in before checkout", async ({
     homePage,
     productPage,
     addedToCart,

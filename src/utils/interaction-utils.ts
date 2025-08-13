@@ -11,7 +11,7 @@ export class InteractionUtils {
 
   public async goToLink(
     url: string = "/",
-    options: GotoOptions = { waitUntil: "load" },
+    options: GotoOptions = { waitUntil: "domcontentloaded" },
   ): Promise<void> {
     await this.page.goto(url, options);
   }
