@@ -3,7 +3,7 @@ import { CommonText } from "@typings/common";
 import { DataGenerator, env } from "@utils";
 
 test.describe("Subscriptions using state storage", () => {
-  test.beforeEach("should verify subscription", async ({ homePage }) => {
+  test.beforeEach("should navigate to main page", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
