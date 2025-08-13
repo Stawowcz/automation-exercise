@@ -36,7 +36,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test --trace on-first-retry
+        run: npm run test:all
 
       - name: Upload Playwright report
         if: always()

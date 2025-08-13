@@ -29,14 +29,30 @@ export default defineConfig({
 
   projects: [
     {
-      name: "unauthenticated-tests",
+      name: "unauthenticated-tests-chromium",
       testMatch: [
         "src/tests/auth/auth-login-logout-operations.spec.ts",
         "src/tests/auth/auth-login-negative-operations.spec.ts",
         "src/tests/auth/auth-register-operations.spec.ts",
         "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
       ],
-      use: { storageState: undefined },
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: undefined,
+      },
+    },
+    {
+      name: "unauthenticated-tests-webkit",
+      testMatch: [
+        "src/tests/auth/auth-login-logout-operations.spec.ts",
+        "src/tests/auth/auth-login-negative-operations.spec.ts",
+        "src/tests/auth/auth-register-operations.spec.ts",
+        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
+      ],
+      use: {
+        ...devices["Desktop Safari"],
+        storageState: undefined,
+      },
     },
     {
       name: "Chromium",
@@ -52,7 +68,22 @@ export default defineConfig({
         storageState: "storageState.json",
       },
     },
+    {
+      name: "WebKit",
+      testMatch: ["**/*.spec.ts"],
+      testIgnore: [
+        "src/tests/auth/auth-login-logout-operations.spec.ts",
+        "src/tests/auth/auth-login-negative-operations.spec.ts",
+        "src/tests/auth/auth-register-operations.spec.ts",
+        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
+      ],
+      use: {
+        ...devices["Desktop Safari"],
+        storageState: "storageState.json",
+      },
+    },
   ],
+
   metadata: {
     paths: {
       assets: path.resolve(__dirname, "assets"),
