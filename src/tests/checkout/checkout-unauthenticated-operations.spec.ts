@@ -16,11 +16,6 @@ test.describe("Checkout", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  // test.afterEach("should clear cart", async ({ cartPage, cartApi }) => {
-  //   await cartPage.goToLink("/view_cart");
-  //   await cartApi.clearCartViaApi();
-  // });
-
   test("should log in before checkout", async ({
     homePage,
     productPage,
@@ -42,15 +37,13 @@ test.describe("Checkout", () => {
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await expect.soft(addedToCart.viewCartText).toBeVisible();
-    await addedToCart.continueShoppingButton.waitFor({state: 'visible'})
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
-    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
-
     await cartPage.clickProceedCheckout();
     await addedToCartUnAuth.registerLogin.waitFor({state: "visible"})
     await addedToCartUnAuth.clickRegisterLogin();
@@ -160,12 +153,11 @@ test.describe("Checkout", () => {
       .soft(addedToCart.modalHeader)
       .toContainText(ProductsText.ADDED);
     await expect.soft(addedToCart.modalBodyText).toBeVisible();
+    await addedToCart.viewCartText.waitFor({state: "visible"})
     await expect.soft(addedToCart.viewCartText).toBeVisible();
-    await addedToCart.continueShoppingButton.waitFor({state: 'visible'})
     await expect
       .soft(addedToCart.continueShoppingButton)
       .toHaveText(AddToCartText.CONTINUE_SHOPPING);
-    await addedToCart.viewCartText.waitFor({state: "visible"})
     await addedToCart.clickViewCart();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
 
