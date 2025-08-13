@@ -4,7 +4,7 @@ import { RegistrationText } from "@typings/pages/auth";
 import { env } from "@utils/env-utils";
 import { DataGenerator } from "@utils/data-generator-utils";
 
-test.describe("Register", () => {
+test.describe("Register without state storage", () => {
   test.beforeEach(
     "should navigate to main page",
     async ({ authPage, homePage }) => {

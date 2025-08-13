@@ -1,7 +1,7 @@
 import { test, expect } from "@fixtures";
 import { env } from "@utils/env-utils";
 
-test.describe("Negative scenarion login, logout", () => {
+test.describe("Login negative without state storage", () => {
   test.beforeEach(
     "should navigate to main page",
     async ({ authPage, homePage }) => {

@@ -3,7 +3,7 @@ import { PreLoginFormData } from "@typings/pages/auth";
 import { env } from "@utils/env-utils";
 import { DataGenerator } from "@utils/data-generator-utils";
 
-test.describe("Login and logout", () => {
+test.describe("Login and logout without state storage", () => {
   test.beforeEach(
     "should navigate to main page",
     async ({ authPage, homePage }) => {

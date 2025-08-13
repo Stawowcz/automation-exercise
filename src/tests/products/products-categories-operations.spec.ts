@@ -2,7 +2,7 @@ import { test, expect } from "@fixtures";
 import { CategoriesText } from "@typings/pages/categories";
 import { env } from "@utils";
 
-test.describe("Categories", () => {
+test.describe("Categories using state storage", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();

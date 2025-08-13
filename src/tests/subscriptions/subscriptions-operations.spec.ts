@@ -2,7 +2,7 @@ import { expect, test } from "@fixtures";
 import { CommonText } from "@typings/common";
 import { DataGenerator, env } from "@utils";
 
-test.describe("Home", () => {
+test.describe("Subscriptions using state storage", () => {
   test.beforeEach("should verify subscription", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();

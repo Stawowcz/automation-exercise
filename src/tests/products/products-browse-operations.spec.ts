@@ -4,7 +4,7 @@ import { ProductDetailsText, ReviewData } from "@typings/pages/product-details";
 import { ProductsText } from "@typings/pages/products";
 import { DataGenerator, env } from "@utils";
 
-test.describe("Products", () => {
+test.describe("Products using state storage", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();

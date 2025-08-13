@@ -2,7 +2,7 @@ import { expect, test } from "@fixtures";
 import { ContactText } from "@typings/pages/contact";
 import { DataGenerator, env, expectAndAcceptPopup } from "@utils";
 
-test.describe("Contact us", () => {
+test.describe("Contact us using state storage", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();

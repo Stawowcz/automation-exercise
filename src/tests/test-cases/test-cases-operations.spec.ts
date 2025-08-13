@@ -2,7 +2,7 @@ import { test, expect } from "@fixtures";
 import { TestCasesText } from "@typings/pages/test-cases";
 import { env } from "@utils";
 
-test.describe("Test Cases", () => {
+test.describe("Test cases using state storage", () => {
   test.beforeEach("should navigate to main page", async ({ homePage }) => {
     await homePage.goToLink(env.AUTOMATION_BASEURL);
     await expect.soft(homePage.homeTitle).toBeVisible();
