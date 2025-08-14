@@ -86,7 +86,7 @@ test.describe("Products using state storage", () => {
       .toHaveText(ProductsText.VIEW_PRODUCTS);
   });
 
-  test("should add review on product", async ({
+  test.only("should add review on product", async ({
     homePage,
     productPage,
     productDetailsPage,
@@ -103,3 +103,5 @@ test.describe("Products using state storage", () => {
     await expect.soft(productDetailsPage.successMessage).toBeVisible();
   });
 });
+
+
