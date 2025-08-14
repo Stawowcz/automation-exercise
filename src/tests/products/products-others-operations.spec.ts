@@ -86,7 +86,7 @@ test.describe("Products using state storage", () => {
       .toHaveText(ProductsText.VIEW_PRODUCTS);
   });
 
-  test.only("should add review on product", async ({
+  test("should add review on product", async ({
     homePage,
     productPage,
     productDetailsPage,
