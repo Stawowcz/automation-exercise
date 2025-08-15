@@ -70,6 +70,10 @@ export class InteractionUtils {
     await expect.soft(this.page).toHaveURL(new RegExp(`.*${path}`));
   }
 
+  public async expectUrlNotContains(path: string): Promise<void> {
+  await expect.soft(this.page).not.toHaveURL(new RegExp(`.*${path}`));
+  }
+
   public getCartItemByProductId(productId: number): Locator {
     return this.page.locator(`#product-${productId}`);
   }

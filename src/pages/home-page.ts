@@ -3,6 +3,7 @@ import { BasePage } from "./base-page";
 import { HomeText } from "@typings/pages/home";
 import { LoginText } from "@typings/pages/auth";
 import { BrandsText } from "@typings/pages/brands";
+import { CommonText } from "@typings/common";
 
 export class HomePage extends BasePage {
   private readonly leftSideBar: Locator = this.page.locator(".left-sidebar");
@@ -33,13 +34,25 @@ export class HomePage extends BasePage {
     return this.brandsSection.locator(`a[href="/brand_products/${brandName}"]`);
   }
 
+  private readonly deleteLink: Locator = this.page.locator(
+    'a[href="/delete_account"]',
+  );
+
   public readonly homeSubtitle: Locator = this.page.getByRole("heading", {
     name: HomeText.SUBTITLE,
   });
 
+  public readonly automationPracticeImage: Locator = this.page.getByAltText(
+    CommonText.LOGO_ALT_TEXT,
+  );
+
   public readonly logoutButton: Locator = this.page.getByRole("link", {
     name: LoginText.LOGOUT,
   });
+
+  public async clickDeleteLink(): Promise<void> {
+    await this.interaction.secureClick(this.deleteLink);
+  }
 
   public async clickBrandPolo(): Promise<void> {
     await this.interaction.secureClick(this.getBrandLink(BrandsText.POLO));

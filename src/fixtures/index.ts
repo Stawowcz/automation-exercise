@@ -31,6 +31,9 @@ import { CategoryProductsPage } from "@pages/category-product-page";
 import { categoryFixtures } from "./category-fixture";
 import { brandFixtures } from "./brand-fixture";
 import { BrandProductsPage } from "@pages/brand-product-page";
+import { AccountDeletedPage } from "@pages";
+import {acountDeletedFixtures} from "./acount-deleted-fixture"
+
 
 // --- Blokada reklam (lista + helper) ---
 const AD_HOSTS = [
@@ -71,12 +74,12 @@ type MyFixtures = {
   recommendedItemsComponent: RecommendedItemsComponent;
   categoryProductsPage: CategoryProductsPage;
   brandProductsPage: BrandProductsPage;
+  accountDeletedPage: AccountDeletedPage
 };
 
 export const test = base.extend<MyFixtures>({
-  // === Override page: globalna blokada reklam ===
   page: async ({ page }, use) => {
-    const block = process.env.BLOCK_ADS !== "0"; // ustaw BLOCK_ADS=0, by wyłączyć
+    const block = process.env.BLOCK_ADS !== "0";
     if (block) {
       await page.route("**/*", (route) => {
         const url = route.request().url();
@@ -103,6 +106,7 @@ export const test = base.extend<MyFixtures>({
   ...recomItemFixtures,
   ...categoryFixtures,
   ...brandFixtures,
+  ...acountDeletedFixtures
 });
 
 export { expect };

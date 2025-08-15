@@ -11,3 +11,4 @@ export * from "./payment-page";
 export * from "./product-details-page";
 export * from "./products-page";
 export * from "./test-cases-page";
+export * from "./account-deleted-page"

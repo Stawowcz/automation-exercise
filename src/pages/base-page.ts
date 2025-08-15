@@ -15,6 +15,8 @@ export abstract class BasePage {
   public readonly header: Locator;
   public readonly producName: Locator;
   public readonly homeTitle: Locator;
+  protected readonly accountDeletedContainer: Locator
+  private readonly continueButton: Locator
 
   public constructor(page: Page) {
     this.page = page;
@@ -31,11 +33,19 @@ export abstract class BasePage {
     this.homeTitle = this.page.getByRole("heading", {
       name: HomeText.TITLE,
     });
+    this.accountDeletedContainer =this.page.locator(
+    ".col-sm-9.col-sm-offset-1",
+  );
+    this.continueButton =this.page.locator(
+    '[data-qa="continue-button"]',
+  );
   }
 
   public async goToLink(url: string = "/"): Promise<void> {
     await this.interaction.goToLink(url);
   }
+
+
 
   public async goBack(): Promise<void> {
     await this.interaction.goBack();
@@ -53,8 +63,16 @@ export abstract class BasePage {
     await this.interaction.expectUrlContains(path);
   }
 
+    public async expectUrlNotContains(path: string): Promise<void> {
+    await this.interaction.expectUrlNotContains(path);
+  }
+
   public async clickSubscriptionButton(): Promise<void> {
     await this.interaction.secureClick(this.subscriptionButton);
+  }
+
+  public async clickContinueButton(): Promise<void> {
+    await this.interaction.secureClick(this.continueButton);
   }
 
   public async fillSubscription(value: string): Promise<void> {

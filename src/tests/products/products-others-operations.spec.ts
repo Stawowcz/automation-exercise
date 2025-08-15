@@ -103,5 +103,3 @@ test.describe("Products using state storage", () => {
     await expect.soft(productDetailsPage.successMessage).toBeVisible();
   });
 });
-
-

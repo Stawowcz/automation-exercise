@@ -8,4 +8,5 @@ export enum CommonText {
   PRICE_400 = "Rs. 400",
   PRICE_1000 = "Rs. 1000",
   SLEEVE_LESS_DRESS_NAME = "Sleeveless Dress",
+  LOGO_ALT_TEXT = "Website for automation practice",
 }
