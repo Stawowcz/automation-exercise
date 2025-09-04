@@ -13,8 +13,7 @@ test.describe("Subscriptions using state storage", () => {
     await homePage.subscriptionText.scrollIntoViewIfNeeded();
     await expect.soft(homePage.subscriptionText).toHaveText("Subscription");
     const email = DataGenerator.generateEmail();
-    await homePage.fillSubscription(email);
-    await homePage.clickSubscriptionButton();
+    await homePage.submitSubscription(email);
     await expect
       .soft(homePage.successSubscribeText)
       .toHaveText(CommonText.SUCCESS_SUBSCRIBE);
@@ -28,8 +27,7 @@ test.describe("Subscriptions using state storage", () => {
     await cartPage.subscriptionText.scrollIntoViewIfNeeded();
     await expect.soft(cartPage.subscriptionText).toHaveText("Subscription");
     const email = DataGenerator.generateEmail();
-    await cartPage.fillSubscription(email);
-    await cartPage.clickSubscriptionButton();
+    await cartPage.submitSubscription(email);
     await expect
       .soft(cartPage.successSubscribeText)
       .toHaveText(CommonText.SUCCESS_SUBSCRIBE);

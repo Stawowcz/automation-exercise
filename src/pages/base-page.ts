@@ -79,6 +79,11 @@ export abstract class BasePage {
     await this.interaction.secureFill(this.subscriptionInput, value);
   }
 
+  public async submitSubscription(value: string): Promise<void> {
+    await this.fillSubscription(value)
+    await this.clickSubscriptionButton()
+  }
+
   public getProductNameById(productId: number): Locator {
     return this.interaction
       .getCartItemByProductId(productId)
