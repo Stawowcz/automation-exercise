@@ -38,6 +38,14 @@ export class HomePage extends BasePage {
     'a[href="/delete_account"]',
   );
 
+  public readonly categoryTitle: Locator = this.page.locator("h2", {
+    hasText: "Category",
+  });
+
+  public readonly featureItemsTitle: Locator = this.page.locator("h2", {
+    hasText: "Features Items",
+  });
+
   public readonly homeSubtitle: Locator = this.page.getByRole("heading", {
     name: HomeText.SUBTITLE,
   });

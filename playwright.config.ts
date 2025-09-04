@@ -5,7 +5,7 @@ import path from "path";
 dotenv.config();
 
 export default defineConfig({
-  testDir: "./src/tests/",
+  testDir: "./tests",
   timeout: 120 * 1_000,
   expect: {
     timeout: 50 * 1_000,
@@ -32,10 +32,10 @@ export default defineConfig({
     {
       name: "unauthenticated-tests-chromium",
       testMatch: [
-        "src/tests/auth/auth-login-logout-operations.spec.ts",
-        "src/tests/auth/auth-login-negative-operations.spec.ts",
-        "src/tests/auth/auth-register-operations.spec.ts",
-        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
+        "tests/auth/auth-login-logout-operations.spec.ts",
+        "tests/auth/auth-login-negative-operations.spec.ts",
+        "tests/auth/auth-register-operations.spec.ts",
+        "tests/checkout/checkout-unauthenticated-operations.spec.ts",
       ],
       use: {
         ...devices["Desktop Chrome"],
@@ -45,10 +45,10 @@ export default defineConfig({
     {
       name: "unauthenticated-tests-webkit",
       testMatch: [
-        "src/tests/auth/auth-login-logout-operations.spec.ts",
-        "src/tests/auth/auth-login-negative-operations.spec.ts",
-        "src/tests/auth/auth-register-operations.spec.ts",
-        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
+        "tests/auth/auth-login-logout-operations.spec.ts",
+        "tests/auth/auth-login-negative-operations.spec.ts",
+        "tests/auth/auth-register-operations.spec.ts",
+        "tests/checkout/checkout-unauthenticated-operations.spec.ts",
       ],
       use: {
         ...devices["Desktop Safari"],
@@ -59,10 +59,10 @@ export default defineConfig({
       name: "Chromium",
       testMatch: ["**/*.spec.ts"],
       testIgnore: [
-        "src/tests/auth/auth-login-logout-operations.spec.ts",
-        "src/tests/auth/auth-login-negative-operations.spec.ts",
-        "src/tests/auth/auth-register-operations.spec.ts",
-        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
+        "tests/auth/auth-login-logout-operations.spec.ts",
+        "tests/auth/auth-login-negative-operations.spec.ts",
+        "tests/auth/auth-register-operations.spec.ts",
+        "tests/checkout/checkout-unauthenticated-operations.spec.ts",
       ],
       use: {
         ...devices["Desktop Chrome"],
@@ -73,10 +73,10 @@ export default defineConfig({
       name: "WebKit",
       testMatch: ["**/*.spec.ts"],
       testIgnore: [
-        "src/tests/auth/auth-login-logout-operations.spec.ts",
-        "src/tests/auth/auth-login-negative-operations.spec.ts",
-        "src/tests/auth/auth-register-operations.spec.ts",
-        "src/tests/checkout/checkout-unauthenticated-operations.spec.ts",
+        "tests/auth/auth-login-logout-operations.spec.ts",
+        "tests/auth/auth-login-negative-operations.spec.ts",
+        "tests/auth/auth-register-operations.spec.ts",
+        "tests/checkout/checkout-unauthenticated-operations.spec.ts",
       ],
       use: {
         ...devices["Desktop Safari"],
@@ -94,7 +94,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? "50%" : "100%",
+  workers: process.env.CI ? "50%" : "10%",
   globalSetup: "./global-setup",
 
   outputDir: "test-results/",

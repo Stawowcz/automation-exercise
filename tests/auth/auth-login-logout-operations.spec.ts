@@ -1,29 +1,25 @@
 import { test, expect } from "@fixtures";
-import { PreLoginFormData } from "@typings/pages/auth";
 import { env } from "@utils/env-utils";
-import { DataGenerator } from "@utils/data-generator-utils";
 
 test.describe("Login and logout without state storage", () => {
   test.beforeEach(
     "should navigate to main page",
     async ({ authPage, homePage }) => {
       await authPage.goToLink(env.AUTOMATION_BASEURL);
-      await expect.soft(homePage.homeTitle).toBeVisible();
+      await expect.soft(homePage.homeTitle.nth(0)).toBeVisible();
       await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
     },
   );
-  test("should login successfully", async ({ authPage, homePage }) => {
-    const data: PreLoginFormData = DataGenerator.generateRegisterFormData();
+  test("should login successfully @smoke", async ({ authPage, homePage }) => {
     await authPage.login(
       env.AUTOMATION_USER_CORRECT,
       env.AUTOMATION_PASSWORD_CORRECT,
     );
-    await expect.soft(homePage.homeTitle).toBeVisible();
-    await expect.soft(homePage.homeSubtitle).toBeVisible();
+    await expect.soft(homePage.categoryTitle).toBeVisible();
+    await expect.soft(homePage.featureItemsTitle).toBeVisible();
   });
 
-  test("should logout successfully", async ({ authPage, homePage }) => {
-    const data: PreLoginFormData = DataGenerator.generateRegisterFormData();
+  test("should logout successfully @regression", async ({ authPage, homePage }) => {
     await authPage.login(
       env.AUTOMATION_USER_CORRECT,
       env.AUTOMATION_PASSWORD_CORRECT,

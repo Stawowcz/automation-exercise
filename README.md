@@ -1,6 +1,7 @@
 # Playwright Test Automation
 
-Automated end‑to‑end tests for the automation exercise site using Playwright + TypeScript, with Page Object Model, custom fixtures, and soft assertions.
+Automated end-to-end tests for the [Automation Exercise site](https://www.automationexercise.com/)  
+using **Playwright + TypeScript**, with **Page Object Model**, custom fixtures, and soft assertions.
 
 ## Installation
 

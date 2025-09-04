@@ -1,38 +1,38 @@
 import { test as base, expect } from "@playwright/test";
-import { authFixtures } from "./auth-fixture";
+import { authFixtures } from "./pages-fixture";
 import type { AuthPage } from "@pages/auth-page";
-import { homeFixtures } from "./home-fixture";
+import { homeFixtures } from "./pages-fixture";
 import { HomePage } from "@pages/home-page";
-import { contactFixtures } from "./contact-fixture";
+import { contactFixtures } from "./pages-fixture";
 import { ContactPage } from "@pages/contact-page";
 import { TestCasesPage } from "@pages/test-cases-page";
-import { testCasesFixtures } from "./test-cases-fixture";
-import { productFixtures } from "./products-fixture";
+import { testCasesFixtures } from "./pages-fixture";
+import { productFixtures } from "./pages-fixture";
 import { ProductPage } from "@pages/products-page";
-import { productDetailsFixtures } from "./product-details-fixture";
+import { productDetailsFixtures } from "./pages-fixture";
 import { ProductDetailsPage } from "@pages/product-details-page";
 import { CartPage } from "@pages/cart-page";
-import { cartFixtures } from "./cart-fixture";
+import { cartFixtures } from "./pages-fixture";
 import { AddedToCartComponent } from "@components/added-to-cart-component";
-import { addedToCartFixtures } from "./added-to-cart-fixture";
-import { checkoutFixtures } from "./checkout-fixture";
+import { addedToCartFixtures } from "./pages-fixture";
+import { checkoutFixtures } from "./pages-fixture";
 import { CheckoutPage } from "@pages/checkout-page";
-import { paymentFixtures } from "./payment-fixture";
+import { paymentFixtures } from "./pages-fixture";
 import { PaymentPage } from "@pages/payment-page";
-import { paymentDoneFixtures } from "./payment-done-fixture";
+import { paymentDoneFixtures } from "./pages-fixture";
 import { PaymentDonePage } from "@pages/payment-done-page";
-import { addedToCartUnauthenticatedFixtures } from "./added-to-cart-unauthenticated-fixture";
+import { addedToCartUnauthenticatedFixtures } from "./pages-fixture";
 import { AddedToCartUnauthenticatedComponent } from "@components/added-to-cart-unauthenticated-component";
-import { serviceFixtures } from "./service-fixture";
+import { serviceFixtures } from "./pages-fixture";
 import type { CartApi } from "../services/cart/cart-api";
 import { RecommendedItemsComponent } from "@components/recommended-items-component";
-import { recomItemFixtures } from "./recomm-item-fixture";
+import { recomItemFixtures } from "./pages-fixture";
 import { CategoryProductsPage } from "@pages/category-product-page";
-import { categoryFixtures } from "./category-fixture";
-import { brandFixtures } from "./brand-fixture";
+import { categoryFixtures } from "./pages-fixture";
+import { brandFixtures } from "./pages-fixture";
 import { BrandProductsPage } from "@pages/brand-product-page";
 import { AccountDeletedPage } from "@pages";
-import {acountDeletedFixtures} from "./acount-deleted-fixture"
+import {acountDeletedFixtures} from "./pages-fixture"
 
 
 // --- Blokada reklam (lista + helper) ---

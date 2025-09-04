@@ -1,4 +1,5 @@
 import type { Page } from "@playwright/test";
+import { env } from "@utils";
 
 export class BaseApi {
   protected readonly page: Page;
@@ -8,7 +9,6 @@ export class BaseApi {
     this.page = page;
     this.baseURL =
       baseURL ??
-      process.env.AUTOMATION_BASEURL ??
-      "https://www.automationexercise.com";
+      env.AUTOMATION_BASEURL
   }
 }

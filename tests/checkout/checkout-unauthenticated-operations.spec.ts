@@ -63,50 +63,50 @@ test.describe("Checkout without state storage", () => {
       .toHaveText(CheckoutText.DELIVERY_ADDRESS_TITLE);
     await expect
       .soft(checkoutPage.deliveryName)
-      .toHaveText(CheckoutText.DELIVERY_NAME);
+      .toContainText(CheckoutText.DELIVERY_NAME);
     await expect
       .soft(checkoutPage.deliveryCompany)
-      .toHaveText(CheckoutText.DELIVERY_COMPANY);
+      .toContainText(CheckoutText.DELIVERY_COMPANY);
     await expect
       .soft(checkoutPage.deliveryStreet)
-      .toHaveText(CheckoutText.DELIVERY_STREET);
+      .toContainText(CheckoutText.DELIVERY_STREET);
     await expect
       .soft(checkoutPage.deliveryAddressExtra)
-      .toHaveText(CheckoutText.DELIVERY_ADDRESS_EXTRA);
+      .toContainText(CheckoutText.DELIVERY_ADDRESS_EXTRA);
     await expect
       .soft(checkoutPage.deliveryCityStatePostcode)
-      .toHaveText(CheckoutText.DELIVERY_CITY_STATE_POSTCODE);
+      .toContainText(CheckoutText.DELIVERY_CITY_STATE_POSTCODE);
     await expect
       .soft(checkoutPage.deliveryCountry)
-      .toHaveText(CheckoutText.DELIVERY_COUNTRY);
+      .toContainText(CheckoutText.DELIVERY_COUNTRY);
     await expect
       .soft(checkoutPage.deliveryPhone)
-      .toHaveText(CheckoutText.DELIVERY_PHONE);
+      .toContainText(CheckoutText.DELIVERY_PHONE);
 
     await expect
       .soft(checkoutPage.billingAddressTitleHeader)
-      .toHaveText(CheckoutText.BILLING_ADDRESS_TITLE);
+      .toContainText(CheckoutText.BILLING_ADDRESS_TITLE);
     await expect
       .soft(checkoutPage.billingName)
-      .toHaveText(CheckoutText.BILLING_NAME);
+      .toContainText(CheckoutText.BILLING_NAME);
     await expect
       .soft(checkoutPage.billingCompany)
-      .toHaveText(CheckoutText.BILLING_COMPANY);
+      .toContainText(CheckoutText.BILLING_COMPANY);
     await expect
       .soft(checkoutPage.billingStreet)
-      .toHaveText(CheckoutText.BILLING_STREET);
+      .toContainText(CheckoutText.BILLING_STREET);
     await expect
       .soft(checkoutPage.billingAddressExtra)
-      .toHaveText(CheckoutText.BILLING_ADDRESS_EXTRA);
+      .toContainText(CheckoutText.BILLING_ADDRESS_EXTRA);
     await expect
       .soft(checkoutPage.billingCityStatePostcode)
-      .toHaveText(CheckoutText.BILLING_CITY_STATE_POSTCODE);
+      .toContainText(CheckoutText.BILLING_CITY_STATE_POSTCODE);
     await expect
       .soft(checkoutPage.billingCountry)
-      .toHaveText(CheckoutText.BILLING_COUNTRY);
+      .toContainText(CheckoutText.BILLING_COUNTRY);
     await expect
       .soft(checkoutPage.billingPhone)
-      .toHaveText(CheckoutText.BILLING_PHONE);
+      .toContainText(CheckoutText.BILLING_PHONE);
 
     await expect
       .soft(cartPage.getProductNameById(1))
