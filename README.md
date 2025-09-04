@@ -26,7 +26,13 @@ AUTOMATION_USER_INCORRECT = login-incorrect@gmail.com
 AUTOMATION_PASSWORD_INCORRECT = pass-incorrect
 ```
 
-# Run all tests
+# Run smoke tests
+
+```bash
+  npm run test:smoke 
+```
+
+# Run all regression tests
 
 ```bash
   npm run test:all
