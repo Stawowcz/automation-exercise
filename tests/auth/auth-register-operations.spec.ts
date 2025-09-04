@@ -14,7 +14,7 @@ test.describe("Register without state storage", () => {
       await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
     },
   );
-  test("should register user @smoke", async ({ authPage }) => {
+  test("should register user @smoke @regression", async ({ authPage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
     await authPage.fillPreRegisterForm(formData);
     await authPage.fillRegistration(formData);

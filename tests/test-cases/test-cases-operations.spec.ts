@@ -9,7 +9,7 @@ test.describe("Test cases using state storage", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should verify test cases page", async ({ homePage, testCasesPage }) => {
+  test("should verify test cases page @regression", async ({ homePage, testCasesPage }) => {
     await homePage.clickTestCasesLink();
     await homePage.expectUrlContains(TestCasesText.URL);
     await expect.soft(testCasesPage.testCasesTitle).toBeVisible();

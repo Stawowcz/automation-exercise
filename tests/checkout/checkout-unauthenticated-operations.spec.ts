@@ -19,7 +19,7 @@ test.describe("Checkout without state storage", () => {
     },
   );
 
-  test("should log in before checkout", async ({
+  test("should log in before checkout @regression", async ({
     homePage,
     productPage,
     addedToCart,
@@ -135,7 +135,7 @@ test.describe("Checkout without state storage", () => {
     await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
   });
 
-  test("should register in before checkout", async ({
+  test("should register in before checkou @regression", async ({
     homePage,
     productPage,
     addedToCart,

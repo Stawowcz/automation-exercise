@@ -9,7 +9,7 @@ test.describe("Brands using state storage", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should verify brand allen solly junior", async ({
+  test("should verify brand allen solly junior @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -19,7 +19,7 @@ test.describe("Brands using state storage", () => {
       .toHaveText(BrandsText.TITLE_BRAND_ALLEN_SOLLY_JUNIOR);
   });
 
-  test("should verify brand polo", async ({
+  test("should verify brand polo @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -29,7 +29,7 @@ test.describe("Brands using state storage", () => {
       .toHaveText(BrandsText.TITLE_BRAND_POLO);
   });
 
-  test("should verify brand H&M", async ({
+  test("should verify brand H&M @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -39,7 +39,7 @@ test.describe("Brands using state storage", () => {
       .toHaveText(BrandsText.TITLE_BRAND_HM);
   });
 
-  test("should verify brand Madame", async ({
+  test("should verify brand Madame @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -49,7 +49,7 @@ test.describe("Brands using state storage", () => {
       .toHaveText(BrandsText.TITLE_BRAND_MADAME);
   });
 
-  test("should verify brand Mast & Harbour", async ({
+  test("should verify brand Mast & Harbour @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -59,7 +59,7 @@ test.describe("Brands using state storage", () => {
       .toHaveText(BrandsText.TITLE_BRAND_MAST_AND_HARBOUR);
   });
 
-  test("should verify brand Babyhug", async ({
+  test("should verify brand Babyhug @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -69,7 +69,7 @@ test.describe("Brands using state storage", () => {
       .toHaveText(BrandsText.TITLE_BRAND_BABYHUG);
   });
 
-  test("should verify brand Kookie Kids", async ({
+  test("should verify brand Kookie Kids @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -79,7 +79,7 @@ test.describe("Brands using state storage", () => {
       .toHaveText(BrandsText.TITLE_BRAND_KOOKIE_KIDS);
   });
 
-  test("should verify brand Biba", async ({
+  test("should verify brand Biba @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {

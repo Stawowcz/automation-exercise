@@ -11,7 +11,7 @@ test.describe("Products using state storage", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should verify products page", async ({ homePage, productPage }) => {
+  test("should verify products page @regression", async ({ homePage, productPage }) => {
     await homePage.clickProductsLink();
     await homePage.expectUrlContains(ProductsText.LINK);
     await expect.soft(productPage.productTitle).toBeVisible();
@@ -20,7 +20,7 @@ test.describe("Products using state storage", () => {
     await expect.soft(productPage.productItem).toHaveCount(34);
   });
 
-  test("should verify products detail", async ({
+  test("should verify products detail @regression", async ({
     homePage,
     productPage,
     productDetailsPage,
@@ -65,7 +65,7 @@ test.describe("Products using state storage", () => {
     ).toContainText(ProductDetailsText.NEW);
   });
 
-  test("should search product", async ({ homePage, productPage }) => {
+  test("should search product @smoke @regression", async ({ homePage, productPage }) => {
     await homePage.clickProductsLink();
     await homePage.expectUrlContains(ProductsText.LINK);
     await expect.soft(productPage.productTitle).toBeVisible();
@@ -86,7 +86,7 @@ test.describe("Products using state storage", () => {
       .toHaveText(ProductsText.VIEW_PRODUCTS);
   });
 
-  test("should add review on product", async ({
+  test("should add review on product @regression", async ({
     homePage,
     productPage,
     productDetailsPage,

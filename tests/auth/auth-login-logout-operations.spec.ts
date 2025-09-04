@@ -10,7 +10,7 @@ test.describe("Login and logout without state storage", () => {
       await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
     },
   );
-  test("should login successfully @smoke", async ({ authPage, homePage }) => {
+  test("should login successfully @smoke @regression", async ({ authPage, homePage }) => {
     await authPage.login(
       env.AUTOMATION_USER_CORRECT,
       env.AUTOMATION_PASSWORD_CORRECT,

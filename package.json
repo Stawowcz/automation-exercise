@@ -5,14 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test:all": "playwright test --trace on-first-retry",
+
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:regression": "npx playwright test --grep @regression",
+
     "test:chromium": "npx playwright test --project=Chromium",
     "test:chromium:debug": "npx playwright test --project=Chromium --debug",
     "test:webkit": "npx playwright test --project=WebKit",
     "test:webkit:debug": "npx playwright test --project=WebKit --debug",
+
     "test:unauth:chromium": "npx playwright test --project=unauthenticated-tests-chromium",
     "test:unauth:chromium:debug": "npx playwright test --project=unauthenticated-tests-chromium --debug",
     "test:unauth:webkit": "npx playwright test --project=unauthenticated-tests-webkit",
     "test:unauth:webkit:debug": "npx playwright test --project=unauthenticated-tests-webkit --debug",
+
     "report": "npx playwright show-report",
     "prettier": "npx prettier --write ."
   },

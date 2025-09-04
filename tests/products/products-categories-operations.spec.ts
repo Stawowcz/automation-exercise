@@ -9,7 +9,7 @@ test.describe("Categories using state storage", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should verify category women dress's product", async ({
+  test("should verify category women dress's product @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -27,7 +27,7 @@ test.describe("Categories using state storage", () => {
     }
   });
 
-  test("should verify category women top's product", async ({
+  test("should verify category women top's product @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -45,7 +45,7 @@ test.describe("Categories using state storage", () => {
     }
   });
 
-  test("should verify category women saree's product", async ({
+  test("should verify category women saree's product @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -63,7 +63,7 @@ test.describe("Categories using state storage", () => {
     }
   });
 
-  test("should verify category men tshirt's product", async ({
+  test("should verify category men tshirt's product @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -87,7 +87,7 @@ test.describe("Categories using state storage", () => {
     }
   });
 
-  test("should verify category men jeans's product", async ({
+  test("should verify category men jeans's product @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -105,7 +105,7 @@ test.describe("Categories using state storage", () => {
     }
   });
 
-  test("should verify category kid dress's product --> bug in here no dress word in every product", async ({
+  test("should verify category kid dress's product --> bug in here no dress word in every product @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
@@ -123,7 +123,7 @@ test.describe("Categories using state storage", () => {
     }
   });
 
-  test("should verify category kid top's product --> bug in here no yop word in every product", async ({
+  test("should verify category kid top's product --> bug in here no yop word in every product @regression", async ({
     homePage,
     categoryProductsPage,
   }) => {
