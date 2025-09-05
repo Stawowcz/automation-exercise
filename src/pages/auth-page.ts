@@ -199,4 +199,9 @@ export class AuthPage extends BasePage {
     if (data.receiveSpecialOffer) await this.checkSpecialOffer();
     await this.clickCreateAccount();
   }
+
+    public async submitRegistrationForm(data:RegisterFormData): Promise<void> {
+        this.fillPreRegisterForm(data)
+        this.fillRegistration(data)
+  }
 }

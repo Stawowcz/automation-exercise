@@ -5,7 +5,7 @@ import { env } from "@utils/env-utils";
 import { DataGenerator } from "@utils/data-generator-utils";
 import { AccountDeletedText } from "@typings/pages/account-deleted";
 
-test.describe("Register without state storage", () => {
+test.describe.only("Register without state storage", () => {
   test.beforeEach(
     "should navigate to main page",
     async ({ authPage, homePage }) => {
@@ -16,8 +16,7 @@ test.describe("Register without state storage", () => {
   );
   test("T5: should register user @smoke @regression", async ({ authPage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
-    await authPage.fillPreRegisterForm(formData);
-    await authPage.fillRegistration(formData);
+    await authPage.submitRegistrationForm(formData)
     await expect
       .soft(authPage.createAccountText)
       .toHaveText(RegistrationText.ACCOUNT_CREATED);
@@ -26,8 +25,7 @@ test.describe("Register without state storage", () => {
   test("T6: should register user with required data only @regression", async ({ authPage }) => {
     const formData: RegisterFormData =
       DataGenerator.generateRegisterFormData(true);
-    await authPage.fillPreRegisterForm(formData);
-    await authPage.fillRegistration(formData);
+    await authPage.submitRegistrationForm(formData)
     await expect
       .soft(authPage.createAccountText)
       .toHaveText(RegistrationText.ACCOUNT_CREATED);
@@ -46,8 +44,7 @@ test.describe("Register without state storage", () => {
 
   test("T8: should delete account after register @regression", async ({ authPage, accountDeletedPage, homePage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
-    await authPage.fillPreRegisterForm(formData);
-    await authPage.fillRegistration(formData);
+    await authPage.submitRegistrationForm(formData)
     await expect
       .soft(authPage.createAccountText)
       .toHaveText(RegistrationText.ACCOUNT_CREATED);
@@ -64,8 +61,7 @@ test.describe("Register without state storage", () => {
 
   test("T9: should continue after delete @regression", async ({ authPage, accountDeletedPage, homePage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
-    await authPage.fillPreRegisterForm(formData);
-    await authPage.fillRegistration(formData);
+    await authPage.submitRegistrationForm(formData)
     await expect
       .soft(authPage.createAccountText)
       .toHaveText(RegistrationText.ACCOUNT_CREATED);
