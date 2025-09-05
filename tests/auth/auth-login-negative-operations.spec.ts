@@ -10,7 +10,7 @@ test.describe("Login negative without state storage", () => {
       await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
     },
   );
-  test("should not login with incorrect password @smoke @regression", async ({ authPage }) => {
+  test("T3: should not login with incorrect password @smoke @regression", async ({ authPage }) => {
     await authPage.login(
       env.AUTOMATION_USER_CORRECT,
       env.AUTOMATION_PASSWORD_INCORRECT,
@@ -18,7 +18,7 @@ test.describe("Login negative without state storage", () => {
     await expect.soft(authPage.loginError).toBeVisible();
   });
 
-  test("should not loging with incorrect email @smoke @regression", async ({ authPage }) => {
+  test("T4: should not loging with incorrect email @smoke @regression", async ({ authPage }) => {
     await authPage.login(
       env.AUTOMATION_USER_INCORRECT,
       env.AUTOMATION_PASSWORD_CORRECT,

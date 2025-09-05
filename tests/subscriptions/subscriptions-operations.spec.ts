@@ -9,7 +9,7 @@ test.describe("Subscriptions using state storage", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should verify subscription in home page @regression", async ({ homePage }) => {
+  test("T43: should verify subscription in home page @regression", async ({ homePage }) => {
     await homePage.subscriptionText.scrollIntoViewIfNeeded();
     await expect.soft(homePage.subscriptionText).toHaveText("Subscription");
     const email = DataGenerator.generateEmail();
@@ -19,7 +19,7 @@ test.describe("Subscriptions using state storage", () => {
       .toHaveText(CommonText.SUCCESS_SUBSCRIBE);
   });
 
-  test("should verify subscription in cart page @regression", async ({
+  test("T44: should verify subscription in cart page @regression", async ({
     homePage,
     cartPage,
   }) => {

@@ -9,7 +9,7 @@ test.describe("Contact us using state storage", () => {
     await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
   });
 
-  test("should sent contact us message @smoke @regression", async ({
+  test("T23: should send message via contact form @smoke @regression", async ({
     homePage,
     contactPage,
     page,

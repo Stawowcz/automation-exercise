@@ -19,7 +19,7 @@ test.describe("Checkout using state storage", () => {
     },
   );
 
-  test("should checkout successfully @smoke @regression", async ({
+  test("T19: should checkout successfully @smoke @regression", async ({
     homePage,
     productPage,
     addedToCart,
@@ -128,7 +128,7 @@ test.describe("Checkout using state storage", () => {
     await expect.soft(paymentDonePage.downloadInvoiceLink).toBeVisible();
   });
 
-  test("should download invoice after purchase @regression", async ({
+  test("T20: should download invoice after purchase @regression", async ({
     checkoutPage,
     cartApi,
     cartPage,

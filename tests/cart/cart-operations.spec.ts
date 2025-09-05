@@ -18,7 +18,7 @@ test.describe("Cart", () => {
     },
   );
 
-  test("should add product to cart then validate cart @smoke @regression", async ({
+  test("T10: should add product to cart then validate cart @smoke @regression", async ({
     homePage,
     productPage,
     addedToCart,
@@ -54,7 +54,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
   });
 
-  test("should add 3 different products to cart then validate cart @regression", async ({
+  test("T11: should add 3 different products to cart then validate cart @regression", async ({
     homePage,
     productPage,
     addedToCart,
@@ -144,7 +144,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(3)).toHaveText("1");
   });
 
-  test("should add 2 the same products to cart then validate cart @regression", async ({
+  test("T12: should add 2 the same products to cart then validate cart @regression", async ({
     homePage,
     productPage,
     addedToCart,
@@ -186,7 +186,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("2");
   });
 
-  test("should verify product quantity in cart @regression", async ({
+  test("T13: should verify product quantity in cart @regression", async ({
     homePage,
     productPage,
     addedToCart,
@@ -217,7 +217,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("3");
   });
 
-  test("should add product to cart from recommended items then validate cart @regression", async ({
+  test("T14: should add product to cart from recommended items then validate cart @regression", async ({
     addedToCart,
     cartPage,
     recommendedItemsComponent,
@@ -249,7 +249,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
   });
 
-  test("should remove item from cart page @regression", async ({ cartApi, cartPage }) => {
+  test("T15: should remove item from cart page @regression", async ({ cartApi, cartPage }) => {
     await cartApi.addProduct(1);
     await cartPage.goToLink();
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
@@ -257,7 +257,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.cartIsEmptyText).toHaveText(CartText.EMPTY_CART);
   });
 
-  test("should redirect to products from empty cart @regression", async ({
+  test("T16: should redirect to products from empty cart @regression", async ({
     cartPage,
     productPage,
   }) => {
@@ -268,7 +268,7 @@ test.describe("Cart", () => {
     await expect.soft(productPage.titleAltText).toBeVisible();
   });
 
-  test("should add to cart from product details @regression", async ({
+  test("T17: should add to cart from product details @regression", async ({
     homePage,
     productPage,
     productDetailsPage,
@@ -297,7 +297,7 @@ test.describe("Cart", () => {
     await expect.soft(cartPage.getProductQuantityById(1)).toHaveText("1");
   });
 
-  test("should increase quantity in product details @regression", async ({
+  test("T18: should increase quantity in product details @regression", async ({
     homePage,
     productPage,
     productDetailsPage,

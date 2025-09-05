@@ -14,7 +14,7 @@ test.describe("Register without state storage", () => {
       await homePage.expectUrlContains(env.AUTOMATION_BASEURL);
     },
   );
-  test("should register user @smoke @regression", async ({ authPage }) => {
+  test("T5: should register user @smoke @regression", async ({ authPage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
     await authPage.fillPreRegisterForm(formData);
     await authPage.fillRegistration(formData);
@@ -23,7 +23,7 @@ test.describe("Register without state storage", () => {
       .toHaveText(RegistrationText.ACCOUNT_CREATED);
   });
 
-  test("should register user with required data only @regression", async ({ authPage }) => {
+  test("T6: should register user with required data only @regression", async ({ authPage }) => {
     const formData: RegisterFormData =
       DataGenerator.generateRegisterFormData(true);
     await authPage.fillPreRegisterForm(formData);
@@ -33,7 +33,7 @@ test.describe("Register without state storage", () => {
       .toHaveText(RegistrationText.ACCOUNT_CREATED);
   });
 
-  test("should register user who already exists @regression", async ({ authPage }) => {
+  test("T7: should register user who already exists @regression", async ({ authPage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData(
       false,
       {
@@ -44,7 +44,7 @@ test.describe("Register without state storage", () => {
     await expect.soft(authPage.registerEmailExistError).toBeVisible();
   });
 
-  test("should delete account after register @regression", async ({ authPage, accountDeletedPage, homePage }) => {
+  test("T8: should delete account after register @regression", async ({ authPage, accountDeletedPage, homePage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
     await authPage.fillPreRegisterForm(formData);
     await authPage.fillRegistration(formData);
@@ -62,7 +62,7 @@ test.describe("Register without state storage", () => {
     await expect.soft(accountDeletedPage.accoutDeletedParagraph2).toBeVisible();
   });
 
-  test("should continue after delete @regression", async ({ authPage, accountDeletedPage, homePage }) => {
+  test("T9: should continue after delete @regression", async ({ authPage, accountDeletedPage, homePage }) => {
     const formData: RegisterFormData = DataGenerator.generateRegisterFormData();
     await authPage.fillPreRegisterForm(formData);
     await authPage.fillRegistration(formData);
